@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)http://www.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/7feadbc7606af9ce0e5d242e1ba75fd53717da7d/iframe.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<style>
+
+body {
+  overflow: hidden;
+}
+
+body, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000;
+}
+
+.g-chart {
+  font: 10px sans-serif;
+  height: 652px;
+  position: relative;
+}
+
+.g-heads {
+  position: absolute;
+  top: 170px;
+  left: 485px;
+}
+
+.g-heads img {
+  opacity: 0;
+  position: absolute;
+  left: -100px;
+  -webkit-transition-property: opacity left;
+  -moz-transition-property: opacity left;
+  -ms-transition-property: opacity left;
+  transition-property: opacity left;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+.g-chart svg {
+  position: relative;
+}
+
+.g-scoreboard text {
+  font-size: 18px;
+}
+
+text.g-kicker {
+  font-size: 16px;
+  text-anchor: middle;
+}
+
+.g-scoreboard rect,
+.g-scoreboard path {
+  fill: #fff;
+}
+
+.g-scoreboard path {
+  stroke: #ddd;
+}
+
+.g-score {
+  font-weight: bold;
+}
+
+.g-alert {
+  fill: #999;
+  opacity: 0;
+}
+
+.g-alert tspan {
+  font-size: 18px;
+  text-anchor: middle;
+  margin: 0;
+}
+
+.g-scoreboard .g-dem,
+.g-node.g-dem .g-label-line2 {
+  color: #338ccc;
+  fill: #338ccc;
+}
+
+.g-scoreboard .g-rep,
+.g-node.g-rep .g-label-line2 {
+  color: #cc334d;
+  fill: #cc334d;
+}
+
+.g-scoreboard .g-tie,
+.g-node .g-tie + .g-label .g-label-line2 {
+  color: #e4c567;
+  fill: #e4c567;
+}
+
+.g-scoreboard .g-ratio {
+  fill: #bbb;
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.g-link {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.g-node.g-null {
+  display: none;
+}
+
+.g-node.g-dem circle {
+  fill: #1782cf;
+}
+
+.g-node.g-rep circle {
+  fill: #da0b2e;
+}
+
+.g-node .g-tie circle {
+  fill: #e6ac00;
+}
+
+.g-marker.g-dem {
+  fill: #c2ddf0;
+}
+
+.g-link.g-dem,
+.g-node.g-dem .g-check {
+  fill: none;
+  stroke: #c2ddf0;
+}
+
+.g-marker.g-rep {
+  fill: #f6cbd2;
+}
+
+.g-link.g-rep,
+.g-node.g-rep .g-check {
+  fill: none;
+  stroke: #f6cbd2;
+}
+
+.g-leaf.g-tie .g-check {
+  fill: none;
+  stroke: white;
+  stroke-opacity: 0.8;
+}
+
+.g-node text {
+  display: none;
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+.g-chart:not(:hover) .g-node.g-first text,
+.g-dem .g-node.g-dem.g-active text,
+.g-rep .g-node.g-rep.g-active text {
+  display: inline;
+}
+
+.g-marker.g-dem-active {
+  fill: #2280c3;
+}
+
+.g-link.g-active.g-dem,
+.g-node.g-active.g-dem circle {
+  stroke: #2280c3;
+}
+
+.g-marker.g-rep-active {
+  fill: #da0b2e;
+}
+
+.g-link.g-active.g-rep,
+.g-node.g-active.g-rep circle {
+  stroke: #da0b2e;
+}
+
+.g-label-line2 {
+  font-weight: bold;
+}
+
+.g-state text {
+  fill: #999;
+}
+
+.g-state.g-dem text,
+.g-state.g-rep text {
+  fill: #000;
+  font-weight: bold;
+  fill-opacity: 0.8
+}
+
+.g-state text.g-dem,
+.g-state text.g-rep,
+.g-state rect {
+  fill: none;
+}
+
+.g-state.g-dem text.g-dem,
+.g-state.g-rep text.g-rep {
+  fill: #fff;
+}
+
+.g-state.g-dem rect {
+  fill: #2280c3;
+}
+
+.g-state.g-rep rect {
+  fill: #da0b2e;
+}
+
+.g-node.g-active.g-dem circle,
+.g-node.g-active.g-rep circle {
+  stroke: #000;
+}
+
+.g-node.g-active.g-dem circle,
+.g-node.g-active.g-rep circle {
+  stroke-width: 1.5px;
+}
+
+.g-check {
+  fill: none;
+  stroke-width: 15px;
+  stroke-opacity: .8;
+}
+
+.g-state line {
+  stroke: #777;
+  stroke-opacity: .1;
+  shape-rendering: crispEdges;
+}
+
+.g-voronoi {
+  fill: none;
+  pointer-events: all;
+}
+
+.g-chart marker {
+  stroke: #fff;
+  stroke-width: .25px;
+}
+
+.g-controls {
+  border-bottom: solid 1px #dedede;
+  border-top: solid 1px #dedede;
+  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left: 10px;
+  margin: 0 10px;
+  overflow: hidden;
+  padding: 10px 10px 10px 66px;
+  position: relative;
+  height: 50px;
+}
+
+.g-reset {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  padding: 12px 20px 12px 20px;
+  margin-top: 26px;
+  font-size: 11px;
+  line-height: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/close-button.svg) no-repeat left center;
+  opacity: 0.4;
+}
+
+.g-reset:hover {
+  opacity: 1;
+}
+
+.g-control {
+  border-right: dotted 1px #ddd;
+  float: left;
+  height: 50px;
+  position: relative;
+  text-align: center;
+  width: 90px;
+}
+
+.g-control:last-child {
+  border-right: none;
+}
+
+.g-control span {
+  display: block;
+  position: absolute;
+  top:0;
+  width: 90px;
+}
+
+.g-button {
+  background: #fff;
+  border-bottom-color: #ccc;
+  border: solid 1px #ddd;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.08);
+  color: #aaa;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 17px;
+  margin: 20px -1px 0 0;
+  padding: 4px 0;
+  text-align: center;
+  text-transform: capitalize;
+  width: 35px;
+}
+
+.g-button:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.g-button:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+
+.g-button:hover {
+  border-bottom-color: #bbb;
+  border-color: #ccc;
+  color: #666;
+}
+
+.g-button.g-active,
+.g-button:active {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+  border-top-color: #999;
+  box-shadow: inset 0 1px 6px rgba(0,0,0,0.3);
+  color: #333;
+}
+
+.g-button.g-dem.g-active,
+.g-button.g-dem:active {
+  background-color: #1782cf;
+  color: white;
+}
+
+.g-button.g-rep.g-active,
+.g-button.g-rep:active {
+  background-color: #da0b2e;
+  color: white;
+}
+
+.g-scenario-group {
+  border-top: solid 1px #ccc;
+  font-family: Helvetica, Arial;
+  margin: 10px 10px 20px;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+}
+
+.g-scenario {
+  float: left;
+  width: 217px;
+  margin: 0 10px;
+  color: #666;
+  position: relative;
+  height: 260px;
+}
+
+.g-scenario h3 {
+  font-size: 13px;
+  line-height: 1.4em;
+}
+
+.g-scenario p {
+  font-size: 12px;
+  line-height: 1.4em;
+}
+
+.g-scenario .g-button {
+  border-radius: 4px;
+  width: 217px;
+  position: absolute;
+  bottom: 0;
+}
+
+.g-scenario .g-preview {
+  background-size: 160px 112px;
+  bottom: 10px;
+  height: 112px;
+  left: 25px;
+  position: absolute;
+  width: 160px;
+}
+
+.g-scenario-1 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario1.svg); }
+.g-scenario-2 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario2.svg); }
+.g-scenario-3 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario3.svg); }
+.g-scenario-4 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario4.svg); }
+
+</style>
+<!--[if lte IE 8]>
+<style type="text/css">
+
+.g-chart {
+  border-top: solid 1px #ccc;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/fallback.png);
+  width: 970px;
+}
+
+.g-controls {
+  display: none;
+}
+
+.g-error {
+  background-color: #ffd;
+  border: solid 1px #ccc;
+  font-size: 15px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.g-scenario button {
+  display: none;
+}
+
+.g-scenario-1 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario1.png); }
+.g-scenario-2 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario2.png); }
+.g-scenario-3 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario3.png); }
+.g-scenario-4 .g-preview { background-image: url(http://graphics8.nytimes.com/newsgraphics/2012/10/12/electoral-calculator/844a82453f26e9dda798a86b6fb690ca049e0a19/scenario4.png); }
+
+</style>
+<p class="g-error">This interactive graphic requires a browser with SVG support, such as <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.mozilla.org/en-US/firefox/">Firefox</a>, <a href="http://www.apple.com/safari/download/">Safari</a> or the latest <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">Internet Explorer 9</a>.</p>
+<![endif]-->
+</head><body><div class="g-controls"><a class="g-reset">Reset</a><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Fla.</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Ohio</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>N.C.</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Va.</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Wis.</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Colo.</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Iowa</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>Nev.</span></div><div class="g-control"><button class="g-button g-dem">dem</button><button class="g-button g-rep">rep</button><span>N.H.</span></div></div>
+<div class="g-chart">
+  <div class="g-heads">
+    <img class="g-dem" src="obama-head.png" style="opacity: 0;">
+    <img class="g-rep" src="romney-head.png" style="opacity: 0;">
+  </div>
+<svg width="970" height="650"><g transform="translate(60,85)" class="g-rep"><defs><marker id="g-arrowhead-dem" viewBox="-.1 -5 10 10" orient="auto"><path d="M-.1,-4L3.9,0L-.1,4" class="g-marker g-dem"></path></marker><marker id="g-arrowhead-rep" viewBox="-.1 -5 10 10" orient="auto"><path d="M-.1,-4L3.9,0L-.1,4" class="g-marker g-rep"></path></marker><marker id="g-arrowhead-dem-active" viewBox="-.1 -5 10 10" orient="auto"><path d="M-.1,-4L3.9,0L-.1,4" class="g-marker g-dem-active"></path></marker><marker id="g-arrowhead-rep-active" viewBox="-.1 -5 10 10" orient="auto"><path d="M-.1,-4L3.9,0L-.1,4" class="g-marker g-rep-active"></path></marker></defs><g class="g-state" transform="translate(-50,121)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Florida</text></g><g class="g-state" transform="translate(-50,193)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Ohio</text></g><g class="g-state" transform="translate(-50,252)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">North Carolina</text></g><g class="g-state" transform="translate(-50,306)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Virginia</text></g><g class="g-state" transform="translate(-50,355)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Wisconsin</text></g><g class="g-state" transform="translate(-50,401)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Colorado</text></g><g class="g-state" transform="translate(-50,444)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Iowa</text></g><g class="g-state" transform="translate(-50,485)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">Nevada</text></g><g class="g-state" transform="translate(-50,525)" style="fill-opacity: 1;"><line x2="950"></line><rect y="-16" width="12" height="12"></rect><text class="g-dem" y="-6" x="6" style="text-anchor: middle;">D</text><text class="g-rep" y="-6" x="6" style="text-anchor: middle;">R</text><text x="16" y="-6">New Hampshire</text></g><path d="M619.0799180708898,485C619.0799180708898,505,620.5144198414391,505,620.5144198414391,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M813.1937995278108,485C813.1937995278108,505,814.6283012983602,505,814.6283012983602,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M346.45198285322766,485C346.45198285322766,505,345.0174810826781,505,345.0174810826781,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M347.51252972822766,485C347.51252972822766,505,348.94703149877716,505,348.94703149877716,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M465.97827013389343,485C465.97827013389343,505,464.54376836334393,505,464.54376836334393,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M467.03881700889343,485C467.03881700889343,505,468.4733187794429,505,468.4733187794429,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M505.6874111807887,485C505.6874111807887,505,504.2529094102391,505,504.2529094102391,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M506.7479580557887,485C506.7479580557887,505,508.1824598263382,505,508.1824598263382,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M540.0783636946176,485C540.0783636946176,505,538.643861924068,505,538.643861924068,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M541.1389105696176,485C541.1389105696176,505,542.573412340167,505,542.573412340167,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M788.198313422399,485C788.198313422399,505,789.6328151929486,505,789.6328151929486,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M787.137766547399,485C787.137766547399,505,785.7032647768494,505,785.7032647768494,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M618.0193711958898,485C618.0193711958898,505,616.5848694253402,505,616.5848694253402,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M812.1332526528108,485C812.1332526528108,505,810.6987508822613,505,810.6987508822613,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M780.0437576716973,485C780.0437576716973,505,781.4782594422467,505,781.4782594422467,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M778.9832107966973,485C778.9832107966973,505,777.5487090261479,505,777.5487090261479,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M643.0148573013015,485C643.0148573013015,505,641.580355530752,505,641.580355530752,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M644.0754041763015,485C644.0754041763015,505,645.509905946851,505,645.509905946851,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M651.1694130520032,485C651.1694130520032,505,649.7349112814535,505,649.7349112814535,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M652.2299599270032,485C652.2299599270032,505,653.6644616975525,505,653.6644616975525,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M675.6330803041084,485C675.6330803041084,505,674.1985785335588,505,674.1985785335588,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M676.6936271791084,485C676.6936271791084,505,678.1281289496577,505,678.1281289496577,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M755.5800904195922,485C755.5800904195922,505,757.0145921901416,505,757.0145921901416,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M754.5195435445922,485C754.5195435445922,505,753.0850417740427,505,753.0850417740427,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M683.7876360548099,485C683.7876360548099,505,682.3531342842605,505,682.3531342842605,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M684.8481829298099,485C684.8481829298099,505,686.2826847003595,505,686.2826847003595,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M747.4255346688904,485C747.4255346688904,505,748.86003643944,505,748.86003643944,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M746.3649877938904,485C746.3649877938904,505,744.930486023341,505,744.930486023341,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M730.055876292487,485C730.055876292487,505,728.6213745219376,505,728.6213745219376,525" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.060546875px;"></path><path d="M731.116423167487,485C731.116423167487,505,732.5509249380366,505,732.5509249380366,525" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.060546875px;"></path><path d="M774.8756594838464,444C774.8756594838464,464.5,771.3589284834956,464.5,771.3589284834956,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M816.1802570906616,444C816.1802570906616,464.5,812.6635260903108,464.5,812.6635260903108,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M727.0694187296361,444C727.0694187296361,464.5,730.586149729987,464.5,730.586149729987,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M725.9483249796361,444C725.9483249796361,464.5,722.4315939792854,464.5,722.4315939792854,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M817.3013508406616,444C817.3013508406616,464.5,820.8180818410124,464.5,820.8180818410124,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M343.4655252903768,444C343.4655252903768,464.5,346.98225629072766,464.5,346.98225629072766,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M758.5665479824431,444C758.5665479824431,464.5,755.0498169820922,464.5,755.0498169820922,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M759.6876417324431,444C759.6876417324431,464.5,763.2043727327938,464.5,763.2043727327938,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M688.9557342426607,444C688.9557342426607,464.5,692.4724652430117,464.5,692.4724652430117,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M687.8346404926607,444C687.8346404926607,464.5,684.3179094923099,464.5,684.3179094923099,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M342.3444315403768,444C342.3444315403768,464.5,338.8277005400259,464.5,338.8277005400259,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M672.6466227412574,444C672.6466227412574,464.5,676.1633537416084,464.5,676.1633537416084,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M671.5255289912574,444C671.5255289912574,464.5,668.0087979909065,464.5,668.0087979909065,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M461.87071882104254,444C461.87071882104254,464.5,458.3539878206916,464.5,458.3539878206916,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M656.337511239854,444C656.337511239854,464.5,659.8542422402048,464.5,659.8542422402048,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M655.216417489854,444C655.216417489854,464.5,651.6996864895032,464.5,651.6996864895032,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M743.3785302310397,444C743.3785302310397,464.5,746.8952612313904,464.5,746.8952612313904,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M775.9967532338464,444C775.9967532338464,464.5,779.5134842341973,464.5,779.5134842341973,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M640.0283997384505,444C640.0283997384505,464.5,643.5451307388015,464.5,643.5451307388015,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M638.9073059884505,444C638.9073059884505,464.5,635.3905749880997,464.5,635.3905749880997,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M462.99181257104254,444C462.99181257104254,464.5,466.50854357139343,464.5,466.50854357139343,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M791.1847709852498,444C791.1847709852498,464.5,787.668039984899,464.5,787.668039984899,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M792.3058647352498,444C792.3058647352498,464.5,795.8225957356007,464.5,795.8225957356007,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M615.0329136330388,444C615.0329136330388,464.5,618.5496446333898,464.5,618.5496446333898,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M613.9118198830388,444C613.9118198830388,464.5,610.3950888826879,464.5,610.3950888826879,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M742.2574364810397,444C742.2574364810397,464.5,738.7407054806888,464.5,738.7407054806888,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M501.5798598679378,444C501.5798598679378,464.5,498.0631288675869,464.5,498.0631288675869,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M545.2464618824685,444C545.2464618824685,464.5,548.7631928828192,464.5,548.7631928828192,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M544.1253681324685,444C544.1253681324685,464.5,540.6086371321176,464.5,540.6086371321176,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M528.9373503810649,444C528.9373503810649,464.5,532.4540813814159,464.5,532.4540813814159,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M527.8162566310649,444C527.8162566310649,464.5,524.2995256307142,464.5,524.2995256307142,485" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.12109375px;"></path><path d="M502.7009536179378,444C502.7009536179378,464.5,506.2176846182887,464.5,506.2176846182887,485" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.12109375px;"></path><path d="M823.9209969064434,401C823.9209969064434,422.5,829.8590023472251,422.5,829.8590023472251,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M782.9696683595482,401C782.9696683595482,422.5,775.4362063588464,422.5,775.4362063588464,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M784.2118558595482,401C784.2118558595482,422.5,791.7453178602498,422.5,791.7453178602498,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M455.2510727552607,401C455.2510727552607,422.5,449.31306731447893,422.5,449.31306731447893,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M720.5708664138543,401C720.5708664138543,422.5,726.5088718546361,422.5,726.5088718546361,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M608.5343613172571,401C608.5343613172571,422.5,614.4723667580388,422.5,614.4723667580388,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M719.3286789138543,401C719.3286789138543,422.5,713.3906734730726,422.5,713.3906734730726,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M822.6788094064434,401C822.6788094064434,422.5,816.7408039656616,422.5,816.7408039656616,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M494.960213802156,401C494.960213802156,422.5,489.0222083613742,422.5,489.0222083613742,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M496.202401302156,401C496.202401302156,422.5,502.1404067429378,422.5,502.1404067429378,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M680.8617253669591,401C680.8617253669591,422.5,688.3951873676607,422.5,688.3951873676607,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M335.724785474595,401C335.724785474595,422.5,329.78678003381316,422.5,329.78678003381316,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M336.966972974595,401C336.966972974595,422.5,342.9049784153768,422.5,342.9049784153768,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M750.3514453567412,401C750.3514453567412,422.5,742.8179833560397,422.5,742.8179833560397,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M679.6195378669591,401C679.6195378669591,422.5,672.0860758662574,422.5,672.0860758662574,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M456.4932602552607,401C456.4932602552607,422.5,462.43126569604254,422.5,462.43126569604254,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M551.8661079482503,401C551.8661079482503,422.5,557.8041133890321,422.5,557.8041133890321,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M550.6239204482503,401C550.6239204482503,422.5,544.6859150074685,422.5,544.6859150074685,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M648.2435023641522,401C648.2435023641522,422.5,655.776964364854,422.5,655.776964364854,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M647.0013148641522,401C647.0013148641522,422.5,639.4678528634505,422.5,639.4678528634505,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M522.4387980652832,401C522.4387980652832,422.5,528.3768035060649,422.5,528.3768035060649,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M521.1966105652832,401C521.1966105652832,422.5,515.2586051245015,422.5,515.2586051245015,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M751.5936328567412,401C751.5936328567412,422.5,759.1270948574431,422.5,759.1270948574431,444" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.2421875px;"></path><path d="M607.2921738172571,401C607.2921738172571,422.5,601.3541683764752,422.5,601.3541683764752,444" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.2421875px;"></path><path d="M535.7891717567668,355C535.7891717567668,378,521.8177043152832,378,521.8177043152832,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M833.9693759181672,355C833.9693759181672,378,843.154473679891,378,843.154473679891,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M537.2735467567668,355C537.2735467567668,378,551.2450141982503,378,551.2450141982503,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M327.1607814628711,355C327.1607814628711,378,336.345879224595,378,336.345879224595,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M325.6764064628711,355C325.6764064628711,378,316.4913087011474,378,316.4913087011474,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M597.2437948055332,355C597.2437948055332,378,588.0586970438094,378,588.0586970438094,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M486.3962097904322,355C486.3962097904322,378,495.581307552156,378,495.581307552156,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M484.9118347904322,355C484.9118347904322,378,475.7267370287083,378,475.7267370287083,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M598.7281698055332,355C598.7281698055332,378,607.9132675672571,378,607.9132675672571,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M832.4850009181672,355C832.4850009181672,378,823.2999031564434,378,823.2999031564434,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M638.4373108524284,355C638.4373108524284,378,647.6224086141522,378,647.6224086141522,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M689.4257293786828,355C689.4257293786828,378,680.2406316169591,378,680.2406316169591,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M690.9101043786828,355C690.9101043786828,378,700.0952021404067,378,700.0952021404067,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M794.2602348712719,355C794.2602348712719,378,803.4453326329958,378,803.4453326329958,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M446.6870687435369,355C446.6870687435369,378,455.8721665052607,378,455.8721665052607,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M445.2026937435369,355C445.2026937435369,378,436.0175959818131,378,436.0175959818131,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M792.7758598712719,355C792.7758598712719,378,783.5907621095482,378,783.5907621095482,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M734.7189683852978,355C734.7189683852978,378,719.9497726638543,378,719.9497726638543,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M736.2033433852978,355C736.2033433852978,378,750.9725391067412,378,750.9725391067412,401" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.484375px;"></path><path d="M636.9529358524284,355C636.9529358524284,378,627.7678380907047,378,627.7678380907047,401" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.484375px;"></path><path d="M847.6064691803589,306C847.6064691803589,330.5,833.2271884181672,330.5,833.2271884181672,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M664.9158951155557,306C664.9158951155557,330.5,690.1679168786828,330.5,690.1679168786828,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M662.9471451155557,306C662.9471451155557,330.5,637.6951233524284,330.5,637.6951233524284,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M312.0393132006795,306C312.0393132006795,330.5,326.4185939628711,330.5,326.4185939628711,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M583.6067015433416,306C583.6067015433416,330.5,597.9859823055332,330.5,597.9859823055332,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M581.6379515433416,306C581.6379515433416,330.5,567.25867078115,330.5,567.25867078115,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M849.5752191803589,306C849.5752191803589,330.5,863.9544999425505,330.5,863.9544999425505,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M765.4739766282848,306C765.4739766282848,330.5,793.5180473712719,330.5,793.5180473712719,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M431.56560048134526,306C431.56560048134526,330.5,445.9448812435369,330.5,445.9448812435369,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M429.59685048134526,306C429.59685048134526,330.5,415.21756971915363,330.5,415.21756971915363,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M763.5052266282848,306C763.5052266282848,330.5,735.4611558852978,330.5,735.4611558852978,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M310.0705632006795,306C310.0705632006795,330.5,295.6912824384879,330.5,295.6912824384879,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M512.0770657735995,306C512.0770657735995,330.5,536.5313592567668,330.5,536.5313592567668,355" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 1.96875px;"></path><path d="M510.1083157735995,306C510.1083157735995,330.5,485.6540222904322,330.5,485.6540222904322,355" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 1.96875px;"></path><path d="M621.8081733294487,252C621.8081733294487,279,582.6223265433416,279,582.6223265433416,306" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 2.9375px;"></path><path d="M805.0714729043219,252C805.0714729043219,279,764.4896016282848,279,764.4896016282848,306" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 2.9375px;"></path><path d="M284.05888324196115,252C284.05888324196115,279,260.00032828324277,279,260.00032828324277,306" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 2.9375px;"></path><path d="M469.36820812747237,252C469.36820812747237,279,430.58122548134526,279,430.58122548134526,306" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 2.9375px;"></path><path d="M472.30570812747237,252C472.30570812747237,279,511.0926907735995,279,511.0926907735995,306" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 2.9375px;"></path><path d="M286.99638324196115,252C286.99638324196115,279,311.0549382006795,279,311.0549382006795,306" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 2.9375px;"></path><path d="M808.0089729043219,252C808.0089729043219,279,848.5908441803589,279,848.5908441803589,306" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 2.9375px;"></path><path d="M624.7456733294487,252C624.7456733294487,279,663.9315201155557,279,663.9315201155557,306" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 2.9375px;"></path><path d="M422.0721269060946,193C422.0721269060946,222.5,378.18229568471673,222.5,378.18229568471673,252" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 4.875px;"></path><path d="M717.3460731168852,193C717.3460731168852,222.5,806.5402229043219,222.5,806.5402229043219,252" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 4.875px;"></path><path d="M712.4710731168852,193C712.4710731168852,222.5,623.2769233294487,222.5,623.2769233294487,252" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 4.875px;"></path><path d="M426.9471269060946,193C426.9471269060946,222.5,470.83695812747237,222.5,470.83695812747237,252" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 4.875px;"></path><path d="M241.63780202058334,193C241.63780202058334,222.5,285.52763324196115,222.5,285.52763324196115,252" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 4.875px;"></path><path d="M236.76280202058334,193C236.76280202058334,222.5,192.87297079920558,222.5,192.87297079920558,252" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 4.875px;"></path><path d="M565.3341000114899,121C565.3341000114899,157,424.5096269060946,157,424.5096269060946,193" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 8.75px;"></path><path d="M574.0841000114899,121C574.0841000114899,157,714.9085731168852,157,714.9085731168852,193" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 8.75px;"></path><path d="M152.81155105625137,121C152.81155105625137,157,239.20030202058334,157,239.20030202058334,193" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 8.75px;"></path><path d="M144.06155105625137,121C144.06155105625137,157,57.672800091919314,157,57.672800091919314,193" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 8.75px;"></path><path d="M433.25,0C433.25,60.5,569.7091000114899,60.5,569.7091000114899,121" class="g-link g-rep" marker-end="url(#g-arrowhead-rep)" style="stroke-width: 16.5px;"></path><path d="M416.75,0C416.75,60.5,148.43655105625137,60.5,148.43655105625137,121" class="g-link g-dem" marker-end="url(#g-arrowhead-dem)" style="stroke-width: 16.5px;"></path><g class="g-node g-dem g-first" transform="translate(148.43655105625137,121)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Obama wins Florida…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="42.396621227037315"></tspan></text></g><g class="g-node g-dem" transform="translate(57.672800091919314,193)"><g class="g-leaf" transform="scale(27.85761802547597)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-30.85761802547597"> and Ohio,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="30.85761802547597">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(239.20030202058334,193)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Romney wins Ohio…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="30.85761802547597"></tspan></text></g><g class="g-node g-dem" transform="translate(192.87297079920558,252)"><g class="g-leaf" transform="scale(19.698310613518657)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-22.698310613518657"> and N.C.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="22.698310613518657">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(285.52763324196115,252)"><text class="g-label" y="-6"><tspan class="g-label-line1"> N.C.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="22.698310613518657"></tspan></text></g><g class="g-node g-dem" transform="translate(260.00032828324277,306)"><g class="g-leaf" transform="scale(13.928809012737984)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-16.928809012737986"> and Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(311.0549382006795,306)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(295.6912824384879,355)"><g class="g-leaf" transform="scale(9.849155306759329)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-12.849155306759329"> and Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(326.4185939628711,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(316.4913087011474,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(336.345879224595,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(329.78678003381316,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(342.9049784153768,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(338.8277005400259,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(346.98225629072766,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(345.0174810826781,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(348.94703149877716,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep g-first" transform="translate(569.7091000114899,121)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Romney wins Florida…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="42.396621227037315"></tspan></text></g><g class="g-node g-dem" transform="translate(424.5096269060946,193)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Obama wins Ohio…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="30.85761802547597"></tspan></text></g><g class="g-node g-dem" transform="translate(378.18229568471673,252)"><g class="g-leaf" transform="scale(19.698310613518657)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-22.698310613518657"> and N.C.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="22.698310613518657">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(470.83695812747237,252)"><text class="g-label" y="-6"><tspan class="g-label-line1"> N.C.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="22.698310613518657"></tspan></text></g><g class="g-node g-dem" transform="translate(430.58122548134526,306)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(415.21756971915363,355)"><g class="g-leaf" transform="scale(9.849155306759329)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-12.849155306759329"> and Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(445.9448812435369,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(436.0175959818131,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(455.8721665052607,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(449.31306731447893,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(462.43126569604254,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(458.3539878206916,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(466.50854357139343,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(464.54376836334393,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(468.4733187794429,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(511.0926907735995,306)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(485.6540222904322,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(475.7267370287083,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(495.581307552156,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(489.0222083613742,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(502.1404067429378,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(498.0631288675869,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(506.2176846182887,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(504.2529094102391,525)"><g class="g-leaf g-tie" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832"> the candidates tie.</tspan></text></g><g class="g-node g-rep" transform="translate(508.1824598263382,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(536.5313592567668,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(521.8177043152832,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(515.2586051245015,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(528.3768035060649,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(524.2995256307142,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(532.4540813814159,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(551.2450141982503,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(544.6859150074685,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(540.6086371321176,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(538.643861924068,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(542.573412340167,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(548.7631928828192,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(557.8041133890321,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(714.9085731168852,193)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Ohio,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="30.85761802547597"></tspan></text></g><g class="g-node g-dem" transform="translate(623.2769233294487,252)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Obama wins North Carolina…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="22.698310613518657"></tspan></text></g><g class="g-node g-dem" transform="translate(582.6223265433416,306)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(567.25867078115,355)"><g class="g-leaf" transform="scale(9.849155306759329)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-12.849155306759329"> and Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(597.9859823055332,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(588.0586970438094,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(607.9132675672571,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(601.3541683764752,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(614.4723667580388,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(610.3950888826879,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(618.5496446333898,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(616.5848694253402,525)"><g class="g-leaf g-tie" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832"> the candidates tie.</tspan></text></g><g class="g-node g-rep" transform="translate(620.5144198414391,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(663.9315201155557,306)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(637.6951233524284,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(627.7678380907047,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(647.6224086141522,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(639.4678528634505,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(635.3905749880997,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(643.5451307388015,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(641.580355530752,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(645.509905946851,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(655.776964364854,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(651.6996864895032,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(649.7349112814535,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(653.6644616975525,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(659.8542422402048,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(690.1679168786828,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(680.2406316169591,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(672.0860758662574,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(668.0087979909065,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(676.1633537416084,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(674.1985785335588,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(678.1281289496577,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(688.3951873676607,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(684.3179094923099,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(682.3531342842605,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(686.2826847003595,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(692.4724652430117,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(700.0952021404067,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(806.5402229043219,252)"><text class="g-label" y="-6"><tspan class="g-label-line1"> N.C.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="22.698310613518657"></tspan></text></g><g class="g-node g-dem" transform="translate(764.4896016282848,306)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Obama wins Virginia…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(735.4611558852978,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(719.9497726638543,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(713.3906734730726,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(726.5088718546361,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(722.4315939792854,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(730.586149729987,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(728.6213745219376,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(732.5509249380366,525)"><g class="g-leaf g-tie" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832"> the candidates tie.</tspan></text></g><g class="g-node g-rep" transform="translate(750.9725391067412,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(742.8179833560397,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(738.7407054806888,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(746.8952612313904,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(744.930486023341,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(748.86003643944,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(759.1270948574431,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(755.0498169820922,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(753.0850417740427,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(757.0145921901416,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(763.2043727327938,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(793.5180473712719,355)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(783.5907621095482,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(775.4362063588464,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(771.3589284834956,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(779.5134842341973,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(777.5487090261479,525)"><g class="g-leaf g-tie" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832"> the candidates tie.</tspan></text></g><g class="g-node g-rep" transform="translate(781.4782594422467,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(791.7453178602498,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(787.668039984899,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(785.7032647768494,525)"><g class="g-leaf g-tie" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832"> the candidates tie.</tspan></text></g><g class="g-node g-rep" transform="translate(789.6328151929486,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(795.8225957356007,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(803.4453326329958,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(848.5908441803589,306)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Va.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="16.928809012737986"></tspan></text></g><g class="g-node g-dem" transform="translate(833.2271884181672,355)"><text class="g-label" y="-6"><tspan class="g-label-line1">If Obama wins Wisconsin…</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329"></tspan></text></g><g class="g-node g-dem" transform="translate(823.2999031564434,401)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993"></tspan></text></g><g class="g-node g-dem" transform="translate(816.7408039656616,444)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664"></tspan></text></g><g class="g-node g-dem" transform="translate(812.6635260903108,485)"><text class="g-label" y="-6"><tspan class="g-label-line1"> Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965"></tspan></text></g><g class="g-node g-dem" transform="translate(810.6987508822613,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Obama wins.</tspan></text></g><g class="g-node g-rep" transform="translate(814.6283012983602,525)"><g class="g-leaf" transform="scale(2.462288826689832)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-5.462288826689832"> and N.H.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="5.462288826689832">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(820.8180818410124,485)"><g class="g-leaf" transform="scale(3.482202253184496)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-6.4822022531844965"> and Nev.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="6.4822022531844965">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(829.8590023472251,444)"><g class="g-leaf" transform="scale(4.924577653379664)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-7.924577653379664"> and Iowa,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="7.924577653379664">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(843.154473679891,401)"><g class="g-leaf" transform="scale(6.964404506368992)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-9.964404506368993"> and Colo.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="9.964404506368993">Romney wins.</tspan></text></g><g class="g-node g-rep" transform="translate(863.9544999425505,355)"><g class="g-leaf" transform="scale(9.849155306759329)scale(.02)"><circle r="50"></circle><path class="g-check" transform="translate(-8,16)" d="M-20,-20L0,0L38,-38"></path></g><text class="g-label" y="-6"><tspan class="g-label-line1" y="-12.849155306759329"> and Wis.,</tspan><tspan class="g-label-line2" x="0" dy=".71em" y="12.849155306759329">Romney wins.</tspan></text></g><g class="g-scoreboard" transform="translate(425,0)"><text class="g-kicker" y="-52">With nine states undecided:</text><rect x="-280" y="-80" width="560" height="80"></rect><path d="M-280,0H-20l20,20L20,0H280"></path><text class="g-dem g-prefix" x="-280" y="-1.2em" style="text-anchor: start;">Obama has <tspan class="g-score">431</tspan><tspan class="g-suffix"> ways to win</tspan></text><text class="g-rep g-prefix" x="280" y="-1.2em" style="text-anchor: end;">Romney has <tspan class="g-score">76</tspan><tspan class="g-suffix"> ways to win</tspan></text><text class="g-tie g-prefix" y="-1.2em" style="text-anchor: middle;"><tspan class="g-score">5</tspan><tspan class="g-suffix"> ties</tspan></text><text class="g-ratio g-dem" y="-0.8em" x="-168">84% of paths</text><text class="g-ratio g-rep" y="-0.8em" x="170">15% of paths</text><text class="g-ratio g-tie" y="-0.8em">0.98% of paths</text></g><text class="g-alert" transform="translate(425,35)"><tspan x="0">With these selections,</tspan><tspan class="g-output" x="0" y="1.5em"></tspan></text><g class="g-voronoi"><path d="M-59.99999999999994,7.295737518968695e-14L-59.99999999988362,585L-59.77679750213288,585L-34.67769716067759,563.2768283711622L-15.294043544498123,544.6130982246639L222.36965633959892,0Z"></path><path d="M222.36965633959892,0L-15.294043544498116,544.6130982246638L-7.847891514297261,539.9487157904276L29.559151428832696,513.2740244282065L54.868962220190014,492.2756570279366L285.52763324196115,205.54404468587435L285.52763324196115,0Z"></path><path d="M54.8689622201901,492.2756570279365L59.63726718892474,489.4402231056693L326.4474124118026,295.099230017832L285.52763324196115,205.54404468587435Z"></path><path d="M59.63726718892474,489.4402231056694L355.45442607882075,355.67925193490544L355.45442607882075,318.3304722376333L326.4474124118026,295.0992300178319Z"></path><path d="M59.63726718892474,489.4402231056693L54.868962220190014,492.2756570279366L29.559151428832696,513.2740244282065L376.2544523414802,406.07687478974043L376.25445234148026,400.32074806509456L355.4544260788208,355.67925193490544Z"></path><path d="M29.559151428832696,513.2740244282065L-7.847891514297261,539.9487157904277L389.549923674146,452.3184217303952L389.54992367414604,438.9231252102596L376.25445234148026,406.07687478974043Z"></path><path d="M-7.847891514297261,539.9487157904276L-15.294043544498116,544.6130982246638L-34.67769716067759,563.2768283711623L346.98225629072755,504.2170445265859L398.5908441803587,491.1609349973613L398.5908441803588,476.6815782696047L389.54992367414604,452.3184217303952Z"></path><path d="M-34.67769716067759,563.2768283711622L-59.77679750214554,585L346.98225629072766,585L346.98225629072766,504.21704452658577Z"></path><path d="M346.98225629072766,504.21704452658577L346.98225629072766,585L406.74539993106055,585.0000000001164L406.74539993106055,513.4650631184026L398.5908441803588,491.1609349973613Z"></path><path d="M285.52763324196115,0L285.52763324196115,205.54404468587435L326.4474124118026,295.0992300178319L355.4544260788207,318.3304722376332L491.23812025015184,269.50730405274567L638.0531430327441,0Z"></path><path d="M355.45442607882075,318.3304722376333L355.45442607882075,355.67925193490544L376.25445234148026,400.32074806509456L455.8721665052607,364.3196492481479L491.23812025015184,317.7986837652873L491.2381202501518,269.50730405274567Z"></path><path d="M376.2544523414803,400.32074806509456L376.2544523414802,406.07687478974043L389.54992367414604,438.9231252102596L455.8721665052607,418.41648618051113L455.8721665052607,364.3196492481479Z"></path><path d="M389.549923674146,438.9231252102596L389.549923674146,452.3184217303952L398.59084418035883,476.68157826960464L469.1676378379266,461.1186714149353L469.1676378379266,426.5835138194889L455.8721665052607,418.41648618051113Z"></path><path d="M398.59084418035883,476.68157826960464L398.5908441803587,491.1609349973613L406.74539993106055,513.4650631184026L466.50854357139366,504.21704452658577L478.20855834413925,501.2571364838935L478.20855834413925,467.88132858506475L469.1676378379266,461.1186714149353Z"></path><path d="M406.74539993106055,513.4650631184026L406.74539993106055,585L466.50854357139366,585L466.50854357139366,504.21704452658577Z"></path><path d="M466.50854357139366,504.21704452658577L466.50854357139366,585L486.3631140948411,585L486.3631140948411,507.2894303843046L478.20855834413925,501.2571364838935Z"></path><path d="M455.87216650526074,364.31964924814787L455.8721665052607,418.41648618051113L469.1676378379266,426.58351381948887L502.1404067429377,416.3884323372751L528.5727222123679,392.0879949278819L491.23812025015184,317.7986837652873Z"></path><path d="M469.1676378379266,426.58351381948887L469.1676378379266,461.1186714149353L478.2085583441392,467.8813285850647L502.1404067429379,462.60411056213127L502.1404067429379,416.38843233727516Z"></path><path d="M478.2085583441392,467.8813285850647L478.20855834413925,501.2571364838934L486.36311409484097,507.2894303843046L506.217684618289,504.2170445265857L511.1813272491506,502.96132596301936L511.1813272491506,466.3958894378687L502.1404067429379,462.6041105621313Z"></path><path d="M486.3631140948411,507.2894303843046L486.3631140948411,585L506.217684618289,585L506.217684618289,504.2170445265857Z"></path><path d="M506.217684618289,504.2170445265857L506.217684618289,585L523.4131608752032,585L523.4131608752032,507.8898576495011L511.1813272491506,502.96132596301936Z"></path><path d="M502.1404067429379,416.38843233727516L502.1404067429379,462.60411056213127L511.1813272491505,466.3958894378687L528.3768035060651,462.6041105621313L536.5313592567668,459.18407471342704L536.5313592567668,396.88911080176536L536.3950624009162,396.6583567637599L528.5727222123679,392.0879949278819Z"></path><path d="M511.1813272491506,466.3958894378687L511.1813272491506,502.96132596301936L523.4131608752032,507.8898576495011L528.376803506065,506.1098536710733L528.3768035060651,462.6041105621313Z"></path><path d="M528.3768035060651,462.6041105621313L528.376803506065,506.10985367107327L540.6086371321167,504.217044526586L540.6086371321177,461.7050289730389L536.5313592567668,459.18407471342704Z"></path><path d="M528.376803506065,506.10985367107327L523.4131608752032,507.8898576495011L523.4131608752032,585L540.6086371321175,585L540.6086371321175,504.21704452658605Z"></path><path d="M540.6086371321177,504.2170445265857L540.6086371321177,585L579.5791408827537,585L579.5791408827537,510.24751617291196Z"></path><path d="M540.6086371321177,461.7050289730389L540.6086371321177,504.2170445265859L579.5791408827536,510.24751617291196L579.5791408827537,470.29842474124797Z"></path><path d="M536.5313592567668,396.88911080176536L536.5313592567668,459.18407471342704L540.6086371321176,461.7050289730389L579.5791408827536,470.29842474124797L579.5791408827536,427.177313368184Z"></path><path d="M638.0531430327442,0L491.23812025015184,269.50730405274567L491.2381202501518,317.7986837652873L528.5727222123679,392.0879949278818L536.3950624009162,396.6583567637599L607.9132675672571,364.3196492481479L663.9315201155557,290.6323054256721L715.6065853618503,141.4076005326059L715.6065853618503,0Z"></path><path d="M536.3950624009162,396.6583567637599L536.5313592567668,396.88911080176536L579.5791408827536,427.177313368184L607.9132675672571,418.4164861805111L607.9132675672571,364.3196492481479Z"></path><path d="M579.5791408827536,427.17731336818395L579.5791408827536,470.29842474124786L622.8928319353936,460.74731162813623L645.8287731698703,441.7068964604051L607.9132675672571,418.41648618051113Z"></path><path d="M579.5791408827536,470.29842474124786L579.5791408827537,510.2475161729119L618.549644633389,504.2170445265859L622.8928319353938,503.11829078346506L622.8928319353938,460.74731162813634Z"></path><path d="M579.5791408827537,510.2475161729119L579.5791408827537,585L618.5496446333897,585L618.5496446333897,504.2170445265857Z"></path><path d="M618.5496446333897,504.2170445265857L618.5496446333897,585L631.0473876860955,585L631.0473876860955,506.1510016959534L622.8928319353938,503.11829078346506Z"></path><path d="M607.9132675672572,364.31964924814787L607.9132675672571,418.4164861805111L645.8287731698703,441.70689646040535L647.622408614152,441.54412966181485L663.9315201155557,435.3143589123708L663.9315201155557,290.6323054256721Z"></path><path d="M622.8928319353938,460.74731162813634L622.8928319353938,503.11829078346506L631.0473876860955,506.15100169595337L643.5451307388017,504.2170445265857L647.6224086141523,503.1855614207991L647.6224086141523,441.54412966181485L645.8287731698703,441.70689646040535Z"></path><path d="M631.0473876860955,506.15100169595337L631.0473876860955,585L643.5451307388017,585L643.5451307388017,504.2170445265857Z"></path><path d="M643.5451307388017,504.2170445265857L643.5451307388017,585L647.6224086141527,585L647.6224086141527,503.1855614207989Z"></path><path d="M647.6224086141527,503.1855614207989L647.6224086141527,585L651.6996864895029,585L651.6996864895029,504.21704452658577Z"></path><path d="M651.6996864895029,504.21704452658577L651.6996864895029,585L663.9315201155557,585L663.9315201155557,506.10985367107327Z"></path><path d="M647.6224086141523,441.54412966181485L647.6224086141523,503.1855614207991L651.6996864895029,504.21704452658577L663.9315201155556,506.1098536710733L663.9315201155558,435.31435891237084Z"></path><path d="M664.5432342165196,435.5480220774598L663.9315201155558,435.31435891237084L663.9315201155556,506.1098536710733L676.1633537416095,504.2170445265856L680.2406316169569,503.18556142079973L680.2406316169593,452.9230790096751Z"></path><path d="M663.9315201155557,506.10985367107327L663.9315201155557,585L676.1633537416095,585L676.1633537416095,504.2170445265856Z"></path><path d="M676.1633537416095,504.2170445265856L676.1633537416095,585L680.240631616959,585L680.240631616959,503.1855614207998Z"></path><path d="M680.2406316169591,503.1855614207989L680.2406316169591,585L684.3179094923103,585L684.3179094923103,504.2170445265858Z"></path><path d="M684.3179094923103,504.2170445265859L684.3179094923103,585L707.4520296111485,584.9999999998836L707.4520296111485,507.7969226911599Z"></path><path d="M680.2406316169591,452.9230790096751L680.2406316169591,503.18556142079905L684.3179094923103,504.2170445265858L707.4520296111484,507.7969226911599L707.4520296111485,466.8063397285413Z"></path><path d="M663.9315201155557,290.6323054256721L663.9315201155557,435.3143589123708L664.5432342165196,435.5480220774598L751.7702673867012,408.5776844275145L751.7702673867014,270.22837319634743L715.6065853618503,141.4076005326059Z"></path><path d="M664.5432342165196,435.5480220774598L680.2406316169591,452.9230790096751L707.4520296111484,466.8063397285413L730.5861497299873,461.7050289730389L750.9725391067412,449.10025767497945L763.7225850464453,433.60935635819783L751.7702673867012,408.5776844275145Z"></path><path d="M707.4520296111485,466.8063397285413L707.4520296111485,507.79692269116L730.5861497299852,504.21704452658616L730.5861497299873,461.7050289730389Z"></path><path d="M707.4520296111485,507.7969226911598L707.4520296111485,585L730.5861497299871,585L730.5861497299871,504.2170445265862Z"></path><path d="M730.5861497299871,504.2170445265856L730.5861497299871,585L738.7407054806889,585L738.7407054806889,505.47891728957745Z"></path><path d="M730.5861497299873,461.70502897303885L730.5861497299871,504.21704452658577L738.7407054806889,505.47891728957745L746.8952612313909,504.2170445265857L750.9725391067412,503.18556142079916L750.9725391067415,449.1002576749792Z"></path><path d="M738.7407054806889,505.4789172895774L738.7407054806889,585L746.8952612313909,585L746.8952612313909,504.2170445265857Z"></path><path d="M746.8952612313909,504.2170445265857L746.8952612313909,585L750.9725391067415,585L750.9725391067415,503.1855614207991Z"></path><path d="M750.9725391067415,503.18556142079905L750.9725391067415,585L755.0498169820924,585L755.0498169820924,504.2170445265858Z"></path><path d="M755.0498169820924,504.2170445265858L755.0498169820924,585L767.2816506081448,585L767.2816506081448,506.1098536710733Z"></path><path d="M750.9725391067412,449.10025767497945L750.9725391067412,503.1855614207991L755.0498169820924,504.2170445265858L767.2816506081446,506.10985367107327L767.2816506081448,435.3143589123708L763.7225850464453,433.60935635819783Z"></path><path d="M767.2816506081448,435.31435891237084L767.2816506081446,506.1098536710732L779.5134842341974,504.2170445265857L783.590762109548,503.18556142079916L783.5907621095481,441.54412966181474Z"></path><path d="M767.2816506081448,506.10985367107327L767.2816506081448,585L779.5134842341974,585L779.5134842341974,504.2170445265857Z"></path><path d="M779.5134842341974,504.2170445265857L779.5134842341974,585L783.5907621095483,585L783.5907621095483,503.185561420799Z"></path><path d="M783.5907621095483,503.185561420799L783.5907621095483,585L787.668039984899,585L787.668039984899,504.21704452658565Z"></path><path d="M787.668039984899,504.21704452658565L787.668039984899,585L800.1657830376049,585L800.1657830376049,506.15100169595337Z"></path><path d="M785.3843975538299,441.70689646040523L783.5907621095481,441.54412966181474L783.590762109548,503.18556142079905L787.6680399848984,504.2170445265857L800.1657830376049,506.1510016959534L808.3203387883063,503.1182907834652L808.3203387883066,460.74731162813623Z"></path><path d="M751.7702673867014,270.22837319634743L751.7702673867012,408.5776844275145L763.7225850464453,433.60935635819766L767.2816506081448,435.3143589123708L783.5907621095481,441.54412966181474L785.3843975538299,441.7068964604052L823.2999031564434,418.4164861805112L823.2999031564434,364.3196492481479Z"></path><path d="M808.3203387883063,503.1182907834651L800.1657830376049,506.1510016959533L800.1657830376049,585L812.6635260903107,585L812.6635260903107,504.21704452658577Z"></path><path d="M910,585L910,519.279329834L812.6635260903107,504.21704452658577L812.6635260903107,585Z"></path><path d="M910,483.1687197772475L808.3203387883066,460.74731162813623L808.3203387883063,503.1182907834651L812.6635260903106,504.2170445265857L910,519.279329834Z"></path><path d="M910,445.2238966949964L823.2999031564434,418.4164861805112L785.3843975538299,441.7068964604052L808.3203387883066,460.74731162813623L910,483.16871977724753Z"></path><path d="M910,403.52322079860653L823.2999031564434,364.3196492481479L823.2999031564434,418.4164861805112L910,445.22389669499637Z"></path><path d="M910.0000000001164,0L715.6065853618503,0L715.6065853618503,141.4076005326059L751.7702673867014,270.22837319634743L823.2999031564434,364.3196492481479L910,403.52322079860653Z"></path></g></g></svg></div>
+<div class="g-scenario-group">
+  <div class="g-scenario g-scenario-1">
+    <h3>Florida is a Must Win for Romney</h3>
+    <p>If Mr. Romney loses Florida, he has only one way to victory: through all the other battleground states. He has led most polls there, however, and is the favorite. If Mr. Romney wins Florida, he has 75 paths open to him.</p>
+    <div class="g-preview"></div>
+    <button class="g-button" data-view="FL=dem">View Obama wins Florida</button>
+  </div>
+  <div class="g-scenario g-scenario-2">
+    <h3>Ohio: Obama's Firewall</h3>
+    <p>Of the three largest battleground states, Mr. Obama has the largest lead in Ohio – partly because of a strong local economy and the auto industry bailout. If he loses here, it's likely he will trail in Florida and North Carolina too. Losing all three leaves him with only 14 ways to win.</p>
+    <div class="g-preview"></div>
+    <button class="g-button" data-view="FL=rep&amp;OH=rep&amp;NC=rep">View Romney wins Ohio, Fla. &amp; N.C.</button>
+  </div>
+  <div class="g-scenario g-scenario-3">
+    <h3>Times's Battlegrounds</h3>
+    <p>Nine states are shown above, but The Times rates only seven of them as battlegrounds. If Nevada goes to Mr. Obama and North Carolina goes to Mr. Romney, as The Times’s ratings suggest, the president will have four times as many paths to victory as his opponent.</p>
+    <div class="g-preview"></div>
+    <button class="g-button" data-view="NC=rep&amp;NV=dem">View Battleground States</button>
+  </div>
+  <div class="g-scenario g-scenario-4">
+    <h3>Edge of Your Seat Possibilities</h3>
+    <p>There are five paths to a tie. In this case, the newly elected House of Representatives would select the president (likely Mr. Romney) and the Senate would select the vice president (possibly Joseph R. Biden Jr.).</p>
+    <div class="g-preview"></div>
+  </div>
+</div>
+<!--[if gt IE 8]><!-->
+<script src="d3.js"></script>
+<script>
+
+(function() {
+
+var margin = {top: 85, right: 10, bottom: 40, left: 60},
+    width = 970 - margin.left - margin.right,
+    height = 650 - margin.top - margin.bottom;
+
+var numbers = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"],
+    formatCandidate = {dem: "Obama", rep: "Romney"},
+    formatNumber = function(d) { return numbers[d] || d; },
+    formatPercent = d3.format(".2p");
+
+var y = d3.scale.pow()
+    .exponent(2 / 3)
+    .domain([0, 9])
+    .rangeRound([0, height]);
+
+var w = d3.scale.linear()
+    .domain([0, 1])
+    .range([1, 32]);
+
+var svg = d3.select(".g-chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// Per-type markers, as they don't inherit styles.
+svg.append("defs").selectAll("marker")
+    .data(["dem", "rep", "dem-active", "rep-active"])
+  .enter().append("marker")
+    .attr("id", function(d) { return "g-arrowhead-" + d; })
+    .attr("viewBox", "-.1 -5 10 10")
+    .attr("orient", "auto")
+  .append("path")
+    .attr("d", "M-.1,-4L3.9,0L-.1,4")
+    .attr("class", function(d) { return "g-marker g-" + d; });
+
+d3.tsv("states.tsv", function(error, states) {
+  var category = d3.scale.threshold()
+      .domain([.6, .75, .92]) // .9
+      .range(["tossup", "lean", "likely", "safe"]);
+
+  var root = {
+    demvotes: 0,
+    repvotes: 0,
+    probability: 1,
+    party: null,
+    state: {}
+  };
+
+  states.forEach(function(d) {
+    d.dem = +d.dem;
+    d.rep = +d.rep;
+    d.votes = +d.votes;
+    d.category = category(Math.max(d.dem, d.rep));
+    if (d.category === "safe") {
+      if (d.dem > d.rep) root.demvotes += d.votes;
+      else root.repvotes += d.votes;
+    }
+  });
+
+  states = states
+      .filter(function(d) { return d.category !== "safe"; })
+      .sort(function(a, b) { return b.votes - a.votes || a.name.localeCompare(b.name); })
+      .map(function(d, i) { d.index = i; return d; });
+
+  var tree = d3.layout.tree()
+      .size([width, states.length])
+      .separation(function(a, b) { return (a.probability + b.probability + .1) * (states.length - a.depth + 1); })
+      .children(function(d, i) {
+        if (i < states.length) {
+          var s = states[i];
+          return Math.max(d.demvotes, d.repvotes) < 270 && [
+            {party: "dem", state: s, probability: d.probability / 2, demvotes: d.demvotes + s.votes, repvotes: d.repvotes},
+            {party: "rep", state: s, probability: d.probability / 2, demvotes: d.demvotes, repvotes: d.repvotes + s.votes}
+          ];
+        }
+      });
+
+  var nodesByKey,
+      oldNodesByKey,
+      oldStates = states.slice(),
+      bisect = d3.bisector(function(d) { return d.index; }).left,
+      nodes = [],
+      links = [],
+      node = svg.selectAll(".g-node"),
+      link = svg.selectAll(".g-link"),
+      state = svg.selectAll(".g-state");
+
+  var resetButton = d3.select(".g-controls").append("a")
+      .attr("class", "g-reset")
+      .text("Reset")
+      .on("click", function() { reset(); transition(); });
+
+  var control = d3.select(".g-controls").selectAll(".g-control")
+      .data(states)
+    .enter().append("div")
+      .attr("class", "g-control");
+
+  var controlButton = control.selectAll("button")
+      .data(function(d) {
+        return ["dem", "rep"].map(function(o) {
+          return {state: d, outcome: o};
+        });
+      })
+    .enter().append("button")
+      .attr("class", function(d) { return "g-button g-" + d.outcome; })
+      .text(function(d) { return d.outcome; })
+      .on("click", function(view) { change(view); transition(); });
+
+  control.append("span")
+      .text(function(d) { return d.abbreviation; });
+
+  var scoreboard = svg.append("g")
+      .attr("class", "g-scoreboard")
+      .attr("transform", "translate(" + ((width + margin.left + margin.right) / 2 - margin.left) + ",0)");
+
+  var kicker = scoreboard.append("text")
+      .attr("class", "g-kicker")
+      .attr("y", -52);
+
+  scoreboard.append("rect")
+      .attr("x", -280)
+      .attr("y", -80)
+      .attr("width", 280 * 2)
+      .attr("height", 80)
+
+  scoreboard.append("path")
+      .attr("d", "M-280,0H-20l20,20L20,0H280");
+
+  var candidateScores = [
+    {party: "dem", position: -280, align: "start"},
+    {party: "rep", position: 280, align: "end"},
+    {party: "tie", position: null, align: "middle"}
+  ];
+
+  scoreboard.selectAll(".g-prefix")
+      .data(candidateScores)
+    .enter().append("text")
+      .attr("class", function(d) { return "g-" + d.party + " g-prefix"; })
+      .attr("x", function(d) { return d.position; })
+      .attr("y", "-1.2em")
+      .style("text-anchor", function(d) { return d.align; })
+      .text(function(d) { return d.party === "tie" ? "" : formatCandidate[d.party] + " has "; });
+
+  scoreboard.selectAll(".g-prefix").append("tspan")
+      .attr("class", "g-score");
+
+  scoreboard.selectAll(".g-prefix").append("tspan")
+      .attr("class", "g-suffix");
+
+  scoreboard.append("text")
+      .attr("class", "g-ratio g-dem")
+      .attr("y", "-0.8em")
+      .attr("x", -168);
+
+  scoreboard.append("text")
+      .attr("class", "g-ratio g-rep")
+      .attr("y", "-0.8em")
+      .attr("x", 170);
+
+  scoreboard.append("text")
+      .attr("class", "g-ratio g-tie")
+      .attr("y", "-0.8em");
+
+  var endAlert = svg.append("text")
+      .attr("class", "g-alert")
+      .attr("transform", "translate(" + ((width + margin.left + margin.right) / 2 - margin.left) + ",35)");
+
+  endAlert.append("tspan")
+      .attr("x", 0)
+      .text("With these selections,");
+
+  endAlert.append("tspan")
+      .attr("class", "g-output")
+      .attr("x", 0)
+      .attr("y", "1.5em")
+      .attr("class", "g-output");
+
+  var scenarioButton = d3.selectAll(".g-scenario .g-button")
+      .on("click", function() {
+        var outcome = {};
+        this.getAttribute("data-view").split("&").forEach(function(view) { outcome[view.substring(0, 2)] = view.substring(3); });
+        controlButton.filter(function(d) {
+          return d.state.enabledParty != outcome[d.state.code]
+              && (!outcome[d.state.code] && d.state.enabledParty
+                ? d.outcome === d.state.enabledParty
+                : d.outcome === outcome[d.state.code]);
+        }).each(change);
+        transition();
+      });
+
+  update();
+
+  function update() {
+    root.children = null;
+    nodes = tree.size([width, 1]).nodes(root);
+    links = tree.links(nodes).reverse();
+    root.x = (width + margin.right - margin.left) / 2;
+
+    //
+    nodesByKey = {};
+    nodes.forEach(function(d) { nodesByKey[d.key = key(d)] = d; });
+
+    updateStates();
+    updateNodes();
+    updateLinks();
+    updateVoronoi();
+    updateScoreboard();
+  }
+
+  function updateStates() {
+    state = state.data(states, function(d) { return d.code; });
+
+    d3.transition(state.exit())
+        .style("fill-opacity", 1e-6)
+        .attr("transform", function(d) { return "translate(" + (-margin.left + 10) + "," + y(bisect(states, d.index)) + ")"; })
+        .remove();
+
+    var stateEnter = state.enter().insert("g", ".g-scoreboard,.g-node,.g-link")
+        .style("fill-opacity", 1e-6)
+        .attr("class", "g-state")
+        .attr("transform", function(d) { return "translate(" + (-margin.left + 10) + "," + y(bisect(oldStates, d.index)) + ")"; });
+
+    d3.transition(state)
+        .style("fill-opacity", 1)
+        .attr("transform", function(d, i) { return "translate(" + (-margin.left + 10) + "," + y(i + 1) + ")"; });
+
+    stateEnter.append("line")
+        .attr("x2", width + margin.left - 10);
+
+    stateEnter.append("rect")
+        .attr("y", -16)
+        .attr("width", 12)
+        .attr("height", 12);
+
+    stateEnter.selectAll("text")
+        .data(["dem", "rep"])
+      .enter().append("text")
+        .attr("class", function(d) { return "g-" + d; })
+        .attr("y", -6)
+        .attr("x", 6)
+        .style("text-anchor", "middle")
+        .text(function(d) { return d.substring(0, 1).toUpperCase(); });
+
+    stateEnter.append("text")
+        .attr("x", 16)
+        .attr("y", -6)
+        .text(function(d) { return d.name; });
+  }
+
+  function updateLinks() {
+    link = link.data(links, function(d) { return d.target.key; });
+
+    var linkEnter = link.enter().insert("path", ".g-node")
+        .attr("d", function(d) { var p = findOldParent(d.target); return diagonal({source: p, target: p}); })
+        .attr("class", function(d) { return "g-link g-" + d.target.party; })
+        .attr("marker-end", function(d) { return "url(#g-arrowhead-" + d.target.party + ")"; });
+
+    d3.transition(link.exit())
+        .attr("d", function(d) { var p = findParent(d.target); return diagonal({source: p, target: p}); })
+        .remove();
+
+    d3.selectAll(".g-link")
+        .sort(ascendingDepth);
+
+    d3.transition(link)
+        .attr("d", diagonal)
+        .style("stroke-width", function(d) { return w(d.target.probability) + "px"; });
+  }
+
+  function updateNodes() {
+    node = node.data(nodes.slice(1), function(d) { return d.key; })
+        .each(function(d) { d.update = true; });
+
+    var nodeExit = d3.transition(node.exit())
+        .attr("class", function(d) { return "g-node g-" + d.party; })
+        .attr("transform", function(d) { var p = findParent(d); return "translate(" + p.x + "," + y(p.depth) + ")"; })
+        .remove();
+
+    var nodeEnter = node.enter().insert("g", ".g-scoreboard")
+        .attr("class", function(d) { return "g-node g-" + d.party; })
+        .attr("transform", function(d) { var p = findOldParent(d); return "translate(" + p.x + "," + y(p.depth) + ")"; });
+
+    d3.transition(node)
+        .attr("class", function(d) { return "g-node g-" + d.party + (d.depth === 1 ? " g-first" : ""); })
+        .attr("transform", function(d) { return "translate(" + d.x + "," + y(d.depth) + ")"; });
+
+    updateLabels(nodeEnter, nodeExit);
+    updateLeaves(nodeEnter, nodeExit);
+  }
+
+  function updateLabels(nodeEnter, nodeExit) {
+    var textEnter = nodeEnter.append("text").classed("g-label", true).attr("y", -6);
+    textEnter.append("tspan").attr("class", "g-label-line1");
+    textEnter.append("tspan").attr("class", "g-label-line2").attr("x", 0).attr("dy", ".71em");
+
+    node.select(".g-label-line1")
+        .attr("y", function(d) { return d.children ? null : -radius(d.depth) - 3; })
+        .text(function(d) {
+          var firstOfParty = true, p = d.parent;
+
+          while (p && p.parent && firstOfParty) {
+            if (p.party === d.party) firstOfParty = false;
+            p = p.parent;
+          }
+
+          return firstOfParty ? "If " + formatCandidate[d.party] + " wins " + d.state.name + "\u2026"
+              : d.children ? " " + d.state.abbreviation + ","
+              : " and " + d.state.abbreviation + ",";
+        });
+
+    node.select(".g-label-line2")
+        .attr("y", function(d) { return radius(d.depth) + 3; })
+        .text(function(d) {
+          return d.children ? null : (d.demvotes === d.repvotes ? " the candidates tie." : formatCandidate[d.party] + " wins.");
+        });
+  }
+
+  function updateLeaves(nodeEnter, nodeExit) {
+    var leaf = node.selectAll(".g-leaf")
+        .data(function(d) { return d.children ? [] : [d]; });
+
+    var leafEnter = leaf.enter().insert("g", "text")
+        .attr("class", function(d) { return "g-leaf" + (d.demvotes === d.repvotes ? " g-tie" : ""); })
+        .attr("transform", "scale(0)");
+
+    leafEnter.append("circle")
+        .attr("r", 50);
+
+    leafEnter.append("path")
+        .attr("class", "g-check")
+        .attr("transform", "translate(-8,16)")
+        .attr("d", "M-20,-20L0,0L38,-38");
+
+    d3.transition(leaf.exit())
+        .attr("transform", "scale(0)")
+        .remove();
+
+    nodeExit.select(".g-leaf")
+        .attr("transform", "scale(0)");
+
+    d3.transition(leaf)
+        .attr("transform", function(d) { return "scale(" + radius(d.depth) + ")scale(.02)"; });
+  }
+
+  function updateVoronoi() {
+    svg.select(".g-voronoi").remove();
+
+    svg.append("g")
+        .attr("class", "g-voronoi")
+        .call(voronoi, nodes);
+  }
+
+  function updateScoreboard() {
+    var demPaths = 0,
+        repPaths = 0,
+        tiePaths = 0;
+
+    nodes.forEach(function(d) {
+      if (!d.children) {
+        var n = Math.pow(2, states.length - d.depth);
+        if (d.demvotes > d.repvotes) demPaths += n;
+        else if (d.repvotes > d.demvotes) repPaths += n;
+        else tiePaths += n;
+      }
+    });
+
+    //
+    kicker.text("With " + formatNumber(states.length) + " state" + (states.length > 1 ? "s" : "") + " undecided:");
+    scoreboard.select(".g-prefix.g-dem .g-score").text(demPaths);
+    scoreboard.select(".g-prefix.g-dem .g-suffix").text(" way" + ((demPaths === 1) ? "" : "s") + " to win");
+    scoreboard.select(".g-prefix.g-rep .g-score").text(repPaths);
+    scoreboard.select(".g-prefix.g-rep .g-suffix").text(" way" + ((repPaths === 1) ? "" : "s") + " to win");
+    scoreboard.select(".g-prefix.g-tie .g-score").text(tiePaths);
+    scoreboard.select(".g-prefix.g-tie .g-suffix").text(" tie" + ((tiePaths === 1) ? "" : "s"));
+
+    //
+    var totalPaths = 1 << states.length;
+    scoreboard.select(".g-dem.g-ratio").text(formatPercent(demPaths / totalPaths) + " of paths");
+    scoreboard.select(".g-rep.g-ratio").text(formatPercent(repPaths / totalPaths) + " of paths");
+    scoreboard.select(".g-tie.g-ratio").text(formatPercent(tiePaths / totalPaths) + " of paths");
+
+    if (nodes.length === 1) {
+      endAlert.select(".g-output").text((root.demvotes > root.repvotes ? "Obama wins" : root.demvotes < root.repvotes ? "Romney wins" : "the candidates tie") + " in all scenarios.");
+      endAlert.transition().style("opacity", 1);
+      if (root.demvotes > root.repvotes) {
+        d3.select(".g-heads .g-dem").style("opacity", 1).style("left", "-100px");
+        d3.select(".g-heads .g-rep").style("opacity", 0).style("left", "-100px");
+      } else if (root.demvotes < root.repvotes) {
+        d3.select(".g-heads .g-rep").style("opacity", 1).style("left", "-100px");
+        d3.select(".g-heads .g-dem").style("opacity", 0).style("left", "-100px");
+      } else {
+        d3.select(".g-heads .g-dem").style("opacity", 1).style("left", "-220px");
+        d3.select(".g-heads .g-rep").style("opacity", 1).style("left", "20px");
+      }
+    } else {
+      endAlert.transition().style("opacity", 0);
+      d3.select(".g-heads .g-dem").style("opacity", 0);
+      d3.select(".g-heads .g-rep").style("opacity", 0);
+    }
+  }
+
+  function reset() {
+    controlButton.filter(function(d) { return d.outcome === d.state.enabledParty; }).each(change);
+  }
+
+  function change(view) {
+    var key = view.state.code + "=" + view.outcome;
+
+    if (view.state.enabledParty) {
+      root[view.state.enabledParty + "votes"] -= view.state.votes;
+      states.splice(bisect(states, view.state.index), 0, view.state);
+    }
+
+    var i = bisect(oldStates, view.state.index) + 1;
+
+    if (view.outcome === view.state.enabledParty) {
+      view.state.enabledParty = null;
+
+      // Add the exiting state to nodes below.
+      nodes.forEach(function(d) {
+        if (d.depth >= i) d.key = d.key.split("&").concat(key).sort().join("&");
+      });
+    } else {
+      if ((root[view.outcome + "votes"] += view.state.votes) >= 270) root.party = view.outcome;
+      view.state.enabledParty = view.outcome;
+      states.splice(states.indexOf(view.state), 1);
+
+      // Remove the entering state from nodes below.
+      var k = new RegExp("&" + key + "|" + key + "&");
+      nodes.forEach(function(d) {
+        if (d.depth > i) d.key = d.key.replace(k, "");
+      });
+    }
+  }
+
+  function transition() {
+    controlButton.classed("g-active", function(d) { return d.state.enabledParty === d.outcome; });
+    resetButton.style("display", states.length < y.domain()[1] ? "block" : "none");
+
+    // Old node positions indexed by new key are needed for enter transitions.
+    oldNodesByKey = {};
+    nodes.forEach(function(d) { oldNodesByKey[d.key] = d; });
+
+    d3.transition().duration(d3.event.altKey ? 7500 : 750).each(update);
+
+    // The previous states are needed when multiple changes are made pre-transition.
+    oldStates = states.slice();
+  }
+
+  function click(d) {
+    mouseout(d);
+    var p = d.parent;
+    while (p) {
+      if (p.parent === root) { d = p; break; }
+      p = p.parent;
+    }
+    if (d !== root) {
+      change({state: d.state, outcome: d.party});
+      transition();
+    }
+  }
+
+  function mouseover(d) {
+    activate(d, true);
+    svg.attr("class", "g-" + d.party);
+    node.filter(function(d) { return d.active; }).classed("g-active", true);
+    link.filter(function(d) { return d.target.active; }).classed("g-active", true).attr("marker-end", function(d) { return "url(#g-arrowhead-" + d.target.party + "-active)"; });
+    state.attr("class", function(d) { return "g-state" + (d.activeParty ? " g-" + d.activeParty : ""); });
+  }
+
+  function mouseout(d) {
+    node.filter(function(d) { return d.active; }).classed("g-active", false);
+    link.filter(function(d) { return d.target.active; }).classed("g-active", false).attr("marker-end", function(d) { return "url(#g-arrowhead-" + d.target.party + ")"; });
+    state.attr("class", "g-state");
+    activate(d, false);
+  }
+
+  function activate(d, active) {
+    d.active = active;
+    d.state.activeParty = active ? d.party : null;
+    d.parent && activate(d.parent, active);
+  }
+
+  function voronoi(g, nodes) {
+    nodes = nodes.filter(function(d) { return !d.children; });
+
+    var x0 = -margin.left, y0 = 0,
+        x1 = width + margin.right, y1 = height + margin.left,
+        xy = d3.geom.polygon([[x0, y0], [x0, y1], [x1, y1], [x1, y0]]);
+
+    var path = g.selectAll("path")
+        .data(d3.geom.voronoi(nodes.map(function(d) { return [d.x, y(d.depth)]; })));
+
+    path.enter().append("path")
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout)
+        .on("mousedown", function() { d3.event.preventDefault(); })
+        .on("dblclick", click);
+
+    path.attr("d", function(d) { return "M" + xy.clip(d).join("L") + "Z"; })
+        .datum(function(d, i) { return nodes[i]; });
+
+    path.exit().remove();
+  }
+
+  function key(d) {
+    if (!d.parent) return "_root";
+    var k = [], p = d;
+    while (p && p.party) k.push(p.state.code + "=" + p.party), p = p.parent;
+    return k.sort().join("&");
+  }
+
+  function findParent(d) {
+    var p = d.parent;
+    while (p) {
+      if ((d = nodesByKey[p.key]) && d.update) return d;
+      p = p.parent;
+    }
+    return root;
+  }
+
+  function findOldParent(d) {
+    var p = findParent(d);
+    return oldNodesByKey ? oldNodesByKey[p.key] : p;
+  }
+});
+
+function ascendingDepth(b, a) {
+  return a.target.depth - b.target.depth;
+}
+
+function radius(depth) {
+  return Math.pow(2, 5.8 - depth / 2);
+}
+
+function diagonal(d) {
+  var x0 = d.source.x, y0 = y(d.source.depth),
+      x1 = d.target.x, y1 = y(d.target.depth);
+  if (x0 < x1) x0 += w(d.target.probability) / 2;
+  else if (x0 > x1) x0 -= w(d.target.probability) / 2;
+  return "M" + x0 + "," + y0
+      + "C" + x0 + "," + (y0 + y1) / 2
+      + "," + x1 + "," + (y0 + y1) / 2
+      + "," + x1 + "," + y1;
+}
+
+})();
+
+</script>
+<!--<![endif]-->
+</body></html>

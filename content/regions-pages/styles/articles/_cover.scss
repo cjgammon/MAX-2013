@@ -1,0 +1,79 @@
+#article-cover{
+    // text-align: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    line-height: 1.5rem;
+    background-image: url(../images/articles/cover/cover-bg.png);
+    // background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    h2{
+        /* just used to extract the page title for History.pushState */
+        display: none;
+    }
+
+    .cover-items{
+        margin-top: 400px;
+    }
+
+    .cover-callout{
+        position: relative;
+        margin-bottom: 40px;
+        padding: 10px;
+        max-width: 400px;
+        color: white;
+        // -webkit-shape-inside: polygon(0px 0px, 150px 0px, 200px 100px, 0px 100px);
+        -webkit-shape-inside: polygon(0rem 0rem, 9.3758rem 0rem, 12.5rem 6.25rem, 0rem 6.25rem);
+    }
+
+    .cover-header{
+        display: inline-block;
+        padding: 3px 10px;
+        background: white;
+    }
+
+    .cover-section{
+        margin-bottom: 40px;
+        padding: 10px;
+        max-width: 200px;
+        font-size: 1rem;
+        color: white;
+    }
+
+    .pink{
+        background: #d83e5f;
+    }
+
+    .blue{
+        background: #00c4c6;
+    }
+
+    .right{
+        text-align: right;
+        float: right;
+    }
+}
+
+#callout-bg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+
+#magazine-title{
+    position: absolute;
+    margin-top: 5vh;
+    left: -50px;
+    width: 70%;
+    max-width: 700px;
+    z-index: -1;
+}
+
+.paginated{
+    #article-cover{
+        background-size: 100%; /* cover screws up when in region */
+    }
+}

@@ -1,0 +1,27 @@
+#article-hammer,
+.page[data-for='article-hammer']{
+    background: rgb(35, 44, 61);
+}
+
+#article-hammer{
+    min-height: 100%;
+
+    header{
+        background-image: url(../images/articles/covers/hammerjs.png);
+    }
+
+    iframe{
+        -webkit-region-break-inside: avoid;
+    }
+
+    .sample{
+        background: white;
+        margin-left: -45px;
+        margin-bottom: 20px;
+        width: 105%;
+        height: 300px;
+        overflow: scroll;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+    }
+}
+

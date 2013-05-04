@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0248)http://ads.cnn.com/html.ng/site=cnn&cnn_pagetype=mmst&cnn_position=300x150_rgt&cnn_rollup=world&page.allowcompete=no&params.styles=fs&Params.User.UserID=514157320b2e3a0a3d14696abf0078dc&transactionID=8267530179182592&tile=0295666323631&domId=119999 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script>
+        function cnnad_getTld (hostname)
+        {
+               var data = hostname.split(".");
+               if (data.length >= 2)
+               {
+                       return (data[data.length-2] + "." + data[data.length-1]);
+               }
+               return(null);
+        }
+ 
+        var cnnDocDomain = cnnad_getTld(location.hostname);
+        if(cnnDocDomain) {document.domain = cnnDocDomain;}
+
+	function cnnGetId(query) {
+		var keyValPairs = query.split('&');
+		if(!keyValPairs) {
+			keyValPairs = new Array();
+			keyValPairs[keyValPairs.length]=query;
+		}
+		for(var counter=0; counter < keyValPairs.length;counter++) {
+			var keyVal = keyValPairs[counter].split('=');
+			if(keyVal[0]=='domId') {
+				//alert("returning id: " + keyVal[1]);
+				return keyVal[1];
+			}
+		}
+	}
+			
+	function cnnSendData2() {
+		var docId = cnnGetId(decodeURIComponent(location.pathname.substring(9)));
+		var height = 100;
+		var width = 300;
+		var targetWindow = top;
+		try
+		{
+			if(parent.cnnad_showAd)
+			{
+				targetWindow = parent;
+			}
+		} catch(err) {} 
+		targetWindow.cnnad_showAd(docId);
+		if ((height > 0)&&(width > 0))
+		{
+			targetWindow.cnnad_setAdSize(docId,height,width);
+		}
+	}
+</script> 
+</head>
+
+<body style="background-color:transparent" onload="cnnSendData2()" marginwidth="0" marginheight="0">
+<!--FlightID: 509709-->
+<script language="JavaScript">
+
+var swf_click = "http://ads.cnn.com/event.ng/Type=click&FlightID=509709&AdID=690449&TargetID=72907&Segments=1119,2247,3285,3430,4008,9496,9779,9784,9853,10372,13087,13088,13090,13305,15337,16113,18517,18823,18887,18901,18982,19419,21497,25505,25512,25519,25535,25541,27657,29397,29609,29933,30187,30338,30550,31036,32185,32273,32576,32594,32749,32822,33495,33852,35605,35673,36376,37612,38203,38616,39416,40253,41850,46694,49826,50108,52109,54747,54897,55454,55596,57125,57273,58487,59467,59525,59832,60846,61119,61997,62727,64064,65631,66126,66128,66311,66531,66545,66615,67011,67129,67165,67588,67758,68193,68944,68979,69041,69274,69364,69401,69404,69405,69420,69423,69485,69488,69591,69613,69647,69699,69717,69764,69767,69776,69796,69974,69975,70001,70068,70308,70329,70450,70520,70526,70553,70601,70650,70865,70970,71000,71078,71263,71288,71365,71457,71463,71515,71531,71538,71539,71548,71592,71705,71712,71716,71832&Values=1588&Redirect=http://www.cnn.com/trends";
+var dcswf_click = escape(swf_click);
+
+var ShockMode = 0;
+var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
+if (plugin && parseInt(plugin.description.substring(plugin.description.indexOf(".")-2)) >= 8) 
+{
+ShockMode = 1;
+}
+else if (navigator.userAgent && navigator.userAgent.indexOf("MSIE")>=0 
+&& (navigator.userAgent.indexOf("Windows 95")>=0 || navigator.userAgent.indexOf("Windows 98")>=0 || navigator.userAgent.indexOf("Windows NT")>=0)) {
+document.write('<SCRIPT LANGUAGE=VBScript\> \n');
+document.write('on error resume next \n');
+
+document.write('ShockMode = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.8")))\n');
+
+document.write('<\/SCRIPT\> \n');
+}
+if ( ShockMode ) {
+document.write('<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"');
+document.write(' codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"');
+document.write(' ID=flashad WIDTH=300 HEIGHT=100>');
+document.write(' <PARAM NAME=movie VALUE="http://i.cdn.turner.com/cnn/cnn_adspaces/2.0/creatives/2012/10/18/53811300x100_cnn_trends.swf"> '); 
+document.write(' <PARAM NAME=FlashVars VALUE="clickTag='+dcswf_click+'"> '); 
+document.write(' <PARAM NAME=quality VALUE=autohigh> ');
+document.write(' <PARAM NAME=allowScriptAccess VALUE=always> '); 
+
+document.write(' <param name=wmode value=opaque> ');
+
+document.write(' <EMBED SRC="http://i.cdn.turner.com/cnn/cnn_adspaces/2.0/creatives/2012/10/18/53811300x100_cnn_trends.swf" FlashVars="clickTag='+dcswf_click+'" QUALITY=autohigh allowScriptAccess=always'); 
+document.write(' NAME=flashad swLiveConnect=TRUE WIDTH=300 HEIGHT=100 wmode=opaque');
+
+
+document.write(' TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">');
+document.write('</EMBED>');
+document.write('</OBJECT>');
+} else if (!(navigator.appName && navigator.appName.indexOf("Netscape")>=0 && navigator.appVersion.indexOf("2.")>=0)){
+document.write('<A HREF="http://ads.cnn.com/event.ng/Type=click&FlightID=509709&AdID=690449&TargetID=72907&Segments=1119,2247,3285,3430,4008,9496,9779,9784,9853,10372,13087,13088,13090,13305,15337,16113,18517,18823,18887,18901,18982,19419,21497,25505,25512,25519,25535,25541,27657,29397,29609,29933,30187,30338,30550,31036,32185,32273,32576,32594,32749,32822,33495,33852,35605,35673,36376,37612,38203,38616,39416,40253,41850,46694,49826,50108,52109,54747,54897,55454,55596,57125,57273,58487,59467,59525,59832,60846,61119,61997,62727,64064,65631,66126,66128,66311,66531,66545,66615,67011,67129,67165,67588,67758,68193,68944,68979,69041,69274,69364,69401,69404,69405,69420,69423,69485,69488,69591,69613,69647,69699,69717,69764,69767,69776,69796,69974,69975,70001,70068,70308,70329,70450,70520,70526,70553,70601,70650,70865,70970,71000,71078,71263,71288,71365,71457,71463,71515,71531,71538,71539,71548,71592,71705,71712,71716,71832&Targets=129034,105334,166903,167629,72907,166138,96052,96062,145655,135056,140945,169738,169739,167818,170798,166107,153941,161569,168173,166335,166796,166795,166896,167302,167904,169879&Values=46,61,84,100,150,917,1163,1285,1588,1696,1815,2690,4418,4429,44309,48213,49702,52897,56058,56872,57005,57006,57896,58570,58702,59826,59994,61089,61264,152408,153947,158387,158915,159052,159543&RawValues=NGUSERID%252C514157320b2e3a0a3d14696abf0078dc%252CTID%252C8267530179182592%252CTIL%252C0295666323631&Redirect=http://www.cnn.com/trends" target="_blank"><IMG SRC="http://i.cdn.turner.com/cnn/cnn_adspaces/2.0/creatives/2012/10/18/243811300x100_cnn_trends.jpg" WIDTH=300 HEIGHT=100 BORDER=0></A>');
+}
+
+</script><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" id="flashad" width="300" height="100"> <param name="movie" value="http://i.cdn.turner.com/cnn/cnn_adspaces/2.0/creatives/2012/10/18/53811300x100_cnn_trends.swf">  <param name="FlashVars" value="clickTag=http%3A//ads.cnn.com/event.ng/Type%3Dclick%26FlightID%3D509709%26AdID%3D690449%26TargetID%3D72907%26Segments%3D1119%2C2247%2C3285%2C3430%2C4008%2C9496%2C9779%2C9784%2C9853%2C10372%2C13087%2C13088%2C13090%2C13305%2C15337%2C16113%2C18517%2C18823%2C18887%2C18901%2C18982%2C19419%2C21497%2C25505%2C25512%2C25519%2C25535%2C25541%2C27657%2C29397%2C29609%2C29933%2C30187%2C30338%2C30550%2C31036%2C32185%2C32273%2C32576%2C32594%2C32749%2C32822%2C33495%2C33852%2C35605%2C35673%2C36376%2C37612%2C38203%2C38616%2C39416%2C40253%2C41850%2C46694%2C49826%2C50108%2C52109%2C54747%2C54897%2C55454%2C55596%2C57125%2C57273%2C58487%2C59467%2C59525%2C59832%2C60846%2C61119%2C61997%2C62727%2C64064%2C65631%2C66126%2C66128%2C66311%2C66531%2C66545%2C66615%2C67011%2C67129%2C67165%2C67588%2C67758%2C68193%2C68944%2C68979%2C69041%2C69274%2C69364%2C69401%2C69404%2C69405%2C69420%2C69423%2C69485%2C69488%2C69591%2C69613%2C69647%2C69699%2C69717%2C69764%2C69767%2C69776%2C69796%2C69974%2C69975%2C70001%2C70068%2C70308%2C70329%2C70450%2C70520%2C70526%2C70553%2C70601%2C70650%2C70865%2C70970%2C71000%2C71078%2C71263%2C71288%2C71365%2C71457%2C71463%2C71515%2C71531%2C71538%2C71539%2C71548%2C71592%2C71705%2C71712%2C71716%2C71832%26Values%3D1588%26Redirect%3Dhttp%3A//www.cnn.com/trends">  <param name="quality" value="autohigh">  <param name="allowScriptAccess" value="always">  <param name="wmode" value="opaque">  <embed src="http://i.cdn.turner.com/cnn/cnn_adspaces/2.0/creatives/2012/10/18/53811300x100_cnn_trends.swf" flashvars="clickTag=http%3A//ads.cnn.com/event.ng/Type%3Dclick%26FlightID%3D509709%26AdID%3D690449%26TargetID%3D72907%26Segments%3D1119%2C2247%2C3285%2C3430%2C4008%2C9496%2C9779%2C9784%2C9853%2C10372%2C13087%2C13088%2C13090%2C13305%2C15337%2C16113%2C18517%2C18823%2C18887%2C18901%2C18982%2C19419%2C21497%2C25505%2C25512%2C25519%2C25535%2C25541%2C27657%2C29397%2C29609%2C29933%2C30187%2C30338%2C30550%2C31036%2C32185%2C32273%2C32576%2C32594%2C32749%2C32822%2C33495%2C33852%2C35605%2C35673%2C36376%2C37612%2C38203%2C38616%2C39416%2C40253%2C41850%2C46694%2C49826%2C50108%2C52109%2C54747%2C54897%2C55454%2C55596%2C57125%2C57273%2C58487%2C59467%2C59525%2C59832%2C60846%2C61119%2C61997%2C62727%2C64064%2C65631%2C66126%2C66128%2C66311%2C66531%2C66545%2C66615%2C67011%2C67129%2C67165%2C67588%2C67758%2C68193%2C68944%2C68979%2C69041%2C69274%2C69364%2C69401%2C69404%2C69405%2C69420%2C69423%2C69485%2C69488%2C69591%2C69613%2C69647%2C69699%2C69717%2C69764%2C69767%2C69776%2C69796%2C69974%2C69975%2C70001%2C70068%2C70308%2C70329%2C70450%2C70520%2C70526%2C70553%2C70601%2C70650%2C70865%2C70970%2C71000%2C71078%2C71263%2C71288%2C71365%2C71457%2C71463%2C71515%2C71531%2C71538%2C71539%2C71548%2C71592%2C71705%2C71712%2C71716%2C71832%26Values%3D1588%26Redirect%3Dhttp%3A//www.cnn.com/trends" quality="autohigh" allowscriptaccess="always" name="flashad" swliveconnect="TRUE" width="300" height="100" wmode="opaque" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></object>
+<noembed>
+&lt;A HREF="http://ads.cnn.com/event.ng/Type=click&amp;FlightID=509709&amp;AdID=690449&amp;TargetID=72907&amp;Segments=1119,2247,3285,3430,4008,9496,9779,9784,9853,10372,13087,13088,13090,13305,15337,16113,18517,18823,18887,18901,18982,19419,21497,25505,25512,25519,25535,25541,27657,29397,29609,29933,30187,30338,30550,31036,32185,32273,32576,32594,32749,32822,33495,33852,35605,35673,36376,37612,38203,38616,39416,40253,41850,46694,49826,50108,52109,54747,54897,55454,55596,57125,57273,58487,59467,59525,59832,60846,61119,61997,62727,64064,65631,66126,66128,66311,66531,66545,66615,67011,67129,67165,67588,67758,68193,68944,68979,69041,69274,69364,69401,69404,69405,69420,69423,69485,69488,69591,69613,69647,69699,69717,69764,69767,69776,69796,69974,69975,70001,70068,70308,70329,70450,70520,70526,70553,70601,70650,70865,70970,71000,71078,71263,71288,71365,71457,71463,71515,71531,71538,71539,71548,71592,71705,71712,71716,71832&amp;Targets=129034,105334,166903,167629,72907,166138,96052,96062,145655,135056,140945,169738,169739,167818,170798,166107,153941,161569,168173,166335,166796,166795,166896,167302,167904,169879&amp;Values=46,61,84,100,150,917,1163,1285,1588,1696,1815,2690,4418,4429,44309,48213,49702,52897,56058,56872,57005,57006,57896,58570,58702,59826,59994,61089,61264,152408,153947,158387,158915,159052,159543&amp;RawValues=NGUSERID%252C514157320b2e3a0a3d14696abf0078dc%252CTID%252C8267530179182592%252CTIL%252C0295666323631&amp;Redirect=http://www.cnn.com/trends" target="_blank"&gt;&lt;IMG SRC="http://i.cdn.turner.com/cnn/cnn_adspaces/2.0/creatives/2012/10/18/243811300x100_cnn_trends.jpg" WIDTH=300 HEIGHT=100 BORDER=0&gt;&lt;/A&gt;
+</noembed>
+<div style="position:absolute;visibility:hidden;"><img src="Type=count&ClientType=2&ASeg=&AMod=&AOpt=0&AdID=690449&FlightID=509709&TargetID=72907&SiteID=1588&EntityDefResetFlag=0&Segments=1119,2247,3285,3430,4008,9496,9779,9784,9853,10372,13087,13088,13090,13305,15337,16113,.UserID=514157320b2e3a0a3d14696abf0078dc" width="1" height="1" border="0"></div>
+
+</body></html>

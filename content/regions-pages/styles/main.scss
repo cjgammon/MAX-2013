@@ -1,0 +1,202 @@
+@import "compass/css3";
+@import "core/hud";
+
+.full-size{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+html, body, #app, #stage{
+    @extend .full-size;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    // -webkit-perspective: 3000px;
+	font-family: 'Alice', alice, georgia, serif;
+	color: #333;
+}
+
+#app, #stage{
+    position: absolute;
+}
+
+#stage{
+    // background: url(../images/bg.png);
+    background: #aaaaaa; /* Old browsers */
+}
+
+#preloader{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    @include transition(opacity 2s ease-out);
+}
+
+#articleHolder{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0px);  /*prevent flicker*/
+}
+
+section{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; 
+    overflow-y: scroll; 
+    background: white;
+    -webkit-overflow-scrolling: touch;
+}
+
+article{ /* NOTE: this is used as the region flow for each article so anything applied to this gets paginated*/
+    position: relative;
+    // width: 100%;
+    max-width: 30rem;
+    margin: auto;
+    font-size: 1.5rem;
+    line-height: 2.3rem;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0px);  /*prevent flicker*/
+}
+
+#rightFixedButton{
+    right: 0px;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 3px 0 0 3px;
+    background-image: url(../images/arrow-right.svg);
+}
+
+#leftFixedButton{
+    left: 0px;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 0 3px 3px 0;
+    background-image: url(../images/arrow-left.svg);
+}
+
+.arrowbutton{
+    display: none;
+    position: absolute;
+    top: 50%;
+    height: 60px;
+    width: 30px;
+    z-index: 1000;
+    cursor: pointer;
+    background-color: #F4F4F4;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-transition: all .2s linear;
+
+    &.in{
+        display: block;
+    }
+
+    &:hover{
+        width: 100px;
+    }
+}
+
+.arrowbutton:hover{
+    opacity: 1;
+}
+
+.arrowbutton.out{
+    opacity: 0;
+}
+
+.cover{
+    background: blue;
+}
+
+.shadow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transform: translateZ(2px);
+}
+
+.shadow.back{
+    -webkit-transform: rotateY(180deg) translateZ(2px);
+}
+
+.page{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-origin: left center;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: rotateY(0deg);
+    z-index: 1; 
+    
+    .side{
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: #f4f4f4;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(1px);
+
+        /*box-sizing: border-box makes the Box Model subtract the padding from the 100% dimensions*/
+        -moz-box-sizing: border-box; 
+        -webkit-box-sizing: border-box; 
+        box-sizing: border-box;
+        padding: 50px;
+    }
+
+    .side:nth-child(2){
+        background: #f7f7f7;
+        -webkit-transform: rotateY(180deg) translateZ(1px);
+    }
+}
+
+// overwrite page margins on cover page
+.page[data-for="article-cover"]{
+    
+    .side{
+        padding: 0;
+    }
+}
+
+#paginator{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // -webkit-transform-style: preserve-3d;
+    -webkit-perspective: 3000px;
+}
+
+#flipbook{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 50%;
+    // -webkit-transform: scale(.5);
+    // -webkit-perspective-origin: left center;
+    -webkit-transform-origin: left center;
+    -webkit-transform-style: preserve-3d;
+}
+
+#menuButton{
+    display: none;
+}

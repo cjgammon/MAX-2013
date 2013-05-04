@@ -1,0 +1,223 @@
+$strawberrylight: rgb(250, 83, 48);
+$strawberry: rgb(197, 24, 9);
+$darkstrawberry: rgb(157, 0, 0);
+
+
+/*TODO:: make it the page with the class 
+*   & add padding to page
+*/
+
+#article-coffeescript,
+.page[data-for='article-coffeescript']{
+    background: $strawberrylight;
+}
+#article-coffeescript{ 
+
+    header {
+        background-color: $strawberry;
+        background-image: url(../images/articles/covers/coffeescript.png);
+    }
+
+    h3{
+        display: inline-block;
+        color: $strawberry;
+        font-weight: 300;
+    }
+
+    .number-flag{
+        position: relative;
+        display: inline-block;
+        padding: 20px;
+        margin-left: -45px;
+        margin-top: 20px;
+        color: white;
+        font-size: 2rem;
+        font-weight: 600;
+        background: $strawberry;
+
+        &:before{
+            position: absolute;
+            top: 100%;
+            left: 0px;
+            width: 10px;
+            height: 9px;
+            background: url(../images/articles/coffeescript/red_flag.svg);
+            content: '';
+        }
+    }
+
+    .code{
+        position: relative;
+        display: inline-block;
+        max-width: 300px;
+        min-width: 40%;
+        padding: 10px;
+        margin-top: 20px;
+        background: rgb(227, 221, 184);
+        font-family: courier;
+        // font-size: .7em;
+        line-height: 1.3rem;
+        word-wrap: break-word;
+        -webkit-region-break-inside: avoid;
+
+        &:before{
+            position: absolute;
+            top: 100%;
+            width: 10px;
+            height: 10px;
+            content: '';
+        }
+
+        &.left{
+            float: left;
+            margin-left: -45px;
+            margin-right: 10px;
+            padding-left: 45px;
+
+            &:before{
+                left: 0px;
+                background: url(../images/articles/coffeescript/flag_left.svg);
+            }
+        }
+
+        &.right{
+            float: right;
+            margin-right: -45px;
+            margin-left: 10px;
+            padding-right: 45px;
+
+            &:before{
+                left: 100%;
+                margin-left: -10px;
+                background: url(../images/articles/coffeescript/flag_right.svg);
+            }
+        }
+
+        /*code coloring*/
+        .string{
+            color: #fa5330;
+        }
+
+        .keyword{
+            color: #5276dd;
+        }
+
+        .title, .literal, .number{
+            color: black;
+        }
+    }
+
+    .clear{
+        clear: both;
+    }
+
+    footer{
+        position: relative;
+        // display: -webkit-flex;
+        margin: auto;        
+        color: white;        
+        background: black;
+        -webkit-region-break-inside: avoid;
+
+        .footer-content{
+            margin: auto;
+            text-align: center;
+        }
+
+        h3{
+            display: block;
+            color: white;
+        }
+
+        b{
+            color: rgb(227, 221, 184);
+            font-weight: 100;
+        }
+
+        p{
+            text-align: left;
+            font-weight: 100;
+        }
+
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li{
+            margin-bottom: 20px;
+        }
+
+        .about{
+            display: inline-block;
+            // float: left;
+            width: 40%;
+            text-align: left;
+            vertical-align: top;
+
+            img{
+                float: left;
+                // margin-right: 10%;
+            }
+
+            a{
+                color: rgb(255, 226, 102);
+                font-weight: 100;
+                text-decoration: none;
+            }
+        }
+
+        .resources{
+            display: inline-block;
+            // float: left;
+            width: 40%;
+            text-align: left;
+            vertical-align: top;
+            // border-left: 1px dashed white;
+            // margin-left: 20px;
+            // padding-left: 20px;
+            word-wrap: break-word;
+
+            a{
+                color: white;
+                font-weight: 100;
+                text-decoration: none;
+            }
+        }
+
+        .footer-divider{
+            display: inline-block;
+            height: 200px;
+            width: 10px;
+            margin: 30px;
+            border-left: 1px dashed white;
+        }
+    }
+
+    .red{
+        color: $strawberry;
+    }
+
+    .js-animates{
+        @include transform(translateY(20px));
+        @include transition(all 1s ease-out);
+
+        &.in{
+            @include transform(translateY(0px));
+        }
+    }
+}
+
+.paginated{
+    #article-coffeescript .code.left,
+    #article-coffeescript .code.right{
+        display: block;
+        float: none;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 10px;
+        max-width: none;
+        min-width: auto;
+    }
+}

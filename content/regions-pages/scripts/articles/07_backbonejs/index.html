@@ -1,0 +1,604 @@
+<article id="article-backbonejs">
+    <header class="js-parallax"></header>
+
+     <div class="column">
+        <!-- <h1><img src="../images/appliness.svg" alt="appliness"></h1> -->
+        <h2>Getting started with HTML mobile application development using jQuery mobile, RequireJS and BackboneJS</h2>
+        <p class="subhead">
+        In this introductory tutorial, I will cover BackboneJS, jQuery Mobile and RequireJS, to help web developers to build a modular mobile application. With using PhoneGap , it will be very easy for you to package and deploy the application to multiple platforms.
+        </p>
+        <p>
+            We will build a simple sample application step by step. With this progressive enhanced demo application, we will introduce:
+        </p>
+        <ul>
+            <li>How to modularize application using BackboneJS,jQuery Mobile and RequireJS;</li>
+            <li>How to use Backbone View, Collection/Model and Routers.</li>
+            <li>How to decouple mobile view and model/collection using Backbone events.</li>
+        </ul>
+        <div class="flag-green">SAMPLE APPLICATION</div>
+        <p>
+            The demo application has 2 views:Home View and List View. The Home view features a list of categories for IT books, when the List View actually lists the books available in the store.
+        </p>
+        <p>
+            You can test the application here:
+        </p>
+                <div class="sample">
+                    <!-- <iframe width="100%" height="100%" src="scripts/articles/07_backbonejs/books/index.html"></iframe> -->
+                </div>
+        <div class="flag-green">JAVAscript library and css</div>
+        <p>
+            This tutorial will help you start combining jQuery mobile , Backboen.js and Require.js to build an mobile application with separation of concerns. The javascript libraries we will use are listed as below:
+        </p>
+        <ul>
+            <li>jQuery: http://jQuery.com/ </li>
+            <li>Require and plugin:</li>
+            <li>require.js: http://requirejs.org/</li>
+            <li>require plugin text.js:http://requirejs.org/docs/download.html#text </li>
+            <li>Backbone and Underscore:</li>
+            <li>
+                UnderscoreJS removed AMD (require.js) support since version 1.3.0. And Backbone.js was affected as well. Fortunately, James Burke maintains an AMD compatible version of underscoreJS and backboneJS. That is why the download links of underscore and backbone below are not pointed to the official sites.
+            </li>
+            <li>amd-underscore: https://github.com/amdjs/underscore</li>
+            <li>amd-backbone: https://github.com/amdjs/backbone </li>
+            <li>jQuery Mobile: http://jQuerymobile.com/</li>
+        </ul>
+        <div class="flag-green">Project Structure</div>
+        <div class="flag-green">Idea</div>
+        <p>
+            In a jQuery Mobile application, each ÔviewÕ on the mobile device is a ÔpageÕ and is declared with an element using data-role=ÔpageÕ attribute. So in this tutorial, when we say view, it means ÔpageÕ of jQuery Mobile. Multiple ÔpagesÕ could be organized inside the ÔbodyÕ of html page and jQuery Mobile will manage them automatically, just like Ômulti-page template structureÕ described in jQuery Mobile doc.
+        </p>
+        <p>
+            But we all know, loos coupled architecture is better. Using Require.js and Backbone.js, we can divide the ÔpagesÕ into separate files as View modules with templates. It allows modular development and testing. It is also easier to extract the model and logic of view into behavior objects.
+        </p>
+        <p>
+            Let's start building this modular application step by step.
+        </p>
+        <div class="flag-green">Index.html</div>
+        <p>
+            index.html is just a shell page.
+        </p>
+
+        <pre><code class="xml">&lt;!DOCTYPE html&gt; 
+&lt;html&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;DEMO APPLICATION&lt;/title&gt; 
+        &lt;meta name=&Oacute;viewport&Oacute; content=&Oacute;width=device-width, initial-scale=1&Oacute;/&gt; 
+        &lt;meta http-equiv=&Oacute;Access-Control-Allow-Origin&Oacute; content=&Oacute;*&Oacute;/&gt;    
+        &lt;link rel=&Oacute;stylesheet&Oacute; href=&Oacute;css/jquery.mobile-1.1.0.css&Oacute; /&gt;
+        &lt;link rel=&Oacute;stylesheet&Oacute; href=&Oacute;css/style.css&Oacute; /&gt; 
+        &lt;!-- we will use cordova to package the mobile application--&gt;
+        &lt;script src=&Oacute;js/vendor/phoneGap/cordova-1.6.0.js&Oacute;&gt;&lt;/script&gt;        
+        &lt;!-- require.js:  data-main attribute tells require.js to load 
+             js/main.js after require.js loads. --&gt;
+     &lt;script data-main=&Oacute;js/main&Oacute; src=&Oacute;js/vendor/require/require.js&Oacute;&gt;&lt;/script&gt;
+    &lt;/head&gt; 
+&lt;body&gt; 
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <p>
+            Once require.js is loaded, it will take the value of data-main attribute and make a require call. In main.js, we usually configure path settings for require.js.
+        </p>
+        <div class="flag-green">entry point: js/main.js</div>
+        <p>
+            In main.js, we configure require and jQuery mobile and then bootstrap application.
+        </p>
+        <pre><code class="javascript">
+require.config({ 
+    //path mappings for module names not found directly under baseUrl 
+    paths: { 
+        jquery:     Ôvendor/jqm/jquery_1.7_minÕ, 
+        jqm:     Ôvendor/jqm/jquery.mobile-1.1.0Õ, 
+        underscore: Ôvendor/underscore/underscore_amdÕ, 
+        backbone:   Ôvendor/backbone/backbone_amdÕ, 
+        text:       Ôvendor/require/textÕ, 
+        plugin:    ÔpluginÕ, 
+        templates:  Ô../templatesÕ, 
+        modules:    Ô../modulesÕ, 
+        model:       Ô../modelÕ 
+    } 
+
+}); 
+
+//1. load app.js, 
+//2. configure jquery mobile to prevent default JQM ajax navigation 
+//3. bootstrapping application 
+define([ÔappÕ,Õjqm-configÕ], function(app) { 
+    $(document).ready(function() { 
+      console.log(ÒDOM IS READY");// Handler for .ready() called. 
+    });    
+    app.initialize(); 
+</code></pre>
+        
+        <p>
+            Require.js will load and evaluate app.js and jqm.config.js first as the the dependencies of the module. App.js is mapped to app so that we can call app.initialize() to bootstrap Backbone application.
+        </p>
+        <div class="flag-green">Disable jQuery Mobile AJAX navigation system: jqm-config.js</div>
+        <p>
+            We all know that there are routing conflicts between jQuery mobile and Backbone.js. There are several ways to workaround it. I like the magic from Christophe Coenraets (Using Backbone.js with jQuery Mobile:http://coenraets.org/blog/2012/03/using-backbone-js-with-jQuery-mobile/) .
+        </p>
+        <p>
+            In jqm-config.js, we disable the default jQuery Ajax navigation system. Then, use Backbone router to control application and manually call changePage() function to switch between the views. We also remove the hide page from DOM so there is only one view in the DOM every time.
+        </p>
+
+<pre><code class="javascript">
+define(['jquery'], function($){ 
+  'use strict'; 
+    $(document).bind("mobileinit", function () { 
+        $.mobile.ajaxEnabled = false; 
+        $.mobile.linkBindingEnabled = false; 
+        $.mobile.hashListeningEnabled = false; 
+        $.mobile.pushStateEnabled = false; 
+        // Remove page from DOM when it's being replaced 
+        $('div[data-role="page"]').live("pagehide", function (event, ui) { 
+            $(event.currentTarget).remove(); 
+        }); 
+    }); 
+}); 
+</code></pre>
+
+        <div class="flag-green">Setup application router: router.js</div>
+        <p>
+            We use Backbone router as the nav system of the application. Every time user clicks a link, jQuery mobile will change the hash segment which will trigger Backbone to navigate user to the right view thru Backbone router.
+        </p>
+        <p>
+            Here is router.js. The root url ('') is mapped to showHome() function, the same with "/#home" hash.
+        </p>
+
+<pre><code class="javascript">
+define([ÔjqueryÕ, ÔunderscoreÕ, ÔbackboneÕ,Õmodules/home/homeÕ, 
+            Ômodel/book/bookCollectionÕ, 
+            Ômodules/list/booksÕ,            
+            ÔjqmÕ], 
+    function($, _, Backbone,HomeView,BookCollection,BookListView) { 
+
+    Ôuse strictÕ; 
+    var Router = Backbone.Router.extend({ 
+    //define routes and mapping route to the function 
+        routes: { 
+            ÔÕ:    ÔshowHomeÕ,           //home view 
+            ÔhomeÕ: ÔshowHomeÕ,         //home view as well 
+            Ôlist/:categoryIdÕ : ÔshowBooksÕ, 
+            Ô*actionsÕ: ÔdefaultActionÕ //default action        
+        }, 
+
+        defaultAction: function(actions){ 
+            this.showHome(); 
+        }, 
+
+        showHome:function(actions){ 
+            // will render home view and navigate to homeView 
+                }, 
+    }); 
+
+    return Router; 
+});
+
+</code></pre>
+
+        <div class="flag-green">Bootstrapping application : app.js</div>
+        <p>
+            app.js will create backbone router object and then expose the function to allow bootstrap backbone application.
+        </p>
+
+<pre><code class="javascript">
+define([ÔjqueryÕ,ÕunderscoreÕ, ÔbackboneÕ,ÕrouterÕ],function
+($, _, Backbone,Router) { 
+    Ôuse strictÕ; 
+    var init=function(){ 
+        //create backbone router 
+        var router=new Router(); 
+        Backbone.history.start(); 
+    }; 
+
+    return{ 
+        initialize:init 
+    } 
+</code></pre>
+
+        <div class="flag-green">home view</div>
+        <p>
+            Now, we are ready to render the first view : home view. 
+        </p>
+        <b>1. Define a module for home view: home.js</b>
+        <p>
+            To render homeView using template, we create a object by extending Backbone.View. Here are homeView codes: js/modules/home/home.js :
+        </p>
+
+<pre><code class="javascript">
+define([ÔjqueryÕ, ÔunderscoreÕ, ÔbackboneÕ,
+Õtext!modules/home/homeViewTemplate.htmlÕ], 
+function($, _, Backbone, homeViewTemplate){ 
+
+  var HomeView = Backbone.View.extend({ 
+
+    //initialize template 
+    template:_.template(homeViewTemplate), 
+    
+    //render the content into div of view 
+    render: function(){ 
+      //this.el is the root element of Backbone.View. By default, it is a div.    
+      //$el is cached jQuery object for the viewÕs element. 
+      //append the compiled template into view div container 
+      this.$el.append(this.template()); 
+
+      //return to enable chained calls 
+      return this; 
+    } 
+  }); 
+  return HomeView; 
+}); 
+</code></pre>
+
+        <p>
+            text.js, a RequireJS plugin, can help us load text-based template file through Ôtext!Õ prefix so we can separate the template from script file. Ômodules/home/homeViewTemplate.htmlÕ will be loaded automatically and then passed to the module function as the argument ÒhomeViewTemplate".
+        </p>
+        <p>
+            Inside the module function, we use the template engine of Underscore.js to compile the template, and then append the result html segment into viewÕs container: this.el, which is a div by default. So we have rendered the view but have not inserted it into DOM.
+        </p>
+        <b>2. Define the template for home view: homeViewTemplate.html</b>
+        <p>
+            The template for homeView is a static page: modules/home/homeViewTemplate.html
+        </p>
+
+<pre><code class="xml">&lt;div data-role=&Oacute;content&Oacute; &gt;  
+    &lt;div class=&Oacute;content-primary&Oacute;&gt; 
+        &lt;p class=&Oacute;intro&Oacute;&gt; 
+            &lt;strong&gt;Welcome.&lt;/strong&gt; It is a simple demo to show how to
+ build mobile application using JQuery Mobile, Backbone.js and Require.js . 
+        &lt;/p&gt; 
+
+        &lt;ul data-role=&Oacute;listview&Oacute; data-inset=&Oacute;true&Oacute; &gt; 
+             &lt;li data-role=&Oacute;list-divider&Oacute; class=&Oacute;listTitle&Oacute;&gt;IT BOOKSTORE&lt;/li&gt; 
+             &lt;li data-theme=&Oacute;a&Oacute;&gt;&lt;a href=&Oacute;#list/1&Oacute;&gt;JavaScript&lt;/a&gt;&lt;/li&gt; 
+             &lt;li data-theme=&Oacute;a&Oacute;&gt;&lt;a href=&Oacute;#list/2&Oacute;&gt;NodeJS&lt;/a&gt;&lt;/li&gt; 
+             &lt;li data-theme=&Oacute;a&Oacute;&gt;&lt;a href=&Oacute;#list/3&Oacute;&gt;IOS&lt;/a&gt;&lt;/li&gt; 
+        &lt;/ul&gt; 
+    &lt;/div&gt;&lt;!-- /content --&gt; </code></pre>
+
+        <p>
+            As we can see, in our example application, the template of HomeView has no ÒHeader" and ÒFooter". All contents are place into content div with Ôdata-role="content"Õ specified. jQuery Mobile uses HTML5 data- attributes to allow for markup-based initialization and configuration of widgets.
+        </p>
+        <p>
+            Inside content container, we add a listview with using Ôdata-role="listview" Õ. Each item has a hardcoded link which will change the hash segment of the url. For example, Ò#list/1" , 1 is categoryId, so we will use it to fetch book data from matching json file later. We will add the mapping in the routes of router.js later to allow Backbone to invoke mapping functions to response userÕs interaction.
+        </p>
+        <b>3. ShowHome in router.js</b>
+        <p>
+            We use showHome() to insert the view into DOM and present HomeView.The updated router.js is as below:
+        </p>
+
+<pre><code class="javascipt">
+define([ÔjqueryÕ, ÔunderscoreÕ, ÔbackboneÕ,Õmodules/home/homeÕ, 
+            Ômodel/book/bookCollectionÕ, 
+            Ômodules/list/booksÕ,            
+            ÔjqmÕ], 
+    function($, _, Backbone,HomeView,BookCollection,BookListView) { 
+
+    Ôuse strictÕ; 
+    var Router = Backbone.Router.extend({ 
+    //define routes and mapping route to the function 
+        routes: { 
+            ÔÕ:    ÔshowHomeÕ,           //home view 
+            ÔhomeÕ: ÔshowHomeÕ,         //home view as well 
+            Ôlist/:categoryIdÕ : ÔshowBooksÕ, 
+            Ô*actionsÕ: ÔdefaultActionÕ //default action
+
+        defaultAction: function(actions){ 
+            this.showHome(); 
+        }, 
+
+        showHome:function(actions){ 
+            // will render home view and navigate to homeView 
+            var homeView=new HomeView(); 
+            homeView.render(); 
+            this.changePage(homeView); 
+        }, 
+        init:true, 
+
+        showBooks:function(categoryId){ 
+            //create a collection 
+            var bookList=new BookCollection(); 
+            //create book list view and pass bookList as the collection 
+            var bookListView=new BookListView({collection:bookList}); 
+            //need to pass this as context 
+            bookListView.bind(ÔrenderCompleted:BooksÕ,this.changePage,this); 
+            //update view 
+            bookListView.update(categoryId); 
+        }, 
+
+        
+        changePage:function (view) { 
+            //add the attribute Ôdata-role="page" Ô for each viewÕs div 
+            view.$el.attr(Ôdata-roleÕ, ÔpageÕ);   
+            //append to dom 
+            $(ÔbodyÕ).append(view.$el);  
+
+            if(!this.init){   
+                $.mobile.changePage($(view.el), {changeHash:false}); 
+            }else{   
+                this.init = false; 
+            }            
+        }       
+    }); 
+
+    return Router; 
+});
+</code></pre>
+
+        <p>
+            First, add one more dependency for router.js: Ômodules/home/homeÕ, which is a module defined in home.js; and then pass it to router module function as argument ÒHomeView".
+        </p>
+        <p>
+            In showHome function, we create homeView object and render the view content, then pass homeView to changePage function. The changePage(view) is responsible for setting jQuery Mobile data-role attribute of viewÕs root element (view.$el) and appending it into DOM.
+        </p>
+        <p>
+            Now, we have a html document containing one jQuery mobile ÔpageÕ div. This is the first ÔpageÕ of our demo application. jQuery mobile will find and enhance the pages in the DOM and transition to the first page automatically once the DOM is ready. So it is not necessary to call jQuery mobile $.mobile.changePage() manually for initial page.
+        </p> 
+        <b>4. Run</b>
+        <p>
+            Open the browser and run the application by Òhttp://localhost/" (assuming you deploy your application on the root of your web server) , you will see the first view of the application: 
+        </p>
+        <div class="flag-green">list view</div>
+        <p>
+            When user clicks any item in the list, the application will navigate to the second view:book list view, to show the books of the selected category.
+        </p>
+        <b>1. Prepare json data</b>
+        <p>
+            To make this demo application as simple as possible, we emulate backend service using local json data. For the list view, we need 3 local json data files mapping to the category item: JavaScript, NodeJS and IOS. The name of json file should follow the format of ÔcategoryÕ + id + Ô.jsonÕ, like Ôdata/category1.jsonÕ, Ôdata/category2.jsonÕ and Ôdata/category3.jsonÕ.
+        </p>
+        <p>
+            For example , Òcategory1.json" looks like as following :
+        </p>
+
+<pre><code class="javascript">
+[ 
+    { 
+      Òid": Ò1001", 
+      Òname": ÒJavaScript & jQuery: The Missing Manual Ò 
+    }, 
+    { 
+      Òid": Ò1002", 
+      Òname": ÒJavaScript: The Definitive Guide" 
+    }, 
+    { 
+      Òid": Ò1003",     
+      Òname": ÒJavaScript: the best parts" 
+    }, 
+    { 
+      Òid": Ò1004",     
+      Òname": ÒJavaScript: The Good Parts" 
+    }, 
+    { 
+      Òid": Ò1005",     
+      Òname": ÒJavaScript Patterns" 
+    }, 
+    { 
+      Òid": Ò1006",     
+      Òname": ÒHead First JavaScript" 
+    } 
+] 
+</code></pre>
+
+        <p>
+            <b>2. Define a module</b> for model (bookModel.js) and collection (bookCollection.js) Before we get into the list view, we need to define the model of book and the collection.
+        </p>
+        <p>
+            Book model is very simple. We just extend Backbone.Model and define the default value for the attributes.
+        </p>
+
+<pre><code class="javascript">
+define(function(){ 
+
+    var Book=Backbone.Model.extend({ 
+    //default attributes 
+        defaults:{ 
+            id:"", 
+            name:ÕÕ, 
+            category:ÕÕ 
+        } 
+    }); 
+
+    return Book; 
+});
+</code></pre>
+
+        <p>
+            Using Book model, we define the collection of book: bookCollection.js
+        </p>
+
+<pre><code class="javascript">
+define([ÔjqueryÕ, ÔunderscoreÕ, ÔbackboneÕ,Õmodel/book/bookModelÕ], 
+       function ($, _, Backbone,Book){ 
+
+        var Books=Backbone.Collection.extend(
+
+          // Book is the model of the collection 
+          model:Book, 
+
+          //fetch data from books.json using Ajax 
+          //and then dispatch customized event ÒfetchCompleted:Books" 
+          fetch:function(categoryId){ 
+            var self=this; 
+            var tmpItem; 
+            //fetch the data using ajax 
+            var jqxhr = $.getJSON(Òdata/category" + categoryId+".json") 
+              .success(function(data, status, xhr) { 
+                $.each(data, function(i,item){ 
+           //create book for each item and then insert into the collection 
+           tmpItem=new Book({id:item.id,category:categoryId,name:item.name}); 
+                  self.add(tmpItem); 
+                }); 
+                //dispatch customized event 
+                self.trigger(ÒfetchCompleted:Books"); 
+              }) 
+              .error(function() { alert(Òerror"); }) 
+              .complete(function() { 
+                    console.log(Òfetch complete + Ò + this); 
+              }); 
+          } 
+  }); 
+
+  return Books; 
+}); 
+</code></pre>
+
+        <p>
+            Add dependency for BookCollection. BookModel is passed to the module function as the argument ÔBookÕ.The item of collection is Book. So we set collectionÕs attribute ÔmodelÕ as Book.
+        </p>
+        <p>
+            For bookColllection, we will add a function Òfetch" to read the json file and fill into the collection. Once we get the book list successfully, we will trigger a customized event : ÔfetchCompleted:BooksÕ. Later, we will bind the event listener on this event in the book list view.
+        </p>
+        <b>3. Create dynamic template for list view: bookViewTemplate.html</b>
+        <p>
+            Book list view is also rendered with the template. However, it is a dynamic template and is different with homeViewÕs template.
+        </p>
+        <p>
+            We use <%...%> to add script and then Underscore template can execute arbitrary JavaScript code inside <% ... %>. In the following template, the variable ÔdataÕ will be passed from template function. Of course, you can use any variable name you prefer.
+        </p>
+
+<pre><code class="xml">&lt;div data-role=&quot;header&quot; data-position=&quot;fixed&quot;&gt; 
+    &lt;h1&gt;Books&lt;/h1&gt; 
+    &lt;a href=&quot;#home&quot; data-icon=&quot;home&quot; data-iconpos=&quot;notext&quot; 
+data-direction=&quot;reverse&quot;&gt;Home&lt;/a&gt; 
+&lt;/div&gt; 
+    
+&lt;div data-role=&quot;content&quot;&gt;   
+        &lt;ul data-role=&quot;listview&quot; data-inset=&quot;true&quot; &gt; 
+          &lt;!-- data is passed from template engine, 
+              and templat engine will execute the scripts inside &lt;% %&gt; 
+          --&gt; 
+                &lt;% for (var i = 0; i &lt; data.length; i++) { %&gt; 
+                      &lt;% var item = data[i]; %&gt; 
+                      &lt;li&gt; 
+                        &lt;a href=&quot;#detail/&lt;%=item.name%&gt;/&lt;%= item.id%&gt;&quot;&gt;
+&lt;%= item.name %&gt;&lt;/a&gt; 
+                      &lt;/li&gt; 
+                &lt;% } %&gt; 
+        &lt;/ul&gt; </code></pre>
+
+            <b>4. Define a module for list view: book.js</b>
+            <p>
+                We have already prepared model, collection and template. Now itÕs time to make a view: book.js
+            </p>
+
+<pre><code class="javascript">
+define([ÔjqueryÕ, ÔunderscoreÕ, ÔbackboneÕ, 
+Ôtext!modules/list/bookViewTemplate.htmlÕ], 
+       function ($, _, Backbone, bookViewTemplate) { 
+  Ôuse strictÕ; 
+
+  var BookListView = Backbone.View.extend({ 
+    
+    template: _.template(bookViewTemplate), 
+    
+    update:function(categoryId){ 
+      //set callback of the event ÒfetchCompleted:Books" 
+      this.collection.bind(ÔfetchCompleted:BooksÕ,this.render,this); 
+      this.collection.fetch(categoryId); 
+    }, 
+
+    render: function(){ 
+      this.$el.empty(); 
+      //compile template using the data fetched by collection 
+      this.$el.append(this.template({data:this.collection.toJSON()})); 
+      this.trigger(ÒrenderCompleted:Books",this); 
+      return this; 
+    } 
+  }); 
+  
+  return BookListView; 
+</code></pre>
+
+        <p>
+            First, add text dependency ÒbookViewTemplate" .
+        </p>
+        <p>
+            BookListView has two functions: update(categoryId) and render() .
+        </p>
+        <p>
+            The update(categoryId) will call collectionÕs fetch function to get book list of selected category by categoryId. Before that, we need to bind the render() function as eventListener for the event ÒfetchCompleted:Books". Once we get the data successfully, we will render the view with using template.
+        </p>
+        <p>
+            In the render function, we use Underscore template engine to compile the template and the data to produce the html segments and then insert into viewÕs div container. We also trigger the event ÒrenderCompleted:Books" to notify router that the view is ready and please change page.
+        </p>
+        <p>
+            In the real case, it is better to cache the template and the view to improve performance.
+        </p>
+
+        <b>5. Add routes mapping in router.js</b>
+            
+        <p>
+            Now back to router.js. We will tell router.js how to Òroute" application once user clicks category item of HomeView.
+        </p>
+        <p>
+            The same with other modules, we need to add dependencies first.
+        </p>
+
+<pre><code class="javascript">
+routes: { 
+            ÔÕ:    ÔshowHomeÕ,           //home view 
+            ÔhomeÕ: ÔshowHomeÕ,         //home view as well 
+            Ôlist/:categoryIdÕ : ÔshowBooksÕ, 
+            Ô*actionsÕ: ÔdefaultActionÕ //default action        
+</code></pre>
+
+        <p>
+            Now, once user clicks the item and changes hash segment of url, Backbone will call showBooks() and pass the category id.
+        </p>
+        <p>    
+            The following codes are what we will add in router.js.
+        </p>
+
+<pre><code class="javascript">
+init:true, 
+
+        showBooks:function(categoryId){ 
+            //create a collection 
+            var bookList=new BookCollection(); 
+            //create book list view and pass bookList as the collection 
+            var bookListView=new BookListView({collection:bookList}); 
+            //need to pass this as context 
+            bookListView.bind(ÔrenderCompleted:BooksÕ,this.changePage,this); 
+            //update view 
+            bookListView.update(categoryId); 
+        }, 
+
+        //4. argument ÔviewÕ is passed from event trigger 
+        changePage:function (view) { 
+            //add the attribute Ôdata-role="page" Ô for each viewÕs div 
+            view.$el.attr(Ôdata-roleÕ, ÔpageÕ);   
+            //append to dom 
+            $(ÔbodyÕ).append(view.$el);  
+
+            if(!this.init){   
+                $.mobile.changePage($(view.el), {changeHash:false}); 
+            }else{   
+                this.init = false; 
+            }           
+</code></pre>
+
+        <p>
+            As the codes shows, we add an attribute Òinit", which is a flag attribute. Like we mentioned before, for the initial page of jQuery Mobile application, jQuery mobile will enhance and present it automatically. So we should not call $.mobile.changePage() manually.
+        </p>
+        <p>
+            In the function showBooks() , we create BookCollection and bind it with BookListView. Before updating the view (which will call bookCollectionÕs fetch function) , we bind the changePage() function with the event ÔrenderCompleted:BooksÕ. So when the view is rendered , we will call changePage() to insert it into DOM and then enhance page and transit to the new page.
+        </p>
+        <p>
+            In the function changePage(), if it is not the initial page, we manually call jQuery mobile function $.mobile.changePage() to load new page and apply transition effect.
+        </p>
+        <div class="flag-green">CONCLUSION</div>
+        <p>
+            It is just a very beginning application and far away from a real one. Actually, there are lots of things we can improve, like caching template and view, or even separating the control logic from router.
+        </p>
+        <p>
+            RequireJS+BackboneJS+jQuery Mobile is a powerful combination and an easy to use technology. Especially, with requireJS and BackboneJS, we can modularize the application development and make the application clean and clear.
+        </p>
+        <p>
+            In this introductory tutorial, weÕve only scratched the surface of jQuery mobile, BackboneJS and requireJS. If you want to learn more, you can go to the official sites of these libraries and frameworks.
+        </p>
+        <p>
+            Thank you for taking your time to read this tutorial!
+        </p>
+
+    </div>
+</article>

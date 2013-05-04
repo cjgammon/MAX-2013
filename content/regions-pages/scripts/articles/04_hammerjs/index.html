@@ -1,0 +1,179 @@
+
+        <article id="article-hammer">
+            <header class="js-parallax"></header>
+
+             <div class="column">
+                <!-- <h1><img src="../images/appliness.svg" alt="appliness"></h1> -->
+                <h2>Multitouch with hammer.js</h2>
+                <p class="subhead">
+                    hammer.js is a very simple but very powerful library to enable multitouch experiences on touch devices. 
+                </p>
+                <div class="flag-green">why using multitouch?</div>
+                <p>
+                    As a mobile application developer, I’m always dealing with the frontier between native apps and web apps. Tablet and mobile users are used to multitouch gestures: pinch to zoom-in, rotation, natural drag and drop... Now, these gestures are not reserved to native apps. Thanks to Hammer.js, you can easily implement touch events in your web apps: tap, double tap, hold, drag and transform gestures. It became  natural reflexes. Display a picture on a tablet and notice that the first thing that will do the users is to zoom-in.
+                </p>
+                <p>                
+                    To introduce this library, I’ve extended some Hammer samples found on GitHub. I’ve built a classic polaroid manipulation app. I’ll share with you some tips I’ve used, but of course you’re invited to download the full code of this sample and start playing with Hammer.js.
+                </p>
+                <p>
+                    In my sample I’m using the Drag gesture, pinch to rescale the pictures and the rotation gesture using two fingers. By the way, do you know why the library is called Hammer.js? It’s a tribute to MC Hammer, the singer of U Can’t Touch This. Well guess what, now we CAN. Let me add a YO! here. Cool, now I think it’s time to start a little gangsta.
+                </p>
+                
+                <div class="flag-green">my sample application</div>
+                <p>
+                   I’m just playing with three pictures. You can drag, rescale and rotate them. The Polaroid look and feel is produced by a CSS. This is pure HTML and JavaScript powered by Hammer.js: 
+                </p>
+                <div class="sample">
+                    <iframe width="100%" height="100%" src="scripts/articles/04_hammerjs/hammer/index.html"></iframe>
+                </div>
+
+                <div class="flag-green">getting started</div>
+                <p>
+                Ok it looks cool and it’s pretty responsive. Now let’s see how to play with Hammer. First, you need to download the library from GitHub: https://github.com/eightmedia/hammer.js If you plan to use jQuery in your project (yes, in some cases, there is a JavaScript life without jQuery), then don’t forget to download and import the dedicated jquery.hammer.js also available in the GitHub repository. In my sample, I’m using jQuery, I’ve put the JavaScript logic in a separate file and I’ve created a CSS. My imports look like this:
+                </p>
+
+<pre class="code"><code class="xml">&lt;head&gt;<br/>    &lt;meta name=&#x201d;viewport&#x201d; content=&#x201d;width=device-width, initial-scale=1.0, user-scalable=no&#x201d;&gt;<br/>    &lt;script src=&#x201d;jquery-1.7.2.min.js&#x201d;&gt;&lt;/script&gt;<br/>&lt;script src=&#x201d;hammer.js&#x201d;&gt;&lt;/script&gt;<br/>&lt;script src=&#x201d;jquery.hammer.js&#x201d;&gt;&lt;/script&gt;<br/>&lt;script src=&#x201d;myLogic.js&#x201d;&gt;&lt;/script&gt;<br/>    &lt;link href=&#x2019;http://fonts.googleapis.com/css?family=Bree+Serif&#x2019; rel=&#x2019;stylesheet&#x2019; type=&#x2019;text/css&#x2019;&gt;<br/>    &lt;link href=&#x2019;style.css&#x2019; rel=&#x2019;stylesheet&#x2019; type=&#x2019;text/css&#x2019;&gt;<br/>&lt;/head&gt;<br/>
+</code></pre>
+
+                <p>
+                Then I’ve declared three DIV to display the pictures. The pictures are contained in a “zoomwrapper” DIV element. 
+                </p>
+
+<pre class="code"><code class="xml">&lt;body&gt;<br/>&lt;div class=&#x201d;welcome&#x201d;&gt;<br/>	&lt;p&gt;This sample is using Hammer.js.&lt;br/&gt;<br/>Drag and drop the pictures, zoom with pinch and rotate them.&lt;/p&gt;<br/>&lt;/div&gt;<br/>&lt;div id=&#x201d;zoomwrapper&#x201d;&gt;<br/>    &lt;div id=&#x201d;zoom&#x201d; class=&#x201d;zoomProps&#x201d; &gt;<br/>        &lt;div class=&#x201d;polaroid&#x201d;&gt;<br/>            &lt;img src=&#x201d;pic1.jpg&#x201d; alt=&#x201d;&#x201d; width=&#x201d;200&#x201d; height=&#x201d;200&#x201d; /&gt;<br/>            &lt;span&gt;Coco&lt;/span&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/>    &lt;div id=&#x201d;zoom2&#x201d;class=&#x201d;zoomProps&#x201d; &gt;<br/>        &lt;div class=&#x201d;polaroid&#x201d;&gt;<br/>            &lt;img src=&#x201d;pic2.jpg&#x201d; alt=&#x201d;&#x201d; width=&#x201d;200&#x201d; height=&#x201d;200&#x201d; /&gt;<br/>            &lt;span&gt;Axo&lt;/span&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/>    &lt;div id=&#x201d;zoom3&#x201d; class=&#x201d;zoomProps&#x201d;&gt;<br/>        &lt;div class=&#x201d;polaroid&#x201d;&gt;<br/>            &lt;img src=&#x201d;pic3.jpg&#x201d; alt=&#x201d;&#x201d; width=&#x201d;200&#x201d; height=&#x201d;200&#x201d; /&gt;<br/>            &lt;span&gt;Gwo&lt;/span&gt;<br/>        &lt;/div&gt;<br/>    &lt;/div&gt;<br/>&lt;/div&gt;<br/>&lt;/body&gt;<br/>
+</code></pre>
+
+                <p>
+                There is nothing particular to notice in the CSS. The zoomwrapper DIV has an overflow property set to hidden. And here is the code to imitate the “Polaroid” effect:
+                </p>
+
+<pre class="code"><code class="css">#zoomwrapper {
+      height: 377px;
+      width: 600px;
+      overflow: hidden;
+ }
+
+.polaroid{
+    text-align: center;
+    padding: 10px 10px 25px 10px;
+    background: #eee;
+    border: 1px solid #fff;
+    -moz-box-shadow: 0px 2px 15px #333;
+    -webkit-box-shadow:	0px 2px 15px #333;
+    border: 1px solid #dfdfdf;
+    border: 1px solid rgba(96,96,96,0.2);  
+    font-family:"Imitation";
+    font-size:24px;
+    color:#000;
+    padding-bottom:10px;
+    text-shadow:#333;
+}
+</code></pre>
+
+                <div class="flag-green">drag pictures</div>
+                <p>
+                The DragView function contains the logic to handle drag events. For each picture, you must associate a DragView call and bind the drag events:
+                </p>
+
+<pre class="code"><code class="javascript">var dragview = new DragView($(container));
+container.bind("dragstart", $.proxy(dragview.OnDragStart, dragview));
+container.bind("drag", $.proxy(dragview.OnDrag, dragview));
+container.bind("dragend", $.proxy(dragview.OnDragEnd, dragview));
+setInterval($.proxy(dragview.WatchDrag, dragview), 10);
+</code></pre>
+
+                <p>
+                Let’s look at the OnDragStart method declared in DragView. 
+                </p>   
+
+<pre class="code"><code class="javascript">this.OnDragStart = function(event) {
+var touches = event.originalEvent.touches || [event.originalEvent];
+	for(var t=0; t&lt;touches.length; t++) {
+		var el = touches[t].target.parentNode;
+		if(el.className.search('polaroid') > -1){	  	
+			el = touches[t].target.parentNode.parentNode;
+		}
+		el.style.zIndex = zIndexBackup + 1;
+		zIndexBackup = zIndexBackup +1;
+			
+		if(el && el == this.target) {
+			$(el).children().toggleClass('upSky');
+			this.lastDrag = {
+					el: el,
+					pos: event.touches[t]
+			};
+		return; 
+		}
+	}
+}
+</code></pre>
+
+                <p>
+                It stores the touch events in an array and make sure that we’re dealing with the DIV element with a “polaroid” class attached. If not, then we need to play with its parent node. It’s due to the structure of my HTML elements. If you tap the title of the picture, then you also want the picture to move. I’m also playing with the zIndex property to put the picture at the top when you drag it. Then, thanks to the toggleClass method (jQuery), I assign the ‘upSky’ class to the element: it’s just setting an intense white background.
+                </p>
+                <div class="flag-green">zoom-in and zoom-out</div>
+                <p>
+                To initialize the pinch gesture, I’m calling the ZoomView method on each picture. Then you can listen to “transformstart”, “transform” and “transformend” events on your elements. 
+                </p>
+                <p>
+                The transformstart event lets you define what is the cssorigin point of transformation. 
+                </p>
+
+<pre class="code"><code class="javascript">
+container.bind("transformstart", function(event){
+
+//We save the initial midpoint of the first two touches 
+    e = event
+    tch1 = [e.touches[0].x, e.touches[0].y],
+    tch2 = [e.touches[1].x, e.touches[1].y]
+
+    tcX = (tch1[0]+tch2[0])/2,
+    tcY = (tch1[1]+tch2[1])/2
+
+    toX = tcX
+    toY = tcY
+
+    var left = $(element).offset().left;
+    var top = $(element).offset().top;
+
+    cssOrigin = (-(left) + toX)/scaleFactor +"px "+ (-(top) + toY)/scaleFactor +"px";
+})
+</code></pre>
+
+                <p>
+                The “transform” state fires the transform method, passing the transform event and setting the scaleFactor. You can specify the minimum and maximum zoom thanks to the MIN_ZOOM and MAX_ZOOM constants. 
+                </p>
+
+<pre class="code"><code class="javascript">container.bind(“transform”, function(event) {
+    scaleFactor = previousScaleFactor * event.scale;
+    scaleFactor = Math.max(MIN_ZOOM, Math.min(scaleFactor, MAX_ZOOM));
+    transform(event);
+});
+</code></pre>
+
+                <p>
+                The transform() method uses simple CSS transformations that are hardware accelerated on mobile devices to get the best performance on touch devices. As the transform event powered by Hammer also contains information about the angle of rotation of your element, you can use the rotateZ property to enable rotation. 
+                </p>
+
+<pre class="code"><code class="javascript">
+function transform(e) {
+    //We’re going to scale the X and Y coordinates by the same amount
+    var cssScale = "scaleX("+ scaleFactor +") scaleY("+ scaleFactor +") rotateZ("+ e.rotation +"deg)";
+
+    element.css({
+        webkitTransform: cssScale,
+        webkitTransformOrigin: cssOrigin,
+        transform: cssScale,
+        transformOrigin: cssOrigin,
+    });
+}
+</code></pre>
+                <p>
+                That’s very efficient and easy to implement. Now go to the next page to discover the full code of this sample.
+                </p>
+
+                <div class="flag-green">source code: html & javascript</div>
+                
+                <div class="code">code here</div>
+                <div class="code">code here</div>
+            </div>
+        </article>

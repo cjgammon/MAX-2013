@@ -1,0 +1,132 @@
+.paginated{
+    .resources{
+        border: none !important;
+        padding-left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 1257px){
+    .paginated article{
+        .column, footer, header, #toc-nav{
+            max-width: 30rem !important;
+        }
+    }   
+}
+
+@media screen and (max-width: 1050px) {
+    .paginated article{
+        .column, footer, header, #toc-nav{
+            max-width: 25rem !important;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #flipbook{
+        width: 100%;
+        left: 0%;
+    }
+
+    .paginated article{
+        .column, footer, header, #toc-nav{
+            min-width: 40rem;
+        }
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .paginated article{
+        .column, footer, header, #toc-nav{
+            min-width: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #article-coffeescript .code.left,
+    #article-coffeescript .code.right{
+        display: block;
+        float: none;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 10px;
+        max-width: none;
+        min-width: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    article{
+        header{
+            height: 100px !important;
+        }
+    }
+
+    .column{
+        overflow-x: hidden;
+    }
+
+    .sample{
+        width: auto;
+    }
+
+    .nav-item{
+        width: 100px;
+        height: 60px;
+
+        img{
+            width: 100px;
+            height: 60px;
+        }
+
+        .nav-item-title{
+            font-size: 10px;
+            line-height: 10px;
+            padding: 10px;
+        }
+    }
+
+    .resources, .about{
+        display: block !important;
+        width: auto !important;
+    }
+
+    .footer-divider{
+        display: none !important;
+    }
+
+    #bottomUI{
+        height: 120px;
+    }
+
+
+    .cover-items{
+        display: none;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    #section0{
+        .cover-items{
+            position: absolute;
+            left: 0px;
+            margin-top: 25vh;
+            text-align: left;
+            width: 200px;
+        }
+
+        .cover-item{
+            float: none;
+            text-align: left;
+        }
+    }
+}
+
+
+@media screen and (max-height: 400px) {
+    #section0{
+        .cover-items{
+            display: none;
+        }
+    }
+}

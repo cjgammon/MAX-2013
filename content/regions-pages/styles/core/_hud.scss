@@ -1,0 +1,195 @@
+$transparentblack: rgba(0, 0, 0, .2);
+$offwhite: rgb(250, 250, 250);
+
+#hud{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#topButtons{
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    padding: 5px;
+}
+
+.top-button{
+    display: inline-block;
+    height: 25px;
+    width: 20px;
+    padding: 2px 5px;
+    text-align: center;
+    color: white;
+    line-height: 1rem;
+    background: black;
+    border-radius: 3px;
+    opacity: .5;
+    cursor: pointer;
+    @include transition(opacity .2s linear);
+    
+    &:hover{
+        opacity: 1;
+    }
+
+    .icon{
+        position: relative;
+        top: 5px;
+    }
+}
+
+#menuButton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    // margin-top: 10px;
+    margin-right: 20px;
+    color: white;
+    background: black;
+    border-radius: 3px;
+    opacity: .5;
+    cursor: pointer;
+    @include transition(opacity .2s linear);
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
+#menu{
+    @extend .full-size;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: black;
+    overflow: hidden;
+}
+
+#menuHitArea{
+    @extend .full-size;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+#topUI{
+    position: absolute;
+    width: 100%;
+    top: -70px;
+    font-size: 18px;
+    letter-spacing: 4px;
+    background: $offwhite;
+    border-bottom: 1px solid $transparentblack;
+}
+
+#topUIContent{
+    padding: 10px;
+}
+
+#bottomUI{
+    position: absolute;
+    height: 200px;
+    bottom: -200px;
+    width: 100%;
+    background: $offwhite;
+    border-top: 1px solid $transparentblack;
+
+    .nav-item{
+        position: relative;
+        top: -200px;
+        opacity: 0;
+        @include transform(scale(0.5) translateZ(0px));
+        // @include transition(all .5s ease-out);
+    }
+}
+
+#navScroll{
+    margin: 10px;
+    padding: 10px 0;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    /* Let's get this party started */
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+     
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #666;
+    }
+     
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #ccc; 
+        cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-thumb:window-inactive {
+        background: #fff; 
+    }
+}
+
+.nav-item{
+    display: inline-block;
+    position: relative;
+    margin: 0 5px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    width: 228px;
+    height: 147px;
+    // background: gray;
+    @include transition(border .4s linear);
+
+    img{
+        display: block;
+    }
+
+    &:hover{
+        border: 2px solid #777;
+
+        .nav-item-title{
+            color: white;
+        }
+    }
+
+    &.selected{
+        border: 2px solid white;
+    }
+}
+
+.nav-item-title{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 10px 20px;
+    // color: white;
+    color: rgb(200, 200, 200);
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, .6);
+    @include transition(color .4s ease-out);
+}
+
+
+#magName{
+    display: block;
+    position: absolute;
+    top: -25px;
+    left: -10px;
+}
+    
+#articleName{
+    display: inline-block;
+    margin-left: 350px;
+}

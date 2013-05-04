@@ -1,0 +1,156 @@
+<html>
+   <head>
+      <title>font family tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script>
+		<script src="http://use.edgefonts.net/architects-daughter:n4.js"></script>
+
+
+	<style>
+	body{
+		position: relative;
+		background-color: #222;
+		font-family: 'Architects Daughter', architects-daughter;
+		overflow-x: hidden;
+	}
+
+	.astronaut-guy{
+		position: absolute;
+		right: 0px;
+		top: 200px;
+		z-index: 1;
+	}
+	
+	.astronaut-story{
+		position: relative;
+		top: -10px;
+		padding: 10px 20px;
+		font-size: 1.2rem;
+		line-height: 150%;
+		color: white;
+		z-index: 2;
+		-webkit-shape-inside: polygon(0px 0px, 70% 0px, 70% 100px, 50% 100px, 50% 300px, 50% 200px, 50% 300px, 50% 400px, 0px 400px);
+
+		/*
+		-webkit-shape-inside: polygon(0px 0px, 546px 0px, 546px 100px, 240px 100px, 240px 200px, 550px 200px, 550px 300px, 550px 400px, 0px 400px);
+		*/
+	}
+	
+	.astronaut-hero{
+		position: relative;
+		top: 100px;
+		z-index: 1;
+		@include transform(translateZ(0));
+	}
+	
+	.astronaut-shuttle{
+		position: absolute;
+		top: 300px;
+		left: -250px;
+		-webkit-transform-origin: 70px 20px;
+	}
+	
+	.astronaut-cable{
+		position: absolute;
+		top: 200px;
+		left: -100px;
+		-webkit-transform: rotate(120deg);
+	}
+	
+	.astronaut-bubble{
+		position: absolute;
+		top: 0px;
+		left: -100px;
+		width: 200px;
+		height: 50px;
+		padding: 30px 40px;
+		font-size: 1rem;
+		line-height: 150%;
+		text-align: center;
+		background-image: url(./img/astronaut/bubble.svg);
+		background-repeat: no-repeat;
+	}
+	
+	.astronaut-bubble-2{
+		position: absolute;
+		left: 40px;
+		top: 130px;
+	}
+	
+	.astronaut-bubble-3{
+		position: absolute;	
+		top: 170px;
+		left: 60px;
+	}
+
+@media screen and (max-width: 80rem) {
+		.astronaut-story{
+			-webkit-shape-inside: polygon(0px 0px, 70% 0px, 70% 100px, 50% 100px, 50% 300px, 50% 200px, 50% 300px, 50% 400px, 0px 400px);
+		}
+}
+
+@media screen and (max-width: 70rem) {
+		.astronaut-story{
+			-webkit-shape-inside: polygon(0px 0px, 70% 0px, 70% 100px, 40% 100px, 40% 300px, 40% 200px, 40% 300px, 40% 400px, 0px 400px);
+		}
+}
+
+@media screen and (max-width: 60rem) {
+	
+		.astronaut-guy{
+			left: auto;
+			right: 0px;
+			-webkit-transform: rotate(20deg);
+		}
+		
+		.astronaut-story{
+			-webkit-shape-inside: polygon(0px 0px, 25% 0px, 30% 60px, 60% 60px, 60% 200px, 0px 200px);
+		}
+}
+
+@media screen and (max-width: 50rem) {
+	.astronaut-guy{
+		margin-top: 10rem;
+		position: static;
+	}
+
+	.astronaut-story{
+		-webkit-shape-inside: auto;
+	}
+}
+	</style> 
+   </head>
+   <body>
+			<div class="astronaut-frames">
+				<img src="img/astronaut/frame1.svg">
+				<img src="img/astronaut/frame2.svg">
+				<img src="img/astronaut/frame3.svg">
+				<img src="img/astronaut/frame4.svg">
+				<img src="img/astronaut/frame5.svg">
+				<img src="img/astronaut/frame6.svg">
+			</div>
+			
+			<div class="astronaut-story">
+				There once was a boy who wanted to be an astronaut. He was always interested in space and learned as much as he could. He shared his dream with all his friends. When he graduated at the top of his class, he knew he was that much closer to fulfilling his dream. He was hired by NASA and went through thorough training. Then, one day, his moment finally came.
+			</div>
+			
+			<div class="astronaut-guy">
+				<img class="astronaut-cable" src="img/astronaut/cable.svg">
+				<img class="astronaut-shuttle" src="img/astronaut/shuttle.svg">
+				<div class="astronaut-bubble">
+					I thought this would feel different...
+				</div>
+				<img class="astronaut-bubble-2" src="img/astronaut/bubble2.svg">
+				<img class="astronaut-bubble-3" src="img/astronaut/bubble3.svg">
+				<img class="astronaut-hero" src="img/astronaut/astronaut.svg">
+			</div>
+   </body>
+
+	<script src="../scripts/jquery-1.9.0.min.js"></script>
+	
+   <script type="text/javascript">
+
+   </script>
+
+   
+</html>

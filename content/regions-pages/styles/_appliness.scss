@@ -1,0 +1,120 @@
+.appliness{
+    font-family: source-sans-pro, sans;
+    font-size: 130%;
+    // line-height: 1.5rem;
+    line-height: 2rem;
+
+    article{
+        header{
+            height: 300px;
+            padding: 10px 35px;
+            margin: auto;
+            background-size: cover;
+            background-repeat: no-repeat;
+            // background-position: center center;
+            background-position: 50% 0px;
+        }
+
+        .column{
+            position: relative;
+            max-width: 40rem;
+            margin: auto;
+            padding: 10px 35px;
+            font-size: 100%;
+            background: white;
+        }
+        
+        footer{
+            padding: 10px 35px;
+        }
+
+        .footer-content{
+            max-width: 40rem;
+        }
+/*
+        h2{
+            margin-top: 30px;
+            font-size: 2.8rem;
+            line-height: 2.5rem;
+            text-transform: uppercase;
+        }
+*/
+        .subhead{
+            color: gray;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        p{
+            margin: 1.7rem 0;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+
+        pre{
+            white-space: pre-wrap;
+        }
+
+        code{
+            word-wrap: break-word;
+            font-size: 1rem;
+            line-height: 1rem;
+            background: transparent !important;
+        }
+
+        .flag-green{
+            position: relative;
+            margin-left: -45px;
+            padding: 10px;
+            padding-left: 45px;
+            font-weight: 100;
+            color: rgb(88, 122, 0);
+            text-transform: uppercase;
+            background: rgb(198, 217, 73);
+            -webkit-region-break-inside: avoid;
+
+            &:before{
+                position: absolute;
+                top: 100%;
+                left: 0px;
+                width: 10px;
+                height: 9px;
+                content: '';
+                background: url(../images/articles/hammer/flag_left.svg);
+            }
+        }
+
+        pre{
+            position: relative;
+            margin-left: -45px;
+            margin-bottom: 10px;
+            padding: 10px;
+            padding-left: 45px;
+            background: rgb(237, 243, 226);
+            -webkit-region-break-inside: avoid;
+
+            &:before{
+                position: absolute;
+                top: 100%;
+                left: 0px;
+                width: 10px;
+                height: 10px;
+                content: '';
+                background: url(../images/articles/hammer/flag_left.svg);
+            }
+        }
+
+    }
+}
+
+.paginated{
+    .hud{
+        display: none;
+    }
+
+    article{
+        header, .column, footer{
+            max-width: 35rem;
+        }
+    }
+}

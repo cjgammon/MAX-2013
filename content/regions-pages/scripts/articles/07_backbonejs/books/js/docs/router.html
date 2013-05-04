@@ -1,0 +1,70 @@
+<!DOCTYPE html>  <html> <head>   <title>router.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               router.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span> <span class="s1">&#39;underscore&#39;</span><span class="p">,</span> <span class="s1">&#39;backbone&#39;</span><span class="p">,</span><span class="s1">&#39;modules/home/home&#39;</span><span class="p">,</span><span class="s1">&#39;modules/list/contact&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;model/contact/contactCollection&#39;</span><span class="p">,</span><span class="s1">&#39;modules/detail/contactDetail&#39;</span><span class="p">,</span><span class="s1">&#39;model/contact/contactModel&#39;</span><span class="p">,</span><span class="s1">&#39;jqm&#39;</span><span class="p">],</span> 
+	<span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">Backbone</span><span class="p">,</span><span class="nx">HomeView</span><span class="p">,</span><span class="nx">ContactView</span><span class="p">,</span><span class="nx">ContactCollection</span><span class="p">,</span><span class="nx">ContactDetailView</span><span class="p">,</span><span class="nx">Contact</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">Router</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+       <span class="cm">/*</span>
+<span class="cm">         routes设定了应用的路由，用户点击链接后指向不同的hash，</span>
+<span class="cm">         则Backbone会根据routes的设定执行对应的方法</span>
+<span class="cm">       */</span>
+        <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
+        	<span class="s1">&#39;&#39;</span><span class="o">:</span>    <span class="s1">&#39;showHome&#39;</span><span class="p">,</span>           <span class="c1">//home view</span>
+        	<span class="s1">&#39;home&#39;</span><span class="o">:</span> <span class="s1">&#39;showHome&#39;</span><span class="p">,</span>         <span class="c1">//home view as well</span>
+	        <span class="s1">&#39;contact&#39;</span><span class="o">:</span> <span class="s1">&#39;showContact&#39;</span><span class="p">,</span>         <span class="c1">//list view</span>
+	        <span class="s1">&#39;contactdetail/:name/:id&#39;</span> <span class="o">:</span> <span class="s1">&#39;showContactDetail&#39;</span><span class="p">,</span>   <span class="c1">//detail view</span>
+	        <span class="s1">&#39;*actions&#39;</span><span class="o">:</span> <span class="s1">&#39;defaultAction&#39;</span> <span class="c1">//default action</span>
+        <span class="p">},</span>
+	    
+	    <span class="nx">firstPage</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+
+	    <span class="nx">initialize</span><span class="o">:</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;setup router&quot;</span><span class="p">);</span>
+	    <span class="p">},</span>
+
+	    <span class="nx">defaultAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">actions</span><span class="p">){</span>
+
+	    <span class="p">},</span>
+
+	    <span class="nx">showHome</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">actions</span><span class="p">){</span>
+	    	<span class="kd">var</span> <span class="nx">homeView</span><span class="o">=</span><span class="k">new</span> <span class="nx">HomeView</span><span class="p">();</span>
+	    	<span class="nx">homeView</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+	    	<span class="k">this</span><span class="p">.</span><span class="nx">changePage</span><span class="p">(</span><span class="nx">homeView</span><span class="p">);</span>
+	    <span class="p">},</span>
+
+	    <span class="nx">showContact</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">actions</span><span class="p">){</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>first, we fetch data to initialize view</p>             </td>             <td class="code">               <div class="highlight"><pre>	    	<span class="kd">var</span> <span class="nx">contactList</span><span class="o">=</span><span class="k">new</span> <span class="nx">ContactCollection</span><span class="p">();</span>
+	    	<span class="kd">var</span> <span class="nx">contactView</span><span class="o">=</span><span class="k">new</span> <span class="nx">ContactView</span><span class="p">({</span><span class="nx">collection</span><span class="o">:</span><span class="nx">contactList</span><span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>need to pass this as context , so we can call "this.changePage(view) in triggerChangeView function"</p>             </td>             <td class="code">               <div class="highlight"><pre>	    	<span class="nx">contactView</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;renderCompleted:Contacts&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">triggerChangeView</span><span class="p">,</span><span class="k">this</span><span class="p">);</span>
+	    	<span class="nx">contactList</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>this.changePage(new list());</p>             </td>             <td class="code">               <div class="highlight"><pre>	    <span class="p">},</span>
+
+
+	    <span class="nx">showContactDetail</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">id</span><span class="p">){</span>
+	    	<span class="kd">var</span> <span class="nx">contact</span><span class="o">=</span><span class="k">new</span> <span class="nx">Contact</span><span class="p">();</span>
+	    	<span class="kd">var</span> <span class="nx">contactDetailView</span><span class="o">=</span><span class="k">new</span> <span class="nx">ContactDetailView</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span><span class="nx">contact</span><span class="p">});</span>
+	    	<span class="nx">contactDetailView</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;renderCompleted:ContactDetail&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">triggerChangeView</span><span class="p">,</span><span class="k">this</span><span class="p">);</span>
+	    	<span class="nx">contact</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+	    <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>the parameter 'view' is transferred from trigger call</p>             </td>             <td class="code">               <div class="highlight"><pre>	    <span class="nx">triggerChangeView</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">view</span><span class="p">,</span><span class="nx">demoparm</span><span class="p">){</span>
+	    	<span class="k">this</span><span class="p">.</span><span class="nx">changePage</span><span class="p">(</span><span class="nx">view</span><span class="p">);</span>
+	    <span class="p">},</span>
+            <span class="cm">/*</span>
+<span class="cm">             changePage调用每个view模块的render方法来生成template内容，然后插入到dom中。最后调用</span>
+<span class="cm">            */</span>
+	    <span class="nx">changePage</span><span class="o">:</span><span class="kd">function</span> <span class="p">(</span><span class="nx">view</span><span class="p">)</span> <span class="p">{</span>
+	    	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;changePage&quot;</span> <span class="o">+</span> <span class="nx">view</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>设定外层div容器的data-role为'page'，以支持jquery mobile</p>             </td>             <td class="code">               <div class="highlight"><pre>			<span class="nx">$</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;data-role&#39;</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">);</span>   </pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>插入dom</p>             </td>             <td class="code">               <div class="highlight"><pre>      		<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nx">el</span><span class="p">));</span>  
+			<span class="kd">var</span> <span class="nx">transition</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">mobile</span><span class="p">.</span><span class="nx">defaultPageTransition</span><span class="p">;</span>  
+                <span class="cm">/*</span>
+<span class="cm">                 如果不是第一个页面，那么调用enhance JQuery Mobile page,</span>
+<span class="cm">                 并且执行transition动画。</span>
+<span class="cm">                 如果是第一个页面，那么无需changePage。否则会出错。                </span>
+<span class="cm">                */</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">firstPage</span><span class="p">){</span>   
+				<span class="nx">$</span><span class="p">.</span><span class="nx">mobile</span><span class="p">.</span><span class="nx">changePage</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nx">el</span><span class="p">),</span> <span class="p">{</span><span class="nx">changeHash</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">transition</span><span class="o">:</span> <span class="nx">transition</span><span class="p">});</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>   
+				<span class="k">this</span><span class="p">.</span><span class="nx">firstPage</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+			<span class="p">}</span>
+	     <span class="p">}</span> 
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="nx">Router</span><span class="p">;</span>
+<span class="p">});</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

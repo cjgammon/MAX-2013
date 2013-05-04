@@ -1,0 +1,125 @@
+<html lang="en">
+   <head>
+      <title>font family tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script>
+	<script src="http://use.edgefonts.net/bebas-neue:n4.js"></script>
+	<script src="http://use.edgefonts.net/alice:n4.js"></script>
+	<link rel="stylesheet" type="text/css" href="../styles/style.css">
+
+	<style>
+		input[type="checkbox"]{
+			position: relative;
+			top: -3px;
+			margin: 0 10px 0 0;
+		}
+		
+		.hyphenate{
+			word-wrap: break-word;
+		}
+	</style> 
+   </head>
+   <body onload="init()">
+		<div id="container">
+			<div class="side">
+				<div id="controller">
+					<ul>
+						<li><input id="justifyBox" type="checkbox"></input>justify</li>
+						<!--
+						<li>justify type <select id="justifyType">
+							<option value="auto">auto</option>
+							<option value="inter-word">inter-word</option>
+							<option value="inter-ideograph">inter-ideograph</option>
+							<option value="inter-cluster">inter-cluster</option>
+							<option value="distribute">distribute</option>
+							<option value="kashida">kashida</option>
+							<option value="newspaper">newspaper</option>
+							<option value="trim">trim</option>
+							<option value="none">none</option>
+						</select></li>
+						-->
+						<li><input id="hyphenBox" type="checkbox"></input>hyphens</li>
+						<li><input id="balanceBox" type="checkbox"></input>balance</li>
+					</ul>
+				</div>
+				<div id="workarea">
+					<h1 class="balanceme">My Incredibly Pointless Story</h1>
+					<p class="justifyMe">Once there was a <b>hornless unicorn</b>, drawing tessellations and meandered aimlessly with all the forest creatures. There were frogs and bears and hippopotamuses. One day the fearless lion asked the hornless unicorn why he did not have a horn. Hearing this, the hornless unicorn replied, I was born without one.</p>
+					<h2>The Plot Thickens</h2>
+					<p class="justifyMe">The bear then said, doesn't that just make you a horse? The hornless unicorn said, no. My parents were unicorns, their parents were unicorns, plus...</p>
+					<blockquote class="justifyMe">&ldquo;You are what you believe.&rdquo;</blockquote>
+					<p class="justifyMe">All the animals went about their business as though nothing had happened. Then one day the fearless lion asked the hornless unicorn why it didn't have a horn. To which, the hornless unicorn replied, I was born without it.</p>
+				</div>
+			</div>
+		</div>
+   </body>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/hyphenate.js"></script>
+	
+	<script type="text/javascript" src="jquery.balancetext.js"></script>
+	<script type="text/javascript">
+		var justifyValue = false,
+			interwordValue = false,
+			hyphenValue = false,
+			balanceValue = false,
+			workarea,
+			content,
+			prefixes = ['ms', 'webkit', 'Moz'];
+
+		
+		function addPrefix(el, name, value){
+			for (var i = 0; i < prefixes.length; i += 1) {
+				el.css(prefixes[i] + name, value);
+			}
+		}
+		
+
+		function handle_justifyBox_TOGGLE(e) {
+			justifyValue = justifyValue ? false : true;
+			if (justifyValue) {
+				$('.justifyMe').css("textAlign", "justify");
+			} else {
+				$('.justifyMe').css("textAlign", "left");
+			}
+		}
+		
+		function handle_justifyType_TOGGLE(e) {
+			console.log('yes')
+			justifyTypeValue = $("#justifyType").attr('value');
+			$('#workarea').css("textJustify", justifyTypeValue);
+		}
+		
+		function handle_hyphenBox_TOGGLE(e) {
+			hyphenValue = hyphenValue ? false : true;
+			if (hyphenValue) {
+				$('#workarea *').addClass('hyphenate');
+				Hyphenator.run();
+				addPrefix($('#workarea *'), 'Hyphens', 'auto');
+			} else {				
+				workarea.html(content);
+				addPrefix($('#workarea *'), 'Hyphens', 'none');
+			}
+		}
+		
+		function handle_balanceBox_TOGGLE(e) {
+			balanceValue = balanceValue ? false : true;
+			if (balanceValue) {
+				$('.balanceme').balanceText();
+			} else {
+				workarea.html(content);
+			}
+		}
+		
+		function init() {
+			workarea = $('#workarea');
+			content = workarea.html();
+			
+			justifyBox.addEventListener('change', handle_justifyBox_TOGGLE);
+			//justifyType.addEventListener('change', handle_justifyType_TOGGLE);
+			hyphenBox.addEventListener('change', handle_hyphenBox_TOGGLE);
+			balanceBox.addEventListener('change', handle_balanceBox_TOGGLE);
+			
+		}	
+   </script>
+</html>

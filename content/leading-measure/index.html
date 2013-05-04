@@ -1,0 +1,70 @@
+<html>
+   <head>
+      <title>font family tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script>
+	<script src="http://use.edgefonts.net/alice:n4.js"></script>
+	<script src="http://use.edgefonts.net/bebas-neue:n4.js"></script>
+	<link rel="stylesheet" type="text/css" href="../styles/style.css">
+
+	<style>
+		.side{
+			max-width: 100%;
+		}
+		
+		#content{
+			margin: auto;
+			width: 25em;
+		}
+	</style> 
+   </head>
+   <body onload="init()">
+		<div id="container">
+			<div class="side">
+				<div id="controller">
+					<span><b>Leading</b></span>
+					<input id="bodyInput" type="range" min="10" max="400" step="1" value="150"/>
+					<span id="bodyValue" class="value">150%</span>	
+					<br/>
+					<span><b>Measure</b></span>
+					<input id="marginInput" type="range" min="5" max="42" step="1" value="25"/>
+					<span id="marginValue" class="value">25em</span> &asymp; <span id="charValue">50 characters</span>
+				</div>
+				<div id="content">
+					<h1>My Incredibly Pointless Story</h1>
+					<p>Once there was a <b>hornless unicorn</b>, he would wander around and frolic with all the forest creatures. There were frogs and bears and lions. One day the fearless lion asked the hornless unicorn why it didn't have a horn. To which, the hornless unicorn replied, I was born without it.</p>
+					<p>The bear then said, doesn't that just make you a horse? The hornless unicorn said, no. My parents were unicorns, their parents were unicorns, plus...</p>
+					<p>All the animals went about their business as though nothing had happened. Then one day the fearless lion asked the hornless unicorn why it didn't have a horn. To which, the hornless unicorn replied, I was born without it.</p>
+				</div>
+			</div>
+		</div>
+   </body>
+
+   <script type="text/javascript">
+		var bodyInput,
+			marginInput;
+		
+		function handle_bodyInput_CHANGE(e) {
+			var body = document.getElementsByTagName('body')[0];
+			body.style.lineHeight = bodyInput.value + '%';
+			bodyValue.innerHTML = bodyInput.value + '%';
+		}
+		
+		function handle_marginInput_CHANGE(e) {
+			marginValue.innerHTML = marginInput.value + 'em';
+			charValue.innerHTML = marginInput.value * 2 + ' characters';
+			content.style.width = marginInput.value + 'em';
+		}
+			
+		function init() {
+			bodyInput = document.getElementById('bodyInput');
+			marginInput = document.getElementById('marginInput');
+			
+			bodyInput.addEventListener('change', handle_bodyInput_CHANGE);
+			marginInput.addEventListener('change', handle_marginInput_CHANGE);
+		}
+				
+   </script>
+
+   
+</html>

@@ -1,0 +1,147 @@
+<html>
+   <head>
+      <title>font size tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script> 
+	<script src="http://use.edgefonts.net/bebas-neue:n4.js"></script>
+	 <link rel="stylesheet" type="text/css" href="../styles/style.css">
+	
+	<style>
+		html, body{
+			font-size: 100%;
+			line-height: 18px;
+			font-family: 'Open Sans', open-sans;
+		}
+
+		.group{
+			position: relative;
+			-webkit-flex: 1;
+			-webkit-box-sizing: border-box;
+			padding: 20px;
+			margin: 10px;
+			background: #f6f6f6;
+		}
+
+		input{
+			width: 150px;
+		}
+		
+		b{
+			font-size: 32px;
+			margin-bottom: 1em;
+		}
+
+		h2{
+			margin-top: 0;
+			line-height: 40px;
+			font-size: 40px;
+			font-weight: 900;
+			border-bottom: 1px solid black;
+		}
+
+		.demo{
+			width: 100%;
+		}
+
+		#box{
+			display: -webkit-flex;
+			height: 100%;
+		}
+		
+		#containerBox{
+			background: #6B2020;
+			color: #ccc;
+			padding: 20px;
+		}
+		
+		#textBox{
+			background: #E5C839;
+			color: #333;
+			padding: 20px;
+			margin: 20px;
+		}
+
+		
+      </style>
+   </head>
+   <body onload="init()">
+   		<div id="controller">
+	   		<table>
+				<tr>
+					<td>REM<input id="checkbox" type="checkbox" value="rem"/></td>
+				</tr>
+				<tr>
+					<td>Root</td>
+					<td><input id="input" type="range" min="10" max="400" step="5" value="100"/></td>
+					<td><span id="bodyValue" class="value">100%</span></td>
+				</tr>
+				<tr>
+					<td>Container</td>
+					<td><input id="inputCube" type="range" min="10" max="400" step="5" value="100"/></td>
+					<td><span id="cubeValue" class="value">100%</span></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="box">
+	   		<div class="group">
+	   			<h2>EM</h2>
+
+				<div id="containerBox">
+					<span>I'm the container text</span>
+					<div id="textBox">I'm different text in the container</div>
+				</div>
+
+	   		</div>
+		</div>
+   </body>
+
+	<script src="../scripts/jquery-1.9.0.min.js"></script>
+   <script type="text/javascript">
+		//TODO set body font size
+		var input,
+			inputCube,
+			checkbox,
+			unit = 'em';
+		
+		function handle_input_CHANGE(e) {
+			var htmlElement = document.getElementsByTagName("html")[0];
+			htmlElement.style.fontSize = input.value + "%";
+		}
+		
+		function handle_inputCube_CHANGE(e) {
+			$('#containerBox').css('fontSize', (inputCube.value / 100) + unit);
+		}
+		
+		function updateFontSizes() {
+			$('#containerBox').css('fontSize', (inputCube.value / 100) + unit);
+			$('#textBox').css('fontSize', 1 + unit);
+		}
+		
+		function handle_checkbox_CHANGE(e) {
+			if (checkbox.checked) {
+				unit = 'rem';
+			} else {
+				unit = 'em';
+			}
+			
+			updateFontSizes();
+			
+			$('h2').html(unit.toUpperCase());
+		}
+		
+		function init() {
+			input = document.getElementById('input');
+			inputCube = document.getElementById('inputCube');
+			checkbox = document.getElementById('checkbox');
+						
+			inputCube.addEventListener('change', handle_inputCube_CHANGE);
+			input.addEventListener('change', handle_input_CHANGE);
+			checkbox.addEventListener('change', handle_checkbox_CHANGE);			
+		}
+				
+   </script>
+
+   
+</html>

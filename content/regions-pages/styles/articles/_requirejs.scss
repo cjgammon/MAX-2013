@@ -1,0 +1,12 @@
+$maroon: rgb(131, 36, 14);
+
+#article-requirejs,
+.page[data-for='article-requirejs']{
+    background: $maroon;
+
+    header{
+        background-color: $maroon;
+        background-image: url(../images/articles/covers/requirejs.png);
+    }
+
+}

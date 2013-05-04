@@ -1,0 +1,428 @@
+/* line 4, ../styles/core/_hud.scss */
+#hud {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+/* line 10, ../styles/core/_hud.scss */
+#topButtons {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  padding: 5px;
+}
+
+/* line 18, ../styles/core/_hud.scss */
+.top-button {
+  display: inline-block;
+  height: 25px;
+  width: 20px;
+  padding: 2px 5px;
+  text-align: center;
+  color: white;
+  line-height: 1rem;
+  background: black;
+  border-radius: 3px;
+  opacity: .5;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+/* line 32, ../styles/core/_hud.scss */
+.top-button:hover {
+  opacity: 1;
+}
+/* line 36, ../styles/core/_hud.scss */
+.top-button .icon {
+  position: relative;
+  top: 5px;
+}
+
+/* line 42, ../styles/core/_hud.scss */
+#menuButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  margin-right: 20px;
+  color: white;
+  background: black;
+  border-radius: 3px;
+  opacity: .5;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+/* line 58, ../styles/core/_hud.scss */
+#menuButton:hover {
+  opacity: 1;
+}
+
+/* line 63, ../styles/core/_hud.scss */
+#menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+  overflow: hidden;
+}
+
+/* line 73, ../styles/core/_hud.scss */
+#menuHitArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+/* line 81, ../styles/core/_hud.scss */
+#topUI {
+  position: absolute;
+  width: 100%;
+  top: -70px;
+  font-size: 18px;
+  letter-spacing: 4px;
+  background: #fafafa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* line 91, ../styles/core/_hud.scss */
+#topUIContent {
+  padding: 10px;
+}
+
+/* line 95, ../styles/core/_hud.scss */
+#bottomUI {
+  position: absolute;
+  height: 200px;
+  bottom: -200px;
+  width: 100%;
+  background: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+/* line 103, ../styles/core/_hud.scss */
+#bottomUI .nav-item {
+  position: relative;
+  top: -200px;
+  opacity: 0;
+  -webkit-transform: scale(0.5) translateZ(0px);
+  -moz-transform: scale(0.5) translateZ(0px);
+  -ms-transform: scale(0.5) translateZ(0px);
+  -o-transform: scale(0.5) translateZ(0px);
+  transform: scale(0.5) translateZ(0px);
+}
+
+/* line 112, ../styles/core/_hud.scss */
+#navScroll {
+  margin: 10px;
+  padding: 10px 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  /* Let's get this party started */
+  /* Track */
+  /* Handle */
+}
+/* line 120, ../styles/core/_hud.scss */
+#navScroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+/* line 126, ../styles/core/_hud.scss */
+#navScroll::-webkit-scrollbar-track {
+  background: #666;
+}
+/* line 131, ../styles/core/_hud.scss */
+#navScroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  cursor: pointer;
+}
+/* line 136, ../styles/core/_hud.scss */
+#navScroll::-webkit-scrollbar-thumb:window-inactive {
+  background: #fff;
+}
+
+/* line 141, ../styles/core/_hud.scss */
+.nav-item {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  width: 228px;
+  height: 147px;
+  -webkit-transition: border 0.4s linear;
+  -moz-transition: border 0.4s linear;
+  -o-transition: border 0.4s linear;
+  transition: border 0.4s linear;
+}
+/* line 152, ../styles/core/_hud.scss */
+.nav-item img {
+  display: block;
+}
+/* line 156, ../styles/core/_hud.scss */
+.nav-item:hover {
+  border: 2px solid #777;
+}
+/* line 159, ../styles/core/_hud.scss */
+.nav-item:hover .nav-item-title {
+  color: white;
+}
+/* line 164, ../styles/core/_hud.scss */
+.nav-item.selected {
+  border: 2px solid white;
+}
+
+/* line 169, ../styles/core/_hud.scss */
+.nav-item-title {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 10px 20px;
+  color: #c8c8c8;
+  font-size: 1.2rem;
+  line-height: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transition: color 0.4s ease-out;
+  -moz-transition: color 0.4s ease-out;
+  -o-transition: color 0.4s ease-out;
+  transition: color 0.4s ease-out;
+}
+
+/* line 185, ../styles/core/_hud.scss */
+#magName {
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: -10px;
+}
+
+/* line 192, ../styles/core/_hud.scss */
+#articleName {
+  display: inline-block;
+  margin-left: 350px;
+}
+
+/* line 4, ../styles/main.scss */
+.full-size, #menu, #menuHitArea, html, body, #app, #stage {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* line 16, ../styles/main.scss */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Alice', alice, georgia, serif;
+  color: #333;
+}
+
+/* line 24, ../styles/main.scss */
+#app, #stage {
+  position: absolute;
+}
+
+/* line 28, ../styles/main.scss */
+#stage {
+  background: #aaaaaa;
+  /* Old browsers */
+}
+
+/* line 33, ../styles/main.scss */
+#preloader {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 1000;
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+}
+
+/* line 44, ../styles/main.scss */
+#articleHolder {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0px);
+  /*prevent flicker*/
+}
+
+/* line 53, ../styles/main.scss */
+section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: white;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* line 63, ../styles/main.scss */
+article {
+  /* NOTE: this is used as the region flow for each article so anything applied to this gets paginated*/
+  position: relative;
+  max-width: 30rem;
+  margin: auto;
+  font-size: 1.5rem;
+  line-height: 2.3rem;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0px);
+  /*prevent flicker*/
+}
+
+/* line 76, ../styles/main.scss */
+#rightFixedButton {
+  right: 0px;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-radius: 3px 0 0 3px;
+  background-image: url(../images/arrow-right.svg);
+}
+
+/* line 84, ../styles/main.scss */
+#leftFixedButton {
+  left: 0px;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-radius: 0 3px 3px 0;
+  background-image: url(../images/arrow-left.svg);
+}
+
+/* line 92, ../styles/main.scss */
+.arrowbutton {
+  display: none;
+  position: absolute;
+  top: 50%;
+  height: 60px;
+  width: 30px;
+  z-index: 1000;
+  cursor: pointer;
+  background-color: #F4F4F4;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-transition: all .2s linear;
+}
+/* line 105, ../styles/main.scss */
+.arrowbutton.in {
+  display: block;
+}
+/* line 109, ../styles/main.scss */
+.arrowbutton:hover {
+  width: 100px;
+}
+
+/* line 114, ../styles/main.scss */
+.arrowbutton:hover {
+  opacity: 1;
+}
+
+/* line 118, ../styles/main.scss */
+.arrowbutton.out {
+  opacity: 0;
+}
+
+/* line 122, ../styles/main.scss */
+.cover {
+  background: blue;
+}
+
+/* line 126, ../styles/main.scss */
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  bottom: 0px;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transform: translateZ(2px);
+}
+
+/* line 138, ../styles/main.scss */
+.shadow.back {
+  -webkit-transform: rotateY(180deg) translateZ(2px);
+}
+
+/* line 142, ../styles/main.scss */
+.page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-origin: left center;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  z-index: 1;
+}
+/* line 151, ../styles/main.scss */
+.page .side {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #f4f4f4;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(1px);
+  /*box-sizing: border-box makes the Box Model subtract the padding from the 100% dimensions*/
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 50px;
+}
+/* line 167, ../styles/main.scss */
+.page .side:nth-child(2) {
+  background: #f7f7f7;
+  -webkit-transform: rotateY(180deg) translateZ(1px);
+}
+
+/* line 176, ../styles/main.scss */
+.page[data-for="article-cover"] .side {
+  padding: 0;
+}
+
+/* line 181, ../styles/main.scss */
+#paginator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-perspective: 3000px;
+}
+
+/* line 189, ../styles/main.scss */
+#flipbook {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 50%;
+  -webkit-transform-origin: left center;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* line 200, ../styles/main.scss */
+#menuButton {
+  display: none;
+}

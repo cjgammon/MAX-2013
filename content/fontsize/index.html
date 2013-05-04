@@ -1,0 +1,329 @@
+<html>
+   <head>
+      <title>font size tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script> 
+	<script src="http://use.edgefonts.net/bebas-neue:n4.js"></script>
+	 <link rel="stylesheet" type="text/css" href="../styles/style.css">
+	
+	<style>
+		html, body{
+			font-size: 100%;
+			line-height: 18px;
+			font-family: 'Open Sans', open-sans;
+		}
+
+		.group{
+			position: relative;
+			-webkit-flex: 1;
+			-webkit-box-sizing: border-box;
+			padding: 20px;
+			margin: 10px;
+			background: #f6f6f6;
+		}
+
+		.em{
+			font-size: 1em;
+			line-height: 1em;
+		}
+		
+		.px{
+			font-size: 16px;
+			line-height: 16px;
+		}
+		
+		.pt{
+			font-size: 12pt;
+			line-height: 12pt;
+		}
+		
+		.rem{
+			font-size: 1rem;
+			line-height: 1rem;
+		}
+		
+		.pc{
+			font-size: 100%;
+			line-height: 100%;
+		}
+		
+		.example{
+			display: block;
+			position: absolute;
+			bottom: 0;
+			width: 100px;
+			pointer-events: none;
+			z-index: 3;
+			padding-left: 120px;
+		}
+
+		.unit{
+			color: #126570;
+			font-size: 18px;
+			width: 70px;
+		}
+		
+		.totals{
+			width: 100px;
+			font-weight: 600;
+			font-size: 24px;
+			text-align: right;
+		}
+		
+		#examples{
+			position: relative;
+			margin: 20px auto 20px;
+			padding: 100px 20px 20px;
+			background-color: #3a3a45;
+			border-radius: 3px;			
+		}
+		
+		#examples table{
+			margin-left: 15px;
+			color: #f4f4f4;
+		}
+		
+		#examples table .value{
+			color: #f4f4f4;
+		}
+		
+		table{
+			margin: auto;
+			font-size: 1em;
+		}
+		
+		input{
+			width: 150px;
+		}
+		
+		b{
+			font-size: 32px;
+			margin-bottom: 1em;
+		}
+
+		.rootLbl{
+			position: absolute;
+			bottom: 0;
+		}
+		
+		.rootTxt{
+			margin-bottom: 20px;
+			padding-left: 0px;
+			/*font-size: 32px;*/
+			font-size: 100%;
+		}
+
+		.containerTxt{
+			position: absolute;
+			bottom: 0;
+			padding-left: 50px;
+			/*font-size: 32px;*/
+			font-size: 100%;
+		}
+
+		h2{
+			margin-top: 0;
+			line-height: 40px;
+			font-size: 40px;
+			font-weight: 900;
+			border-bottom: 1px solid black;
+		}
+
+		.group tr{
+			height: 80px;
+		}
+
+		.group td{
+			position: relative;
+			vertical-align: bottom;
+		}
+
+		.demo{
+			width: 100%;
+		}
+
+		#box{
+			display: -webkit-flex;
+			height: 100%;
+		}
+
+      </style>
+   </head>
+   <body onload="init()">
+   		<div id="controller">
+	   		<table>
+				<tr>
+					<td>Root</td>
+					<td><input id="input" type="range" min="10" max="400" step="5" value="100"/></td>
+					<td><span id="bodyValue" class="value">100%</span></td>
+				</tr>
+				<tr>
+					<td>Container</td>
+					<td><input id="inputCube" type="range" min="10" max="400" step="5" value="100"/></td>
+					<td><span id="cubeValue" class="value">100%</span></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="box">
+	   		<div class="group">
+	   			<h2>REM</h2>
+
+	   			<svg style="position: absolute; top: 130px; left: 0px;">
+	   				<defs>
+    					<marker id="Triangle"
+						    viewBox="0 0 10 10" refX="0" refY="5" 
+						    markerUnits="strokeWidth"
+						    markerWidth="4" 
+						    markerHeight="3"
+						    orient="auto">
+     						<path d="M 0 0 L 10 5 L 0 10 z" />
+    					</marker>
+  					</defs>
+	   				<path d="M100 50 L100 105 L125 105" stroke-width="6px" stroke="black" fill="transparent" marker-end="url(#Triangle)"/>
+	   				<path d="M100 50 L100 185 L180 185" stroke-width="6px" stroke="black" fill="transparent" marker-end="url(#Triangle)"/>
+	   			</svg>
+
+	   			<table class="demo">
+	   				<tr>
+	   					<td class="unit rootSize">100%</td>
+	   					<td class="rootTxt"><span class="rootLbl">Root</span></td>
+	   					<td class="totals rootValue">16px</td>
+	   				</tr>
+	   				<tr>
+	   					<td class="unit containerSize">100%</td>
+	   					<td><span class="containerTxt">Container</span></td>
+	   					<td class="totals containerValue">16px</td>
+	   				</tr>
+	   				<tr class="cube">
+	   					<td class="unit">1 REM</td>
+	   					<td><span class="example rem"></span></td>
+	   					<td class="totals"><span id="calculatedREM" class="calc"></span></td>
+	   				</tr>
+	   			</table>
+
+	   		</div>
+
+			<div class="group">
+		   		<h2>EM</h2>
+	   			
+	   			<svg style="position: absolute; top: 130px; left: 0px;">
+	   				 <defs>
+    					<marker id="Triangle"
+						    viewBox="0 0 10 10" refX="0" refY="5" 
+						    markerUnits="strokeWidth"
+						    markerWidth="4" 
+						    markerHeight="3"
+						    orient="auto">
+     						<path d="M 0 0 L 10 5 L 0 10 z" />
+    					</marker>
+  					</defs>
+	   				<path d="M100 50 L100 105 L120 105" stroke-width="6px" stroke="black" fill="transparent" marker-end="url(#Triangle)"/>
+	   				<path d="M150 130 L150 185 L180 185" stroke-width="6px" stroke="black" fill="transparent" marker-end="url(#Triangle)"/>
+	   			</svg>
+
+	   			<table class="demo">
+	   				<tr>
+	   					<td class="unit rootSize">100%</td>
+	   					<td class="rootTxt"><span class="rootLbl">Root</span></td>
+	   					<td class="totals rootValue">16px</td>
+	   				</tr>
+	   				<tr>
+	   					<td class="unit containerSize">100%</td>
+	   					<td>
+	   						<span class="containerTxt">Container</span>
+	   					</td>
+	   					<td class="totals containerValue">16px</td>
+	   				</tr>
+	   				<tr class="cube">
+	   					<td class="unit">1 EM</td>
+	   					<td>
+	   						<span class="container">
+	   							<span class="example em"></span>
+	   						</span>
+	   					</td>
+	   					<td class="totals">
+	   						<span id="calculatedEM" class="calc"></span>
+	   					</td>
+	   				</tr>
+	   			</table>
+
+			</div>
+		</div>
+   </body>
+
+	<script src="../scripts/jquery-1.9.0.min.js"></script>
+   <script type="text/javascript">
+		//TODO set body font size
+		var input,
+			inputCube;
+		
+		function updateCalculatedValues() {
+			var calculatedEM = document.getElementById('calculatedEM'),
+				//calculatedPC = document.getElementById('calculatedPC'),
+				//calculatedPX = document.getElementById('calculatedPX'),
+				//calculatedPT = document.getElementById('calculatedPT'),
+				calculatedREM = document.getElementById('calculatedREM'),
+				pxValue = 16,
+				suffixString = 'px',
+				convertEMToPX = (input.value / 100) * (inputCube.value / 100) * pxValue;
+			
+			$('.containerValue').html(Math.round(convertEMToPX) + suffixString);
+			$('.rootValue').html(Math.round(pxValue * (input.value / 100)) + suffixString);
+
+			calculatedEM.innerHTML = Math.round(convertEMToPX) + suffixString;
+			//calculatedPC.innerHTML = Math.round(convertEMToPX) + suffixString;
+			//calculatedPX.innerHTML = pxValue + suffixString;
+			//calculatedPT.innerHTML = pxValue + suffixString;
+			calculatedREM.innerHTML = Math.round((input.value / 100) * pxValue) + suffixString;
+			
+		}
+		
+		function handle_input_CHANGE(e) {
+			var htmlElement = document.getElementsByTagName("html")[0];
+			htmlElement.style.fontSize = input.value + "%";
+			
+			var text = document.getElementById('bodyValue');
+			text.innerHTML = input.value + "%";
+			
+			$('.rootSize').html(text.innerHTML);
+
+			updateCalculatedValues();
+		}
+		
+		function handle_inputCube_CHANGE(e) {
+			var cubes = document.getElementsByClassName('container');
+			for (var i=0; i < cubes.length; i += 1) {
+				cubes[i].style.fontSize = inputCube.value + "%";
+			}
+
+			$('.containerTxt').css('font-size', inputCube.value + '%');
+			
+			var text = document.getElementById('cubeValue');
+			text.innerHTML = inputCube.value + "%";
+			
+			$('.containerSize').html(text.innerHTML);
+
+			updateCalculatedValues();
+		}
+		
+		function init() {
+			input = document.getElementById('input');
+			inputCube = document.getElementById('inputCube');
+			examples = document.getElementsByClassName('example');
+			
+			for (var i=0; i < examples.length; i += 1) {
+				examples[i].innerHTML = "Element";
+			}
+			
+			inputCube.addEventListener('change', handle_inputCube_CHANGE);
+			input.addEventListener('change', handle_input_CHANGE);
+			
+			updateCalculatedValues();
+		}
+				
+   </script>
+
+   
+</html>

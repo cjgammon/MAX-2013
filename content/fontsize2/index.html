@@ -1,0 +1,384 @@
+<html>
+   <head>
+      <title>font size tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script> 
+	<script src="http://use.edgefonts.net/bebas-neue:n4.js"></script>
+	 <link rel="stylesheet" type="text/css" href="../styles/style.css">
+	
+	<style>
+		html, body{
+			font-size: 100%;
+			line-height: 18px;
+			font-family: 'Open Sans', open-sans;
+		}
+
+		.group{
+			position: relative;
+			-webkit-flex: 1;
+			-webkit-box-sizing: border-box;
+			padding: 20px;
+			margin: 10px;
+			background: #f6f6f6;
+		}
+
+		.group svg{
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 0;
+		}
+
+		.em{
+			font-size: 1em;
+			line-height: 1em;
+		}
+		
+		.px{
+			font-size: 16px;
+			line-height: 16px;
+		}
+		
+		.pt{
+			font-size: 12pt;
+			line-height: 12pt;
+		}
+		
+		.rem{
+			font-size: 1rem;
+			line-height: 1rem;
+		}
+		
+		.pc{
+			font-size: 100%;
+			line-height: 100%;
+		}
+		
+		.example{
+			display: block;
+			position: absolute;
+			bottom: 0;
+			width: 100px;
+			pointer-events: none;
+			z-index: 3;
+			padding-left: 0px;
+		}
+
+		.unit{
+			/*color: #126570;*/
+			color: white;
+			font-size: 18px;
+			width: 70px;
+		}
+		
+		.totals{
+			width: 100px;
+			font-weight: 600;
+			font-size: 24px;
+			text-align: right;
+		}
+		
+		#examples{
+			position: relative;
+			margin: 20px auto 20px;
+			padding: 100px 20px 20px;
+			background-color: #3a3a45;
+			border-radius: 3px;			
+		}
+		
+		#examples table{
+			position: relative;
+			margin-left: 15px;
+			color: #f4f4f4;
+			z-index: 1;
+		}
+		
+		table .value{
+			display: inline-block;
+			text-align: right;
+			width: 70px;
+		}
+		
+		table{
+			position: relative;
+			margin: auto;
+			font-size: 1em;
+			z-index: 1;
+		}
+		
+		input{
+			width: 150px;
+		}
+		
+		b{
+			font-size: 32px;
+			margin-bottom: 1em;
+		}
+
+		.rootLbl{
+			position: absolute;
+			bottom: 0;
+		}
+		
+		.rootTxt{
+			margin-bottom: 20px;
+			padding-left: 0px;
+			/*font-size: 32px;*/
+			font-size: 100%;
+		}
+
+		.containerTxt{
+			position: absolute;
+			bottom: 0;
+			padding-left: 0px;
+			/*font-size: 32px;*/
+			font-size: 100%;
+		}
+
+		h2{
+			position: relative;
+			margin-top: 0;
+			line-height: 40px;
+			font-size: 40px;
+			font-weight: 900;
+			border-bottom: 1px solid black;
+			z-index: 1;
+		}
+
+		.group tr{
+			height: 80px;
+		}
+
+		.group td{
+			position: relative;
+			vertical-align: bottom;
+		}
+
+		.demo{
+			pointer-events: none;
+			width: 100%;
+		}
+
+		#box{
+			display: -webkit-flex;
+			height: 100%;
+		}
+
+		circle{
+			opacity: .75;
+		}
+
+		circle:hover{
+			opacity: 1;
+		}
+
+      </style>
+   </head>
+   <body onload="init()">
+   		<div id="controller">
+	   		<table>
+				<tr>
+					<td>Root</td>
+					<td><input id="input" type="range" min="10" max="200" step="1" value="100"/></td>
+					<td><span id="bodyValue" class="value">100%</span></td>
+				</tr>
+				<tr>
+					<td>Container</td>
+					<td><input id="inputCube" type="range" min="10" max="200" step="1" value="100"/></td>
+					<td><span id="cubeValue" class="value">100%</span></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="box">
+	   		<div id="group1" class="group">
+	   			<h2>REM</h2>
+
+	   			<table class="demo">
+	   				<tr>
+	   					<td class="unit rootSize">100%</td>
+	   					<td class="rootTxt"><span class="rootLbl">Root</span></td>
+	   					<td class="totals rootValue">16px</td>
+	   				</tr>
+	   				<tr>
+	   					<td class="unit containerSize">100%</td>
+	   					<td><span class="containerTxt">Container</span></td>
+	   					<td class="totals containerValue">16px</td>
+	   				</tr>
+	   				<tr class="cube">
+	   					<td class="unit">1 REM</td>
+	   					<td class="container"> 
+	   						<span class="example rem"></span>
+	   					</td>
+	   					<td class="totals"><span id="calculatedREM" class="calc"></span></td>
+	   				</tr>
+	   			</table>
+
+	   		</div>
+
+			<div id="group2" class="group">
+		   		<h2>EM</h2>
+
+	   			<table class="demo">
+	   				<tr>
+	   					<td class="unit rootSize">100%</td>
+	   					<td class="rootTxt"><span class="rootLbl">Root</span></td>
+	   					<td class="totals rootValue">16px</td>
+	   				</tr>
+	   				<tr>
+	   					<td class="unit containerSize">100%</td>
+	   					<td>
+	   						<span class="containerTxt">Container</span>
+	   					</td>
+	   					<td class="totals containerValue">16px</td>
+	   				</tr>
+	   				<tr class="cube">
+	   					<td class="unit">1 EM</td>
+	   					<td>
+	   						<span class="container">
+	   							<span class="example em"></span>
+	   						</span>
+	   					</td>
+	   					<td class="totals">
+	   						<span id="calculatedEM" class="calc"></span>
+	   					</td>
+	   				</tr>
+	   			</table>
+
+			</div>
+		</div>
+   </body>
+	<script src="../../js/vendor/d3.min.js"></script>
+	<script src="../scripts/jquery-1.9.0.min.js"></script>
+   <script type="text/javascript">
+		//TODO set body font size
+		var input,
+			inputCube;
+		
+		function updateCalculatedValues() {
+			var calculatedEM = document.getElementById('calculatedEM'),
+				calculatedREM = document.getElementById('calculatedREM'),
+				pxValue = 16,
+				suffixString = 'px',
+				convertEMToPX = (input.value / 100) * (inputCube.value / 100) * pxValue;
+			
+			$('.containerValue').html(Math.round(convertEMToPX) + suffixString);
+			$('.rootValue').html(Math.round(pxValue * (input.value / 100)) + suffixString);
+
+			calculatedEM.innerHTML = Math.round(convertEMToPX) + suffixString;
+			calculatedREM.innerHTML = Math.round((input.value / 100) * pxValue) + suffixString;		
+
+			circle1A.attr('r', input.value);
+			circle1B.attr('r', input.value);
+
+			circle2A.attr('r', input.value * (inputCube.value / 100));
+			circle2B.attr('r', input.value * (inputCube.value/ 100));
+
+			circle3A.attr('r', input.value);
+			circle3B.attr('r', input.value * (inputCube.value/ 100));
+
+		}
+		
+		function handle_input_CHANGE(e) {
+			var htmlElement = document.getElementsByTagName("html")[0];
+			htmlElement.style.fontSize = input.value + "%";
+
+			var text = document.getElementById('bodyValue');
+			text.innerHTML = input.value + "%";
+			
+			$('.rootSize').html(text.innerHTML);
+
+			updateCalculatedValues();
+		}
+		
+		function handle_inputCube_CHANGE(e) {
+			var cubes = document.getElementsByClassName('container');
+			for (var i=0; i < cubes.length; i += 1) {
+				cubes[i].style.fontSize = inputCube.value + "%";
+			}
+
+			$('.containerTxt').css('font-size', inputCube.value + '%');
+			
+			var text = document.getElementById('cubeValue');
+			text.innerHTML = inputCube.value + "%";
+			
+			$('.containerSize').html(text.innerHTML);
+
+			updateCalculatedValues();
+		}
+		
+		function init() {
+			var svgA,
+				svgB;
+
+			input = document.getElementById('input');
+			inputCube = document.getElementById('inputCube');
+			examples = document.getElementsByClassName('example');
+			
+			for (var i=0; i < examples.length; i += 1) {
+				examples[i].innerHTML = "Element";
+			}
+			
+			svgA = d3.select("#group1").append("svg")
+			.attr("width", '800')
+    		.attr("height", '500')
+    		.attr("class", "bubble");
+
+    		circle1A = svgA.append('circle')
+    		.attr('cx', '70')
+    		.attr('cy', '150')
+    		.attr('r', '50')
+    		//.attr("opacity", '.5')
+    		.attr('fill', '#5A999E');
+
+    		circle2A = svgA.append('circle')
+    		.attr('cx', '70')
+    		.attr('cy', '230')
+    		.attr('r', '50')
+    		//.attr("opacity", '.5')
+    		.attr('fill', '#6B2020');
+
+    		circle3A = svgA.append('circle')
+    		.attr('cx', '70')
+    		.attr('cy', '310')
+    		.attr('r', '50')
+    		//.attr("opacity", '.5')
+    		.attr('fill', '#E5C839');
+
+			svgB = d3.select("#group2").append("svg")
+			.attr("width", '800')
+    		.attr("height", '500')
+    		.attr("class", "bubble");
+
+    		circle1B = svgB.append('circle')
+    		.attr('cx', '70')
+    		.attr('cy', '150')
+    		.attr('r', '50')
+    		//.attr("opacity", '.5')
+    		.attr('fill', '#5A999E');
+
+    		circle2B = svgB.append('circle')
+    		.attr('cx', '70')
+    		.attr('cy', '230')
+    		.attr('r', '50')
+    		//.attr("opacity", '.5')
+    		.attr('fill', '#6B2020');
+
+    		circle3B = svgB.append('circle')
+    		.attr('cx', '70')
+    		.attr('cy', '310')
+    		.attr('r', '50')
+    		//.attr("opacity", '.5')
+    		.attr('fill', '#E5C839');
+
+			inputCube.addEventListener('change', handle_inputCube_CHANGE);
+			input.addEventListener('change', handle_input_CHANGE);
+			
+			updateCalculatedValues();
+		}
+				
+   </script>
+
+   
+</html>

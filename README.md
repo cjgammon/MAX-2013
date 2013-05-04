@@ -1,4 +1,1 @@
-electricbooks-v2
-================
-
-Digital Reading Experiences - Slides v2
+Personalized Cleaned up boilerplate for HTML5

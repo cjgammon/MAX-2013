@@ -1,0 +1,656 @@
+<article id="article-emberjs">
+    <header class="js-parallax"></header>
+
+     <div class="column">
+        <h2>flame on! a beginner’s guide to ember.js</h2>
+        <p class="subhead">
+        In this tutorial you’ll become more familiar with the basics of Ember.js as you build a working Twitter timeline viewer.
+        </p>
+        <div class="flag-green">background of mvc frameworks</div>
+        <p>
+        Sophisticated JavaScript applications can be found all over the place these days. As these applications
+become more and more complex, it’s no longer acceptable to have a long chain of jQuery callback statements,
+or even distinct functions called at various points through your application. This has led to JavaScript
+developers learning what traditional software programmers have known for decades: organization
+and efficiency are important and can make the difference between an application that performs great
+and one that doesn’t.
+        </p>
+        <p>
+One of the most commonly used architecture patterns to achieve this organization and efficiency is known
+as Model View Controller (or MVC). This pattern encourages developers to separate distinct parts of their
+application into pieces that are more manageable. Rather than having a function that makes a call directly
+to the database, you create a Model to manage that for you. Instead of having an HTML file sprinkled
+with output and logic statements, a simple template, or View, allows you to streamline your display code.
+Finally a Controller manages the flow of your application, helping the various bits and pieces talk to each
+other more efficiently. Using this pattern in your application makes it easier to add new functionality.
+    </p>
+    <p>
+As part of the recent explosion of Internet-based software development, a dizzying array of MVC frameworks with names like Ember.js, Backbone.js, Knockout.js, Spine.js, Batman.js, and Angular.js have emerged. Written in JavaScript and designed for
+JavaScript development, these libraries have filled the void between beginner and intermediate developers
+on one side, and hardcore programmers on the other. They offer various features and functionality
+that will suit different developers of varying skill levels based on their needs.
+    </p>
+    <div class="flag-green">introducting ember.js</div>
+    <p>
+    Ember.js (under that name) is one of the newest members of the JavaScript framework pack. It evolved
+out of a project called SproutCore, created originally in 2007 and used heavily by Apple for various web
+applications including MobileMe. At emberjs.com, Ember is described as “a JavaScript framework for
+creating ambitious web applications that eliminates boilerplate and provide a standard application architecture.”
+It comes tightly integrated with a templating engine known as Handlebars, which gives Ember
+one of its most powerful features: two-way data-binding. Ember also offers other features such as state
+management (is a user logged out or logged in), auto-updating templates (when the underlying data
+changes so does your UI), and computed properties (firstName + lastName = fullName). Ember is already
+a powerful player after a solid year’s worth of development.
+    </p>
+    <p>
+Ember has only one dependency—jQuery. The boilerplate HTML setup for an Ember application should
+look something like the code below. Note that both jQuery and Ember are being pulled from a CDN
+(content delivery network). This speeds up your users’ page load if they have already downloaded these
+files as a result of earlier visits to other websites that require them.
+    </p>
+
+<pre><code class="xml">&lt;html&gt;
+&lt;head&gt;
+    &lt;script src=&#x201d;http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&#x201d;&gt;&lt;/script&gt;
+    &lt;script src=&#x201d;http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js&#x201d;&gt;&lt;/script&gt;
+    &lt;script src=&#x201d;js/app.js&#x201d;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    
+    <div class="flag-green">Defining mvc</div>
+    <p>
+       Before you proceed with this tutorial it would probably be a good idea to more clearly define MVC. The
+concept has been around since 1979 and since that time a number of different variations on the pattern
+have emerged. The most common flow usually goes something like this:
+    </p>
+    <ol>
+        <li>A user performs an action such as typing on the keyboard or clicking a mouse button.</li>
+        <li>The Controller receives that input and fires off a message to the Model.</li>
+        <li>The Model changes its content based on the message (deletes a row or updates shopping cart quantities).</li>
+        <li>The View watches for a change in the Model and updates the user interface accordingly.</li>
+    </ol>
+    <p>
+Understanding how the MVC pattern works can make your application flow more easily. And, because
+code is split into distinct pieces, it’s easier for teams of developers to work together without interfering
+with each other. 
+    </p>
+    <div class="flag-green">how ember does mvc</div>
+    <p>
+    JavaScript is a flexible and powerful language but it also has its shortcomings. Out of the box it doesn’t
+offer the sort of functionality that lends itself to MVC style development. So Ember has extended the
+base language with a slew of extras. When building your Ember application there are four main pieces
+that you’ll be working with: Application, Model, View, and Controller. The following sections review each
+of these pieces.
+    </p>
+    <b>Application</b>
+    <p>
+Every Ember application requires an instance of Ember.Application. It’s the basis for the entire rest of your
+code, and provides useful functionality as well as a namespace (a way of grouping the rest of the pieces
+of your app). Defining an Ember application is simple:
+    </p>
+
+    <pre><code class="javascript">
+Songs = Ember.Application.create({
+mixmaster: ‘Andy’
+});</code></pre>
+
+    <p>
+    This code defines an application named Songs with a property named mixmaster set to Andy. You can
+call your application whatever you like, but Ember requires the variable name to begin with a capital letter
+so that the binding system can find it. There are additional built-in options that can be added when
+creating your application, and you can add any arbitrary property or method as well, but the main one
+beginning users might care about is the ready() method. This works exactly like jQuery’s document.
+ready() block and can be implemented in the following manner:
+    </p>
+
+<pre><code class="javascript">
+Songs = Ember.Application.create({
+mixmaster: ‘Andy’,
+totalReviews: 0,
+ready: function(){
+alert(‘Ember sings helloooooooooo!’);
+}
+});</code></pre>
+
+    <b>Models</b>
+    <p>
+    An application is nothing without data. Ember helps developers manage this data in a structured way using
+Models. In addition to holding data, Ember Models also model the data within them. In other words,
+if you wanted to store information about your MP3 collection, your Model might contain a title property,
+an artist property, a genre property, and so on. That Model might look something like this:
+    </p>
+
+<pre><code class="javascript">Songs.Song = Ember.Object.extend({
+title: null,
+artist: null,
+genre: null,
+listens: 0
+});</code></pre>
+
+    <p>
+There’s a few things to note about these few lines.
+    </p>
+    <ul>
+        <li>Right away you can see your application’s namespace in use. Songs is the name of the application, while
+        Song is the name of the Model.</li>
+        <li>When extending an object you’re creating a blueprint for future instances of this Model. Because this is
+the master object all songs will be based on, it uses a capital letter. These naming conventions will make
+it easier down the road to tell what sort of object you’re working with.</li>
+        <li>When creating your Model you can provide default values for each property. The title , artist , and
+genre properties will obviously be filled in later, and so are marked null (or nothing). The listens
+property defaults to 0 and its value will increase as you listen to your music collection. 
+        </li>
+    </ul>
+    <p>
+    Now that the Song model is in place, you can add your first song. You used extend to initialize the Song
+    model, but you’ll use create to add an instance of it. Here’s what that looks like:
+    </p>
+
+    <pre><code class="javascript">mySong = Song.create({
+title: ‘Son of the Morning’,
+artist: ‘Oh, Sleeper’,
+genre: ‘Screamo’
+});</code></pre>
+    
+    <p>
+    Notice that the variable doesn’t begin with an upper case letter, that’s because it’s an instance of the
+Song model. The new song also isn’t within the Songs namespace. You’ll almost never create an instance
+of a Model within your application. You’re certainly welcome to do so, but generally you’d place each
+instance of a Model within a larger collection of similar objects such as an ArrayController (more on that
+later).
+    </p>
+    <b>Views</b>
+    <p>
+In an Ember application or any MVC style application a View is something the user can see and interact
+with. You define an inline template by adding raw HTML directly to the page. This template will be contained
+within script tags. You add it to the page wherever you want your content to appear.
+    </p>
+
+    <pre><code class="xml">&lt;script type=&#x201d;text/x-handlebars&#x201d;&gt;
+    Hello &lt;b&gt;{{Songs.mixmaster}}&lt;/b&gt;
+&lt;/script&gt;</code></pre>
+
+    <p>
+    Notice that the script tag has a type of text/x-handlebars. This gives Ember something to grab on
+to when it loads up the page. Any HTML contained within this script tag is automatically prepared by
+Ember for use in your application. Placing these lines of code within your application will display the following
+text:
+    </p>
+
+    <pre><code class="xml">Hello &lt;b&gt;Andy&lt;/b&gt;</code></pre>
+
+    <p>
+    Before moving on, take a peek under the hood. In your browser, right-click the bold text and inspect it
+using the browser’s dev tools. You might notice some extra elements. In order to know which part of your
+HTML to update when an underlying property changes, Handlebars will insert marker elements with a
+unique ID; for example:
+    </p>
+
+    <pre><code class="xml">&lt;b&gt;
+    &lt;script id=&#x201d;metamorph-0-start&#x201d; type=&#x201d;text/x-placeholder&#x201d;&gt;&lt;/script&gt;
+    Andy
+    &lt;script id=&#x201d;metamorph-0-end&#x201d; type=&#x201d;text/x-placeholder&#x201d;&gt;&lt;/script&gt;
+&lt;/b&gt;</code></pre>
+
+    <p>
+    You can also define a View directly in JavaScript, and then display it to the page by using a view helper.
+Ember has generic views that create simple div tags in your application, but it also comes prepackaged
+with a set of views for building basic controls such as text inputs, check boxes, and select lists. You start
+by defining a simple TextArea View within your JavaScript file.
+    </p>
+
+    <pre><code class="javascript">Songs.ReviewTextArea = Ember.TextArea.extend({
+placeholder: ‘Enter your review’
+});</code></pre>
+
+    <p>
+    Then display it to the page by referencing the path to the variable containing the view, prefaced by the
+word view . Running the following code in your browser displays a TextArea field with placeholder text
+of “Enter your review”. You can also specify rows and cols as additional properties in your definition.
+    </p>
+
+    <pre><code class="xml">&lt;script type=&#x201d;text/x-handlebars&#x201d;&gt;
+    {{view Songs.ReviewTextArea}}
+&lt;/script&gt;</code></pre>
+
+    <b>Handlebars</b>
+    <p>
+    By now you’re probably wondering what the {{ and }} in the code stand for, so this is a perfect time
+to talk about Handlebars, also known as mustaches. Turn your head sideways and you’ll see why they’re
+called Handlebars pard’ner. Handlebars is a templating engine that lets developers mix vanilla HTML and
+Handlebars expressions resulting in rendered HTML. An expression begins with {{ and ends with }}. As
+discussed previously, all templates must be placed within script tags with a type of text/x-handlebars.
+    </p>
+    <p>
+By default, any value contained within handlebars is said to be bound to its value. That means that if the
+value changes because of some other action within the application, the value displayed to the user will
+update as well. Consider the following code:
+    </p>
+
+    <pre><code class="xml">&lt;script type=&#x201d;text/x-handlebars&#x201d;&gt;
+    My songs have {{Songs.totalReviews}} reviews.
+&lt;/script&gt;</code></pre>
+
+    <p>
+    When your application first initializes the user would see the following text.
+    </p>
+
+    <pre>
+My songs have 0 reviews.
+    </pre>
+
+    <p>
+But through the magic of data bindings, that value would change in real time as additional reviews were
+added by updating Songs.totalReviews.
+    </p>
+    <p>
+Handlebars also supports flow control through the use of {{#if}} and {{else}}. These elements let
+you conditionalize your templates based on values in your application. You could change the previous
+example to display an alternate message to the user when there are no reviews:
+    </p>
+
+    <pre><code class="xml">&lt;script type=&#x201d;text/x-handlebars&#x201d;&gt;
+    {{#if Songs.totalReviews}}
+        Read all my reviews!
+    {{else}}
+        There are no reviews right now.
+    {{/if}}
+&lt;/script&gt;</code></pre>
+
+    <p>
+If at any point in the life of the application, the Songs.totalReviews value changes, the view will update
+and display the other part of the message. It’s also worth noting that the # and / symbols are merely
+there to tell Handlebars that this particular view helper has a closing part.
+    </p>
+    <b>Controllers</b>
+    <p>
+Earlier, the Model was defined as a way to enable developers to manage data. That’s true, but only in a
+very narrow way. A Model only contains data about a single thing; for example, a song (but not songs) or
+a person (but not people). When you want to manage multiple pieces of the same type of data you need
+a Controller. With Ember you can use an ArrayController to manage sets of songs, people, widgets, or
+whatever. Each ArrayController has a built-in content property that is used to store data. This data can
+be simple strings or complex values such as arrays or objects. Additionally, ArrayControllers can contain
+functions that are used to interact with the data contained within them. What might an ArrayController
+for your Song collection might look like?
+    </p>
+
+    <pre><code class="javascript">Songs.songsController = Ember.ArrayController.create({
+    content: [],
+    init: function(){
+        // create an instance of the Song model
+        var song = Songs.Song.create({
+            title: ‘Son of the Morning’,
+            artist: ‘Oh, Sleeper’,
+            genre: ‘Screamo’
+        });
+        this.pushObject(song);
+    }
+});</code></pre>
+
+    <p>
+The init function isn’t required, but comes in handy as it will be triggered as soon as songsController
+is ready. It could be used to populate the controller with existing data, and in this case you’ll use it to add
+a single song to the Controller to illustrate Ember’s data-binding. Add the previous ArrayController definition
+and the following inline template and run the code in your browser:
+    </p>
+
+    <pre><code class="xml">&lt;script type=&#x201d;text/x-handlebars&#x201d;&gt;
+    {{#each Songs.songsController}}
+        &lt;h3&gt;{{title}}&lt;/h3&gt;
+        &lt;p&gt;{{artist}} - {{genre}}&lt;/p&gt;
+    {{/each}}
+&lt;/script&gt;
+</code></pre>
+
+    <p>
+    The Handlebars each helper receives a path to a set of data, and then loops over it. Everything inside the
+matching each blocks will be displayed on the page for every item in the controller. Notice that you’re
+not providing a path directly to the content array, because as far as Ember is concerned the controller is
+the array. The resulting HTML output looks like this:
+    </p>
+
+    <pre><code class="xml">&lt;h3&gt;Son of the Morning&lt;/h3&gt;
+&lt;p&gt;Oh, Sleeper - Screamo&lt;/p&gt;</code></pre>
+
+    <div class="flag-green">Putting it all together: EmberTweets</div>
+    <p>
+    At this point, you should have a good understanding of what Ember is and what it can do. You should also
+understand each of the pieces that enable Ember to work its magic: Application, Model, View, and Controller.
+It’s time to put that knowledge to use in writing a real, working application. You’re going to skip
+the industry standard “todo app” and move on to something near and dear to many: Twitter. In the rest
+of this tutorial you will be building a Twitter timeline viewer. Before writing any code, it might be useful
+to see the final result.
+    </p>
+    <b>Creating your boilerplate files</b>
+    <p>
+Using the boilerplate HTML page from the beginning of the article you’ll first build out the base HTML.
+Copy and paste the following code into a new HTML file named index.html. You’ll need to reference the
+CSS file found in the sample files for this article. The sample files also contain a starting point for this project
+so feel free to use that as well.-
+    </p>
+
+    <pre><code class="xml">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Tweets&lt;/title&gt;
+    &lt;meta name=&#x201d;viewport&#x201d; content=&#x201d;width=device-width, initial-scale=1.0&#x201d;&gt;
+    &lt;link rel=&#x201d;stylesheet&#x201d; href=&#x201d;styles.css&#x201d;&gt;
+    &lt;script src=&#x201d;http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&#x201d;&gt;&lt;/script&gt;
+    &lt;script src=&#x201d;http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js&#x201d;&gt;&lt;/script&gt;
+    &lt;script src=&#x201d;app.js&#x201d;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script type=&#x201d;text/x-handlebars&#x201d;&gt;
+        &lt;div id=&#x201d;frm&#x201d;&gt;
+            &lt;b&gt;Load Tweets for: &lt;/b&gt;
+        &lt;/div&gt;
+        &lt;div id=&#x201d;content&#x201d;&gt;
+            &lt;div id=&#x201d;recent&#x201d;&gt;
+                &lt;h3&gt;Recent Users&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div id=&#x201d;tweets&#x201d;&gt;
+                &lt;h3&gt;Tweets&lt;/h3&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p>
+    You can see there are three parts to this application: an input field, which allows users to input a Twitter
+username, the timeline viewer, which displays the selected Twitter users’ tweets, and a recent users list,
+which will store previous searches.
+    </p>
+    <p>
+The search box will appear at the top of the page, the recent users in a column to the left, and the tweets
+themselves will have the majority of the page on the right side.
+    </p>
+    <p>
+Next, create another file named app.js and add the following content. These comments helps you keep
+your code organized. Load this page up in your browser and make sure there are no errors.
+    </p>
+    <pre>
+/**************************
+* Application
+**************************/
+/**************************
+* Models
+**************************/
+/**************************
+* Views
+**************************/
+/**************************
+* Controllers
+**************************/
+    </pre>
+    <b>Application initialization</b>
+    <p>
+    The first thing you’ll need to do is to initialize your application. Directly under the comment block labeled
+    Application, place the following code:
+    </p>
+
+    <pre><code class="javascript">App = Em.Application.create();</code></pre>
+
+    <p>
+Notice that instead of saying Ember.Application, this line says Em.Application. The Ember team added
+this handy shortcut to reduce typing by allowing you to use “Em” in any place where you might use “Ember”.
+    </p>
+    <p>
+Next you’ll add the TextInput view and the submit button. Directly under the comment block labeled
+“Views” add the following code:
+    </p>
+
+    <pre><code class="javascript">App.SearchTextField = Em.TextField.extend({
+    insertNewline: function(){
+        App.tweetsController.loadTweets();
+    }
+});</code></pre>
+   
+    <p>
+    This block starts by using the App namespace, then extends one of Ember’s prepackaged Views, the
+TextField. In addition to allowing arbitrary properties and functions within Views, Ember also has built-in
+helper functions available for use. That’s what the insertNewLine() function is; it executes whenever
+the user presses the Enter/Return key on their keyboard while the cursor is within the input box.
+    </p>
+    <b>Creating template blocks</b>
+    <p>
+Now that the TextField View is defined, you’ll add the corresponding view helper code to the HTML file.
+Switch to index.html and add the following code directly after the line that reads “Load Tweets for”. Remember
+that anything within {{ and }} is a template and will be used by Ember to output data. Additionally
+any template beginning with the word view refers to a View that has been defined within your
+JavaScript code.
+    </p>
+
+    <pre><code class="javascript">{{view App.SearchTextField placeholder=&#x201d;Twitter username&#x201d; 
+     valueBinding=&#x201d;App.tweetsController.username&#x201d;}}
+&lt;button {{action &#x201c;loadTweets&#x201d; target=&#x201d;App.tweetsController&#x201d;}}&gt;Go!&lt;/button&gt;</code></pre>
+    
+    <p>
+    This portion of the template contains a view helper, and a button tag with an {{action}} helper. The
+TextField View, SearchTextField, begins with an attribute that is built into HTML5 text input fields,
+placeholder text. If the field is empty, the text within the placeholder attribute will be placed into the
+input field. When someone begins typing, the value goes away. Ember enables developers to use any
+HTML 5 standard attributes within its built-in views.
+    </p>
+    <p>
+    The second attribute highlights the magic of Ember’s data-bindings. Ember uses a set of conventions
+to help it determine what you’re trying to accomplish. Any attribute in a view (either within a template,
+or in a JavaScript file) that ends with the word “Binding” (note the capital letter) automatically sets up a
+binding for the attribute that precedes it. In this case Ember is binding the value of App.tweetsController.
+username to the input field’s value attribute. Anytime the contents of the variable changes,
+the value contained within the input field will update automatically, and vice versa.
+    </p>
+    <p>
+    The {{action}} makes it easier to add functionality to input driven elements. It has two options: the
+action name and the target. Taken together they form a “path” to a function contained within an Ember
+object. In the case of the above button the “path” would be App.tweetsController.loadTweets(),
+the same function called when a user presses the Enter key within the text field. Load index.html in your
+browser and click the submit button, or press the Enter key within the input field. If you’re viewing the
+browser console you’ll see an error. This is because App.tweetsController is not yet defined.
+    </p>
+    <b>Preparing the Tweet storage object</b>
+    <p>
+    Now would be a good time to define App.tweetsController. Add the following code after the Controllers
+comment block in app.js. The code below should be familiar to you. Namespace, ArrayController,
+content array–it’s all there. This time though you’ll be adding an arbitrary property (username),
+and a function ( loadTweets ). After adding the ArrayController, reload your browser. Type a word
+in the input box and then click the button. You’ll get an alert box that echoes the word you typed. Feel
+free to remove the alert line at any time. You’ll also see an error indicating that the addUser method is
+not defined.
+    </p>
+
+    <pre><code class="javascript">App.tweetsController = Em.ArrayController.create({
+content: [],
+username: ‘’,
+loadTweets: function() {
+var me = this;
+var username = me.get(“username”);
+alert(username);
+if ( username ) {
+var url = ‘http://api.twitter.com/1/statuses/user_timeline.json’
+url += ‘?screen_name=%@&callback=?’.fmt(me.get(“username”));
+// push username to recent user array
+App.recentUsersController.addUser(username);
+}
+}
+});</code></pre>
+
+    <p>
+Take a closer look at the loadTweets function definition; it has some unfamiliar bits. The first line sets a
+scope for the rest of the function. By definition, the scope or this for all Ember objects is the current function,
+in this case App.tweetsController. However, you’ll be adding more functionality to the load-
+Tweets function later in this tutorial. Setting the current scope now helps Ember understand the context
+you’re using.
+    </p>
+    <p>
+As I noted previously, Ember offers a number of helper functions to make writing applications easier, and
+these include get() and set(). These two functions are built into every Ember object and provide quick
+access to any property or function. The next line uses the scope of the current object, App.tweetsController,
+and then calls the get() function, passing in the name of the property that you wish to get
+a value for. You might be curious about where the value of username is coming from to begin with. Remember
+that Ember’s data bindings are bidirectional. This means that as soon as you type a value into the
+input field the valueBinding attribute of the input field view updates the App.tweetsController
+object with a value.
+    </p>
+    <p>
+After the username has been retrieved, a test is run to make sure it’s not empty. At the moment there
+are only two statements within the if block, but that will change later. The first statement sets the URL
+to Twitter’s JSON file for a user. You might not immediately notice anything special about this until you
+look closer and see %@, and the .fmt() at the end. The .fmt() function performs a handy string replacement
+with the %@ as the marker. Since the design of the application calls for storing a running list of
+searches, you’ll have to somehow store your search term. The final line performs that function, pushing
+the username value into the App.recentUsersController ArrayController. Since this object doesn’t
+exist yet, running the code will result in an error.
+    </p>
+    <b>Storing previous searches</b>
+    <p>
+In this next section you’ll create the object used to store recent searches. Take the following code and
+add it after the App.tweetsController object.
+    </p>
+
+    <pre><code class="javascript">
+App.recentUsersController = Em.ArrayController.create({
+content: [],
+addUser: function(name) {
+if ( this.contains(name) ) this.removeObject(name);
+this.pushObject(name);
+},
+removeUser: function(view){
+this.removeObject(view.context);
+},
+searchAgain: function(view){
+App.tweetsController.set(‘username’, view.context);
+App.tweetsController.loadTweets();
+},
+reverse: function(){
+return this.toArray().reverse();
+}.property(‘@each’)
+});</code></pre>
+
+    <p>
+    You’re already familiar with creating an ArrayController and adding an empty content array, but this object
+has a few new elements starting with the addUser function. This will check the existing array ( this
+) using a built-in Ember function named contains(). If it finds a result it removes it by using the ArrayController’s
+function removeObject(). This function has an opposite named pushObject(), which
+is used to add individual objects to the content array. Both functions also have pluralized versions that
+handle multiple objects: pushObjects() and removeObjects(). This code first removes an existing
+term before adding it so that the same search term isn’t displayed more than once. Since you already
+know how to remove an object from the content array, the only new element in the removeUser() function
+is the argument. When a function is called using the {{action}} helper, Ember implicitly passes in
+a reference to the current view. In the case of App.tweetsController, the view has a context that is
+essentially the item that is currently being iterated over. This context is used to remove the selected item
+from the array.
+    </p>
+    <p>
+The searchAgain() function also receives the current view as an argument. When a user clicks a previously
+searched term, this function populates App.tweetsController.username with the selected
+username, then triggers the loadTweets() function, offering a single-click view for previous searches.
+By default, Ember displays contents to the page in ascending order. Array index 1 is first, array index 2
+is second, and so on. The design of this application calls for displaying recent searches in descending
+order. This means that the array must be reversed. While this isn’t built-in functionality you can see how
+easy it is to add. Reverse() first converts the Ember content array into a plain vanilla array using the
+Ember toArray() function, reverses it, and then returns it. What makes it possible to use this function
+as a data source is the property() function tacked on at the end. The property() function takes a
+comma-delimited list of properties required by the specified function. In this case the property() function
+is implicitly using the content array itself, addressing each element within that array using the @each
+dependant key. You’ll see how to implement the reverse() function in the next section.
+    </p>
+    <b>Displaying previous searches</b>
+    <p>
+Now that you’re storing your previous searches, it’s time to display them on the page. Copy the following
+template and add it after the h3 tag labeled Recent Users.
+    </p>
+
+    <pre><code class="xml">&lt;ol&gt;
+    {{#each App.recentUsersController.reverse}}
+        &lt;li&gt;
+            &lt;a href=&#x201d;#&#x201d; title=&#x201d;view again&#x201d; {{action &#x201c;searchAgain&#x201d; 
+target=&#x201d;App.recentUsersController&#x201d;}}&gt;{{this}}&lt;/a&gt; - 
+            &lt;a href=&#x201d;#&#x201d; title=&#x201d;remove&#x201d; {{action &#x201c;removeUser&#x201d; 
+target=&#x201d;App.recentUsersController&#x201d;}}&gt;X&lt;/a&gt;
+        &lt;/li&gt;
+    {{/each}}
+&lt;/ol&gt;</code></pre>
+
+    <b>Loading tweets</b>
+    <p>
+Saving search terms is good, but how about actually performing the search? Next you’ll be adding the
+pieces that will retrieve the JSON packet from Twitter and display it to the page. Take the following Ember
+Model and add it directly after the comment block labeled Model. Remember that Ember Models
+are a blueprint for the data they will contain.
+    </p>
+
+    <pre><code class="javascript">
+App.Tweet = Em.Object.extend({
+    avatar: null,
+    screen_name: null,
+    text: null,
+    date: null
+});</code></pre>
+
+    <p>
+In app.js locate the line that reads App.recentUsersController.addUser(username); and add
+the following code directly after it:
+    </p>
+
+    <pre><code class="javascript">
+$.getJSON(url,function(data){
+    me.set(‘content’, []);
+    $(data).each(function(index,value){
+        var t = App.Tweet.create({
+            avatar: value.user.profile_image_url,
+            screen_name: value.user.screen_name,
+            text: value.text,
+            date: value.created_at
+        });
+        me.pushObject(t);
+    })
+});</code></pre>
+
+    <p>
+If you’ve used jQuery before you might have used the .get() function to retrieve data. The .getJSON()
+function does the same thing except it expects a JSON packet as a result. In addition it takes the
+returned JSON string and converts it into executable JavaScript code for you. Once the data has been
+retrieved, the content array is emptied removing all existing tweets. The next line takes the packet of
+data and wraps it in a jQuery object so that the .each() method can loop over the resulting Tweets.
+Within the each block a copy of the Tweet Model is populated with data, and then pushed into the ArrayController.
+    </p>
+    <p>
+Finally, you’ll need to add the following display code to index.html. Copy and paste it directly after the
+h3 tag labeled Tweets.
+    </p>
+
+    <pre><code class="xml">&lt;ul&gt;
+    {{#each App.tweetsController}}
+        &lt;li&gt;
+            &lt;img {{bindAttr src=&#x201d;avatar&#x201d;}} /&gt;
+            &lt;span&gt;{{date}}&lt;/span&gt;
+            &lt;h3&gt;{{screen_name}}&lt;/h3&gt;
+            &lt;p&gt;{{text}}&lt;/p&gt;
+        &lt;/li&gt;
+    {{/each}}
+&lt;/ul&gt;</code></pre>
+
+    <p>
+    Ember makes it easy to output data to the page using plain {{Handlebars}} but there’s a catch. Remember
+how Ember wraps outputted values in script tags? That’s not an option when you’re working with
+HTML attributes. So Ember provides the {{bindAttr}} helper. Any attribute placed within this helper
+will output as normal, but still retain bindings. Go ahead and run your application now. Input a username
+and watch the Tweets fly in.
+    </p>
+    <div class="flag-green">Where to go from here</div>
+    <p>
+    In this article you learned the basics of Ember.js functionality. You learned how Ember implements MVC
+using its Models, Views, Controllers, and of course the Application object. You created templates with
+view helpers and action helpers using Handlebars. You learned how to create blueprints for your data
+using Models, store that data in collection sets with Controllers, and display the data to the page using
+Views. Finally, you used Ember to build an entire application with data bindings, computed properties,
+and auto-updating templates. Your mother would be so proud of you!
+    </p>
+    <p>
+For further reading on Ember, check out a few of the following links:
+    </p>
+
+    </div>
+</article>

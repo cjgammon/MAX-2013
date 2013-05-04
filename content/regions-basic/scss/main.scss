@@ -1,0 +1,142 @@
+@import "compass/css3";
+@import "normalize";
+
+body, html{
+    height: 100%;
+    background: #f0f0f0;
+	overflow: hidden;
+	color: #333;
+}
+
+*{
+	-webkit-user-select: none;
+}
+
+h1, h2, h3, h4, h5{
+	margin: 0;
+	padding: 0;
+	font-family: 'Bebas Neue', bebas-neue, sans-serif;
+	line-height: 90%;
+}
+
+h2{
+	font-size: 6rem;
+}
+
+h4{
+	color: #ccc;
+}
+
+.container{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.flex{
+	pointer-events: none;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+
+pre{
+	border: 1px solid #d3d3d3;
+	background-color: #f2f2f2;
+	padding: 10px 20px;
+	-webkit-user-select: auto;
+}
+
+#main{
+	width: 100%;
+	height: 100%;
+	cursor: crosshair;
+}
+
+@-webkit-keyframes rock{
+	0%{
+		-webkit-transform: rotate(-42deg);
+	}
+	
+	100%{
+		-webkit-transform: rotate(-47deg);
+	}
+}
+
+@-webkit-keyframes rock2{
+	0%{
+		-webkit-transform: rotate(-20deg);
+	}
+	
+	100%{
+		-webkit-transform: rotate(-30deg);
+	}
+}
+
+
+.button{
+	position: absolute;
+	padding: 10px 20px 10px 60px;
+	color: #999;
+	font-size: 2rem;
+	font-family: 'Bebas Neue', bebas-neue, sans-serif;
+	background: #444;
+	cursor: pointer;
+	box-shadow: 0px 3px 10px rgba(0, 0, 0, .4);
+	-webkit-transform-origin: left center;	
+}
+
+#flow-button{
+	bottom: -30px;
+	left: -20px;
+	z-index: 100;
+	-webkit-transform: rotate(-45deg);
+	-webkit-animation-duration: 10s;
+	-webkit-animation-name: rock;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+#clear-button{
+	bottom: -30px;
+	left: 20px;
+	z-index: 90;
+	-webkit-transform: rotate(-25deg);
+	-webkit-animation-duration: 12s;
+	-webkit-animation-name: rock2;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+#content{
+	position: absolute;
+	color: #10444a;
+	-webkit-flow-into: myflow;
+}
+
+#content-preview{
+	position: absolute;
+	margin: 10% 5%;
+	width: 20%;
+	max-height: 70%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	background: #fcfcfc;
+	opacity: .5;
+	overflow: scroll;
+	-webkit-user-select: auto;
+}
+
+.region{
+	position: absolute;
+	padding: 10px;
+	border: 1px solid #769091;
+	background-color: #d8edec;
+}
+
+.flow-from{
+	-webkit-flow-from: myflow;
+}

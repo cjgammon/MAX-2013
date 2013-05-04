@@ -1,0 +1,202 @@
+<article id="article-requirejs">
+    <header class="js-parallax"></header>
+
+     <div class="column">
+        <!-- <h1><img src="../images/appliness.svg" alt="appliness"></h1> -->
+        <h2>Dependency management with RequireJS</h2>
+        <p class="subhead">
+        This article provides an introduction to RequireJS and how you can use it to help manage JavaScript projects.
+        </p>
+        <div class="flag-green">introduction</div>
+        <p>
+            In most software development languages, applications are built using dozens, hundreds, or even thousands of files. In JavaScript, however, developing inside only a small handful of files—each containing hundreds or thousands of lines of code—has traditionally been more commonplace. Expert or beginner, comprehending the scope and intricacies of such files can be a daunting task. Making sure your code stays clean and modular is an even taller order. Then why are large, complex JavaScript files so common? The most commonly cited reasons are:
+        </p>
+        <ul>
+            <li>That's the way JavaScript development has been done in the past.</li>
+            <li>Loading many JavaScript files requires many HTTP requests resulting in longer load times.</li>
+            <li>Dependency management is hard in JavaScript.</li>
+        </ul>
+        <p>
+            While the first excuse is true, relying solely on what’s been done in the past is the death of progression. The second point is a legitimate concern, and the third point used to be much more of a problem than it is today. Fortunately, there are fantastic libraries and standards that can help developers overcome both these problems. In fact, overcoming them is imperative. The scalability of JavaScript applications and the sanity of the engineers who develop them depend on it. This article provides an introduction to RequireJS and how you can use it to help manage JavaScript projects.
+        </p>
+        <div class="flag-green">File splitting and file management headaches</div>
+        <pre><code class="xml">&lt;script src=&#x201d;script3.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script1.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script13.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script7.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script6.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script12.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script4.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script11.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script5.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script9.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script8.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script10.js&#x201d;&gt;&lt;/script&gt;
+&lt;script src=&#x201d;script2.js&#x201d;&gt;&lt;/script&gt;
+        </code></pre>
+        <p>
+            You can assume there are some dependencies here, but what are they? How do you find out? If I’m new to the team, I wouldn’t want to touch the order of these with a ten-foot pole. What if there was a better way? What if each file could declare its own dependencies so you didn’t have to maintain this brittle master list? What if the relationships declared by each file could be understood by a loader of some sort that could load dependencies on demand, and the dependencies of those dependencies, and so on?
+        </p>
+        <div class="flag-green">Introducing modules, AMD, and RequireJS</div>
+        <p>
+            Let’s get nostalgic for a moment. A few years back, using JavaScript on the server was just starting to get hot. Server-side libraries and JavaScript engines were being deployed but they didn’t have a good, standard API for working with one another and defining dependencies. Getting one library to work with another required finagling and it was obvious that if JavaScript was going to scale it would need some common APIs. In January 2009, Kevin Dangoor wrote a blog post titled What Server Side JavaScript Needs outlining just that—what server-side JavaScript needed. As a means to fulfill these needs, he created a Google group named ServerJS where like-minded folk could collaborate. Soon enough, the group realized that many of its goals weren’t necessarily limited to the server and renamed the group to CommonJS.
+        </p>
+        <p>
+            One of the standards that CommonJS worked toward was the module. A module is a self-contained piece of code (how’s that for vague?) that defines that it is a module itself and, optionally, which other modules it depends on in order to function. Module B might call for module G and module M, and module G might call for modules D and W. By having a module standard, dependency management becomes easier. Rather than keeping some sort of implicit master list that must be kept in order, each module just defines its own dependencies. That mapping can be used to determine required resources and the order in which they must be loaded.
+        </p>
+        <b>AMD</b>
+        <p>
+            The module concept was great for server-side development as it addressed how to load modules based on dependency definitions, but the browser-side JavaScript developers got a bit jealous. Why should such a useful mechanism be confined to the server? Sure, browsers would need to load modules asynchronously rather than synchronously, but that didn’t mean the concept of modules and dependency definitions couldn’t apply. The Asynchronous Module Definition, or AMD, was born for this purpose. It takes the module and dependency definition API from the server side and applies it to the asynchronous paradigm of the browser.
+        </p>
+        <b>RequireJS</b>
+        <p>
+            So what does RequireJS have to do with this? Well, even though you can define your modules and their dependencies with AMD, you need something smart that can take this dependency map, load the modules, and execute the modules in order. That’s the role RequireJS plays. Both RequireJS and AMD are open source, popular, and well-curated by James Burke.
+        </p>
+        <div class="flag-green">Defining and requesting modules</div>
+        <p>
+            At this point, let’s jump straight into some code to help solidify some of these concepts. A module is almost always defined within a single file. Likewise, a single file only contains a single module definition. Defining a module, at its core, is as simple as the code below. The following definition is within a file named book.js.
+        </p>
+        <pre><code class="javascript">define({
+    title: "My Sister’s Keeper",
+    publisher: "Atria"
+});</code></pre>
+        <p>
+            This code defines a book module using define(), an AMD function exposed by RequireJS. When you call it, you’re essentially saying, “Register what I’m passing you as a module.” In this case the module is the book object starting and ending with curly braces. By default, RequireJS assumes the module name is the file path following the base URL (explained below) excluding the extension. Because the file is named book.js, book is the default module name. When other code asks RequireJS for the book module, RequireJS will return the object defined above. Now you can make a bookshelf module in a new file named bookshelf.js and see how you can request the book module into it.
+        </p>
+        <pre><code class="javascript">define([
+   'book'
+], function(book) {
+ return {
+    listBook: function() {
+        alert(book.title);
+    }
+    };
+});</code></pre>
+        <p>
+            Notice this one’s a bit different than the book module. The book module didn’t have any dependencies so it was simpler. This code passes an array of dependencies for bookshelf into define(). In this case, the only dependency is book. The second parameter is a callback function. If the book module hasn’t been registered with RequireJS yet (in other words, book.js hasn’t been loaded into the app yet), RequireJS will fetch it from the server.
+        </p>
+        <p>
+            Once book.js is loaded and the book module is registered, RequireJS will execute the callback function and pass the module (the book object defined previously) in as a parameter. The argument name isn’t technically significant. You could have just as easily used function(a1337Book) or whatever name you wanted. In this case, it makes sense to have the argument name match the module name since it’s consistent and easy to understand.
+        </p>
+        <p>
+            Finally, whatever object is returned from this callback function will be registered with RequireJS as the bookshelf module. In this case, it’s an object with a listBook() method that just invokes alert() on the book’s title. RequireJS tries to be as efficient as possible when loading multiple modules. For example, if multiple dependencies are listed, RequireJS will load all the dependencies in parallel.
+        </p>
+        <div class="flag-green">Setting up the application</div>
+        <p>
+            To get started with RequireJS and the new modules, set up a basic HTML page. Here’s how it might look:
+        </p>
+        <pre><code class="xml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;RequireJS Example&lt;/title&gt;
+&lt;script data-main=&#x201d;js/main&#x201d; src=&#x201d;js/libs/require.js&#x201d;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body/&gt;
+&lt;/html&gt;</code></pre>
+        <p>
+            Quite literally, you can build a large, single-page application without adding anything else to your HTML file just by manipulating the body’s content using JavaScript and loading HTML templates, which you can also do with RequireJS. For now, just take note the data-main attribute. This tells RequireJS where the bootstrap file is—in this example, the file is main.js and it is located in the js directory (it assumes main has a js extension). Here is an example main.js file:
+        </p>
+        <pre><code class="javascript">require([
+    'bookshelf'
+], function(bookshelf) { 
+    bookshelf.listBook();
+});</code></pre>
+        <p>
+            Because you specified this file as your data-main in the HTML file, RequireJS will load it as soon as possible and it will be immediately executed.
+        </p>
+        <p>
+You’ll notice some similarities with the previous module definitions, but instead of calling define() this code calls require(). The define() function—at least when dependencies are defined—completes three steps:
+        </p>
+        <ul>
+            <li>Loads the specified dependencies</li>
+            <li>Calls the callback function</li>
+            <li>Registers the return value from the callback function as the module</li>
+        </ul>
+        <p>
+            The require() function only completes steps 1 and 2. The main.js file is just a bootstrap file. I don’t need to have a main module registered with RequireJS because no other module will be calling for it as a dependency.
+        </p>
+        <p>
+            The main.js file lists the bookshelf module as a dependency. Assuming the bookshelf module hasn’t already been registered with RequireJS, it will load bookshelf.js. Once it loads bookshelf.js, it will see that bookshelf has the book module listed as a dependency. If the book module hasn’t already been registered, it will then load book.js. Once that’s done and book and then bookshelf have registered their respective objects as modules with RequireJS, the callback in main.js will be executed and bookshelf will be passed through. At that point you can do whatever you want with bookshelf. If needed, you can list multiple module dependencies and they will all be passed into the callback as soon as they’re all loaded and registered with RequireJS.
+        </p>
+        <div class="flag-green">Setting up the application</div>
+        <p>
+            I mentioned base URLs earlier. By default, the base URL is whatever directory contains the bootstrap file. In the example above, main.js is in the js directory along with book.js and bookshelf.js. This means the base URL is /js/. Instead of placing all the js files directly under the js directory, you could move book.js and bookshelf.js to /js/model/. The main.js file would need to be updated to look like this:
+        </p>
+        <pre><code class="javascript">require([
+‘model/bookshelf’
+], function(bookshelf) {
+bookshelf.listBook();
+});</code></pre>
+        <p>
+            Now main knows the correct location of bookshelf.js. Likewise, bookshelf.js would list the book dependency as model/book even though book and bookshelf are in the same directory. This leads into RequireJS configuration. I usually perform my configuration at the top of my bootstrap file. My main.js might look like this:
+        </p>
+        <pre><code class="javascript">require.config({
+baseUrl: ‘/another/path’,
+  paths: {
+    ‘myModule’: ‘dirA/dirB/dirC/dirD/myModule’
+    ‘templates’: ‘../templates’,
+    ‘text’: ‘libs/text’,
+  }
+});
+ 
+require([
+  ‘bookshelf’
+  ], function(bookshelf) {
+  bookshelf.listBook();
+  });</code></pre>
+
+        <p>
+            In this case, I’ve manually changed my base URL to something completely different. Personally, I’ve never needed to configure this but it’s there to demonstrate one of the many configuration options available.  For more details, see the RequireJS documentation on configuration options.
+        </p>
+        <p>
+            The code above also demonstrates how to configure paths. A path acts as an alias for a specific directory or module. In this case, rather than having to type out dirA/dirB/dirC/dirD/myModule when listing dependencies throughout my modules, I can now just type myModule. I’ve also set up a path for accessing a templates directory that is a sibling to my js directory. Lastly, I’ve set up a path for accessing the RequireJS text plug-in more easily throughout my modules. Although not covered in this article, you can easily load HTML templates using this text plug-in. For more details, see the text plug-in documentation.
+        </p>
+        <div class="flag-green">Constructor modules</div>
+        <p>
+            So far, the modules you’ve seen have all been object instances; bookshelf was an object and book was an object. In reality, modules are often constructors (similar to classes in classical languages). In this example, you may want to make the book module a constructor. Library could then create and store multiple book objects. The book module would now look something like this:
+        </p>
+        <pre><code class="javascript">define(function() {
+  var Book = function(title, publisher) {
+    this.title = title;
+    this.publisher = publisher;
+    };
+   return Book;
+});</code></pre>
+        <p>
+            Notice here that you’re passing a function into define() instead of an object. When you pass a function instead of a regular object, the function will get executed by RequireJS and whatever is returned from the function then becomes the module. Here the book constructor is returned. The bookshelf module would now look like this:
+        </p>
+        <pre><code class="javascript">define([
+  ‘book’
+  ], function(Book) {
+    var books = [
+      new Book(‘A Tale of Two Cities’, ‘Chapman & Hall’),
+      new Book(‘The Good Earth’, ‘John Day’)
+];
+ 
+return {
+  // Notice I’ve changed listBook() to listBooks() now that
+  // I am dealing with multiple books.  
+  listBooks: function() {
+    for (var i = 0, ii = books.length; i < ii; i++) {
+      alert(books[i].title);
+    }
+  }
+};
+});</code></pre>
+  
+          <div class="flag-green">Optimizing for deployment</div>
+
+            <p>
+                Assuming you’ve appropriately broken your code into granular modules, you potentially have hundreds of files and unless you do some optimization your code will be making hundreds of HTTP requests. Fortunately, you can use the RequireJS optimizer to solve this problem.
+            </p>
+            <p>
+                enerally, you set up the optimizer to run during your deployment process. The RequireJS optimizer discovers which files are used within your app by scanning the code for modules and their dependencies. It then minifies the files (shortens your code to make the files really small) and concatenates them (smashes them together to make a single file). In the end, it outputs a single JavaScript file that contains all of your app code. This single file should then take the place of main.js when you deploy.
+            </p>
+            <p>
+                When a user loads index.html, it will in turn load RequireJS, which will then load the main.js file. The main.js file, this time, will not only contain your usual main.js bootstrap code but also all the minified, concatenated code of the rest of your app. All the modules in the file will register themselves with RequireJS at that time. When main starts asking for dependencies and those dependencies start asking for dependencies, RequireJS will recognize that all the required modules have already been loaded and forego loading them from the server again.
+            </p>
+            <p>
+                Of course, the optimizer has its own set of options. You can optimize your app down to a few different files representing sections of your app instead of a single large file. You can also use different minifier libraries, exclude files from concatenation, or even minify CSS. This article has covered a great deal of ground, but there’s plenty more to learn about dependency management. The RequireJS website is a great place to start.
+            </p>
+    </div>
+</article>

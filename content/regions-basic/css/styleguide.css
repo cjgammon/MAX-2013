@@ -1,0 +1,530 @@
+/* Styleguide CSS here pls ------------------------------------------------------------------------------- */
+/* line 3, ../scss/styleguide.scss */
+html {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+/* line 9, ../scss/styleguide.scss */
+body {
+  color: #444;
+  font: 14px "source-sans-pro", "source", helvetica, arial, sans-serif;
+  line-height: 21px;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* line 18, ../scss/styleguide.scss */
+.guides {
+  /*	border: 1px solid red;*/
+}
+
+/* line 22, ../scss/styleguide.scss */
+.space {
+  height: 90px;
+}
+
+/* line 26, ../scss/styleguide.scss */
+#container {
+  min-width: 600px;
+}
+
+/* line 30, ../scss/styleguide.scss */
+#test-container {
+  padding: 0 120px 30px 30px;
+}
+
+/* line 34, ../scss/styleguide.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: #000;
+  font-family: "source-l", helvetica, arial, sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* line 41, ../scss/styleguide.scss */
+h4 {
+  border-bottom: 1px solid #d7d7d7;
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+/* line 47, ../scss/styleguide.scss */
+h5 {
+  font-size: 21px;
+}
+
+/* line 51, ../scss/styleguide.scss */
+h4 span {
+  background: #fff;
+  padding: 0 7px 0 0;
+  position: relative;
+  bottom: -10px;
+}
+
+/* line 58, ../scss/styleguide.scss */
+.tabular {
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-spacing: 0;
+  margin: 14px 0;
+}
+
+/* line 64, ../scss/styleguide.scss */
+th, td, .tabular td.var {
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  font-weight: normal;
+  padding: 5px 10px;
+  text-align: left;
+}
+
+/* line 72, ../scss/styleguide.scss */
+th {
+  white-space: nowrap;
+}
+
+/* line 76, ../scss/styleguide.scss */
+.tabular tr:last-child td {
+  border: none;
+}
+
+/* line 80, ../scss/styleguide.scss */
+.tabular td {
+  font-size: 12px;
+  padding: 10px;
+}
+
+/* line 85, ../scss/styleguide.scss */
+.images {
+  width: 100% !important;
+}
+
+/* line 90, ../scss/styleguide.scss */
+.images td,
+.images th {
+  border-right: 1px solid #eee !important;
+  padding: 18px;
+  text-align: center;
+  vertical-align: top;
+}
+
+/* line 97, ../scss/styleguide.scss */
+.images th {
+  padding: 9px;
+}
+
+/* line 102, ../scss/styleguide.scss */
+.images tr:last-child td,
+.images tr th:last-child {
+  border-right: none !important;
+}
+
+/* line 106, ../scss/styleguide.scss */
+.images img {
+  width: 300px;
+}
+
+/* line 110, ../scss/styleguide.scss */
+header {
+  background: #3a3f42 url("../img/bg_dark.png") repeat-x;
+  bottom: 0;
+  cursor: default;
+  left: 0;
+  overflow-y: scroll;
+  padding: 0 0 30px 0;
+  position: absolute;
+  top: 0;
+  width: 220px;
+}
+
+/* line 122, ../scss/styleguide.scss */
+#main {
+  bottom: 0;
+  left: 220px;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 0 100px 60px 40px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* line 133, ../scss/styleguide.scss */
+header hgroup {
+  padding: 15px;
+}
+
+/* line 137, ../scss/styleguide.scss */
+header hgroup {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.11);
+}
+
+/* line 142, ../scss/styleguide.scss */
+header h1 {
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 0 -1px 0 black;
+}
+
+/* line 148, ../scss/styleguide.scss */
+header h2 {
+  color: #c7c7c7;
+  font-size: 12px;
+  text-shadow: 0 -1px 0 black;
+}
+
+/* line 154, ../scss/styleguide.scss */
+header h3 {
+  color: #A4B4B7;
+  font-size: 14px;
+  text-shadow: 0 -1px 0 black;
+  margin: 15px 0 5px 15px;
+}
+
+/* line 161, ../scss/styleguide.scss */
+header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 168, ../scss/styleguide.scss */
+header a {
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  color: #bbb;
+  display: block;
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 15px 0 30px;
+  text-shadow: 0 1px 0 #000;
+}
+
+/* line 182, ../scss/styleguide.scss */
+header a:link,
+header a:visited {
+  color: #c7c7c7;
+  text-decoration: none;
+}
+
+/* line 187, ../scss/styleguide.scss */
+header .selected {
+  background: rgba(112, 112, 112, 0.24);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  color: #fff !important;
+}
+
+/* line 195, ../scss/styleguide.scss */
+header a:hover {
+  background: rgba(112, 112, 112, 0.24);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  color: #fff !important;
+}
+
+/* line 202, ../scss/styleguide.scss */
+header a:focus {
+  border: 1px solid #0940fd;
+  -webkit-box-shadow: 0 0 4px #0088ff;
+  box-shadow: 0 0 4px #0088ff;
+  outline: none;
+}
+
+/* line 209, ../scss/styleguide.scss */
+header a:active {
+  background: rgba(0, 0, 0, 0.24);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* line 216, ../scss/styleguide.scss */
+h4:target span {
+  -webkit-animation: highlight 5s ease;
+  -moz-animation: highlight 5s ease;
+}
+
+@-webkit-keyframes highlight {
+  /* line 222, ../scss/styleguide.scss */
+  0% {
+    color: #0083E8;
+    text-shadow: 0 0 4px rgba(0, 136, 255, 0.69);
+  }
+
+  /* line 223, ../scss/styleguide.scss */
+  100% {
+    color: #000;
+    text-shadow: none;
+  }
+}
+
+/* line 226, ../scss/styleguide.scss */
+.preview {
+  border-spacing: 0;
+  width: auto;
+}
+
+/* line 231, ../scss/styleguide.scss */
+.preview td {
+  padding: 15px 30px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 241, ../scss/styleguide.scss */
+.bg-light {
+  background: #f8f8f8;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  font-size: 12px;
+}
+
+/* line 247, ../scss/styleguide.scss */
+.fonts.tabular {
+  width: 100%;
+}
+
+/* line 251, ../scss/styleguide.scss */
+.fonts.tabular th.bg-white {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+/* line 255, ../scss/styleguide.scss */
+.fonts.tabular th.bg-lightgray {
+  border-bottom: 1px solid #bdbdbd;
+}
+
+/* line 259, ../scss/styleguide.scss */
+.fonts.tabular th.bg-slategray {
+  border-bottom: 1px solid #5c6061;
+}
+
+/* line 263, ../scss/styleguide.scss */
+.fonts.tabular td {
+  vertical-align: top;
+  width: 33%;
+}
+
+/* Selection ------------------------------------------------------------------------------- */
+/* line 271, ../scss/styleguide.scss */
+::selection {
+  background: #e0f0fa;
+  color: #000;
+}
+
+/* line 276, ../scss/styleguide.scss */
+header {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Scrollbars ------------------------------------------------------------------------------- */
+/* line 287, ../scss/styleguide.scss */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+/* line 292, ../scss/styleguide.scss */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+/* line 300, ../scss/styleguide.scss */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+}
+
+/* line 309, ../scss/styleguide.scss */
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbars ------------------------------------------------------------------------------- */
+/* Container */
+/* line 318, ../scss/styleguide.scss */
+.modal {
+  /* Overlay page content */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  /* Transition opacity on open */
+  -webkit-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+  /* Hide for now */
+  opacity: 0;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Show modal */
+/* line 345, ../scss/styleguide.scss */
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hide modal */
+/* line 351, ../scss/styleguide.scss */
+.modal:active {
+  opacity: 0;
+}
+
+/* Content */
+/* line 356, ../scss/styleguide.scss */
+.modal > div {
+  width: 65%;
+  background: #fff;
+  position: relative;
+  margin: 10% auto;
+  /* Default minimise animation */
+  -webkit-animation: minimise 500ms linear;
+  /* Prettify */
+  padding: 12px 15px;
+  border-radius: 4px;
+  box-shadow: 0 15px 36px rgba(0, 0, 0, 0.6);
+  background: #fff;
+  text-shadow: 0 1px 0 #fff;
+}
+
+/* Override animation on modal open */
+/* line 374, ../scss/styleguide.scss */
+.modal:target > div {
+  -webkit-animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
+/* line 379, ../scss/styleguide.scss */
+.modal h1 {
+  font-size: 24px;
+  padding: 0 0 10px;
+}
+
+@-webkit-keyframes bounce {
+  /* line 385, ../scss/styleguide.scss */
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+
+  /* line 388, ../scss/styleguide.scss */
+  55% {
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+
+  /* line 391, ../scss/styleguide.scss */
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+
+  /*	0% {
+  		-webkit-transform: scale3d(0.1,0.1,1);
+  		box-shadow: 0 3px 20px rgba(0,0,0,0.9);
+  	}
+  	55% {
+  		-webkit-transform: scale3d(1,1,1);
+  		box-shadow: 0 10px 20px rgba(0,0,0,0);
+  	}
+  	75% {
+  		-webkit-transform: scale3d(0.95,0.95,1);
+  		box-shadow: 0 0 20px rgba(0,0,0,0.9);
+  	}
+  	100% {
+  		-webkit-transform: scale3d(1,1,1);
+  		box-shadow: 0 3px 20px rgba(0,0,0,0.9);
+  	}
+  */
+}
+
+@-webkit-keyframes minimise {
+  /* line 414, ../scss/styleguide.scss */
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+
+  /* line 417, ../scss/styleguide.scss */
+  100% {
+    -webkit-transform: scale3d(0.1, 0.1, 1);
+  }
+}
+
+/* Modal close link */
+/* line 423, ../scss/styleguide.scss */
+.modal a[href="#close"] {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: transparent;
+}
+
+/* Reset native styles */
+/* line 431, ../scss/styleguide.scss */
+.modal a[href="#close"]:focus {
+  outline: none;
+}
+
+/* Create close button */
+/* line 436, ../scss/styleguide.scss */
+.modal a[href="#close"]:after {
+  content: url("../img/close_modal.png");
+  display: block;
+  /* Position */
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  /* Style */
+  font-size: 12px;
+  text-decoration: none;
+  text-shadow: none;
+  text-align: center;
+  font-weight: bold;
+  background: #fff;
+}
+
+/* line 459, ../scss/styleguide.scss */
+.modal a[href="#close"]:focus:after {
+  outline: 1px solid #000;
+}
+
+/* line 463, ../scss/styleguide.scss */
+.modal a[href="#close"] {
+  text-shadow: none !important;
+}
+
+/* Open modal */
+/* line 468, ../scss/styleguide.scss */
+a.openmodal {
+  display: block;
+  text-align: center;
+}

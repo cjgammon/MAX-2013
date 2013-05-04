@@ -1,0 +1,135 @@
+<html>
+   <head>
+      <title>font family tester</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8.js"></script>
+	<script src="http://use.edgefonts.net/alice:n4.js"></script>
+	<script src="http://use.edgefonts.net/bebas-neue:n4.js"></script>
+	<link rel="stylesheet" type="text/css" href="../styles/style.css">
+
+	<style>
+		body{
+			background-color: #3a3a45;
+			background-position: top center;
+			color: #f4f4f4;
+		}
+	
+		#container{
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+		}
+		
+		.kerning{
+			font-family: 'Belwe Std Medium';
+			font-size: 10rem;
+			line-height: 100%;
+			text-align: left;
+			-letter-kern: 0 0 0 0 0 0 0 0 0 0 0 0 0;
+			-webkit-user-select: none;
+		}
+		
+		.adjusted{
+			-letter-kern: -.1em 0 0 0 0 0 0 0 0 0 0 0 0;	
+		}
+		
+		.word{
+			width: 100%;
+		}
+		
+		#moveme span span{
+			position: relative;
+			cursor: ew-resize;
+			-webkit-backface-visibility:hidden;
+		}
+		
+		#kernme, #interactive{
+			position: relative;
+			left: 0px;
+		}
+
+		#blue{
+			display: none;
+			position: absolute;
+			top: 0px;
+			color: #00ccff;
+		}
+		
+		svg{
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		
+		#block{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -200px;
+			margin-left: -20rem;
+			width: 1000px;
+		}
+		
+		@media screen and (max-width:675px){
+			html{
+				font-size: 75%;
+			}
+		}
+		
+		@media screen and (max-width:515px){
+			html{
+				font-size: 40%;
+			}
+			
+			#block{
+				width: 30rem;
+			}
+		}
+		
+	</style> 
+   </head>
+   <body>
+		<div id="container">
+			<div id="block">
+				<div id="interactive" class="word">
+					<div id="blue" class="adjusted kerning">Awesome</div>
+					<div id="moveme" class="kerning">Awesome</div>
+				</div>				
+				<div id="kernme" class="word adjusted kerning">Awesome</div>
+			</div>
+		</div>
+   </body>
+
+	<script src="../scripts/jquery-1.9.0.min.js"></script>
+	<script src="../../../js/vendor/kerning.js"></script>
+	
+   <script type="text/javascript">
+		var delta,
+			currentItem;
+		
+		function init(){
+			
+			function handle_MOUSE_MOVE(e) {
+				var offset = delta - e.pageX;
+				currentItem.css('marginRight', -offset / 100 + 'em');
+			}
+			
+			$('#moveme span span').bind('mousedown', function (e) {
+				delta = e.pageX;
+				currentItem = $(this).prev();
+				$('#blue').show();
+				$(document).bind('mousemove', handle_MOUSE_MOVE);
+			})
+			
+			$(document).bind('mouseup', function (e) {
+				$('#blue').hide();
+				$(document).unbind('mousemove', handle_MOUSE_MOVE);
+			})
+		}
+		
+		$(document).ready(init);
+   </script>
+
+   
+</html>
