@@ -3,7 +3,7 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> 
  */
-/* line 17, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,45 +25,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -127,7 +127,7 @@ li {
 
 /* line 60, ../sass/screen.scss */
 small {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 /* line 64, ../sass/screen.scss */
@@ -175,7 +175,7 @@ section > div {
 
 /* line 105, ../sass/screen.scss */
 a {
-  color: #16a985;
+  color: #1680a9;
   text-decoration: none;
 }
 /* line 109, ../sass/screen.scss */
@@ -187,7 +187,7 @@ a:hover {
 a.link {
   display: inline-block;
   padding: .1em;
-  color: #16a985;
+  color: #1680a9;
   text-decoration: none;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
@@ -200,21 +200,16 @@ a.link:hover {
 }
 /* line 125, ../sass/screen.scss */
 a.link:focus {
-  color: white;
-  background: #16a985;
+  color: #005842;
   outline: none !important;
 }
-/* line 130, ../sass/screen.scss */
-a.link:focus:hover {
-  background: #005842;
-}
 
-/* line 136, ../sass/screen.scss */
+/* line 131, ../sass/screen.scss */
 .amp {
   font-family: 'Alice';
 }
 
-/* line 140, ../sass/screen.scss */
+/* line 135, ../sass/screen.scss */
 .css {
   padding: .5em;
   color: #f4f4f4;
@@ -223,14 +218,14 @@ a.link:focus:hover {
   font-size: 1.5rem;
 }
 
-/* line 148, ../sass/screen.scss */
+/* line 143, ../sass/screen.scss */
 .footnote {
   position: absolute;
   bottom: 40px;
   left: 40px;
 }
 
-/* line 154, ../sass/screen.scss */
+/* line 149, ../sass/screen.scss */
 #ui {
   position: absolute;
   bottom: 10px;
@@ -241,14 +236,14 @@ a.link:focus:hover {
   color: white;
 }
 
-/* line 164, ../sass/screen.scss */
+/* line 159, ../sass/screen.scss */
 #typing {
   padding: 5px;
   border-radius: 4px 4px 0 0;
   background-color: #ccc;
 }
 
-/* line 170, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 #results {
   padding: 5px;
   border-radius: 0 0 4px 4px;
@@ -256,7 +251,7 @@ a.link:focus:hover {
 }
 
 /* slide specific*/
-/* line 178, ../sass/screen.scss */
+/* line 173, ../sass/screen.scss */
 .columns-col {
   padding: 2em 4em 0;
   font-size: 1.5rem;
@@ -268,28 +263,28 @@ a.link:focus:hover {
   column-count: 2;
 }
 
-/* line 185, ../sass/screen.scss */
+/* line 180, ../sass/screen.scss */
 .font-resources {
   max-width: 700px;
   text-align: center;
 }
-/* line 189, ../sass/screen.scss */
+/* line 184, ../sass/screen.scss */
 .font-resources a {
   padding: .2em .5em;
 }
-/* line 192, ../sass/screen.scss */
+/* line 187, ../sass/screen.scss */
 .font-resources a:hover {
-  background-color: #16a985;
+  background-color: #1680a9;
   color: #f0f0f0;
 }
 
-/* line 199, ../sass/screen.scss */
+/* line 194, ../sass/screen.scss */
 .grid {
   text-align: center;
   font-size: 0;
 }
 
-/* line 204, ../sass/screen.scss */
+/* line 199, ../sass/screen.scss */
 .exclusion-icon {
   position: relative;
   top: .45em;

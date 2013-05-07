@@ -7,7 +7,7 @@
 @import "compass/reset";
 @import "compass/css3";
 
-$green: #16a985;
+$green: #1680A9;
 $darkgreen: #005842;
 $offwhite: rgb(240, 240, 240);
 
@@ -58,7 +58,7 @@ li{
 }
 
 small{
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 }
 
 iframe{
@@ -123,13 +123,8 @@ a.link{
 	};
 	
 	&:focus{
-		color: white;
-		background: $green;
+		color: $darkgreen;
 		outline: none !important;
-		
-		&:hover{
-			background: $darkgreen;	
-		};
 	};
 }
 

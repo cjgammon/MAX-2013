@@ -41,10 +41,8 @@ define([], function (require) {
 					{
 						css: {
 							x: _WIDTH,
-							//scale: 1,
-							rotationX: 0,
-							opacity: 1,
-							z: 0.1
+							opacity: 1//,
+							//z: 0.1
 						}
 					},
 					{
@@ -71,11 +69,10 @@ define([], function (require) {
 				//OUT
 				transitionOut = TweenLite.to($this, _SPEED * 1.5, {
 					css: {
-						//scale: 0.7,
-						rotationX: 60,
+						x: -_WIDTH,
 						opacity: 0,
-						zIndex: 1,
-						z: -1000
+						zIndex: 1//,
+						//z: 0.01
 					},
 					ease: Quad.easeOut
 				});
